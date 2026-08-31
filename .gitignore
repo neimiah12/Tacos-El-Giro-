@@ -1,0 +1,10 @@
+# Dependencies (only used for local tooling/QA)
+node_modules/
+package-lock.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
