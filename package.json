@@ -9,7 +9,8 @@
     "package": "bash package.sh",
     "verify:design": "node .claude/skills/impeccable/scripts/detect.mjs --json index.html",
     "verify:all": "npm run verify && npm run verify:design",
-    "preview": "node preview.mjs"
+    "preview": "node preview.mjs",
+    "localize": "bash scripts/localize-images.sh"
   },
   "devDependencies": {
     "playwright": "^1.40.0"

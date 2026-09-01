@@ -2,91 +2,98 @@
    TACOS EL GIRO — styles.css
    Tier: Verified Launch ($799).
 
-   ARCHITECTURE — the order counter
-   The menu is a matrix: five meats crossed with eight formats. Assigned by the
-   tier doc §3 worked-examples table, and corroborated independently — the five
-   meats fall straight out of the eight named popular items. So the page IS the
-   counter: pick a meat, the formats resolve. It is built on radio inputs and
-   :checked, not JS, so it works with scripting off.
+   DIRECTION — "the late shift"
+   A dark taqueria counter after sundown: near-black ground, food lit like the
+   only bright thing in the room, chile red and burnt orange carrying heat,
+   warm cream carrying the words. Photography leads; type is condensed and loud.
 
-   PALETTE — measured, not eyeballed. Every value found by sweeping for the
-   lightest cut that clears the bar against the WORST background it sits on.
+   The client pinned this direction explicitly (dark charcoal/black ground, deep
+   red + burnt orange + warm cream, bold type, photography throughout). Per the
+   process, explicit creative direction is a pin, not a suggestion — it replaces
+   the previous steel-ground order-counter world.
 
-     pairing                         fg        bg         ratio   target
-     headings                        #1A1E22   #E9ECEE    14.13   7.0  AAA
-     headings on sunk panel          #1A1E22   #DDE1E4    12.74   7.0  AAA
-     body text                       #3A4148   #E9ECEE     8.72   7.0  AAA
-     body on sunk panel              #3A4148   #DDE1E4     7.87   7.0  AAA
-     secondary text                  #5D656B   #E9ECEE     5.00   4.5  AA
-     secondary on sunk panel         #5D656B   #DDE1E4     4.51   4.5  AA
-     accent text                     #B03D1C   #E9ECEE     5.01   4.5  AA
-     accent on sunk panel            #B03D1C   #DDE1E4     4.52   4.5  AA
-     marker on ground                #79611F   #E9ECEE     5.00   4.5  AA
-     marker on sunk panel            #79611F   #DDE1E4     4.51   4.5  AA
-     white on accent fill            #FFFFFF   #C4441F     5.01   4.5  AA
-     body on board                   #AFB5BB   #1A1E22     8.10   7.0  AAA
-     body on raised cell             #AFB5BB   #242A30     7.01   7.0  AAA
-     secondary on board              #889197   #1A1E22     5.22   4.5  AA
-     secondary on raised cell        #889197   #242A30     4.52   4.5  AA
-     accent on board                 #D4765A   #1A1E22     5.22   4.5  AA
-     accent on raised cell           #D4765A   #242A30     4.51   4.5  AA
-     marker on board                 #E8B93C   #1A1E22     9.13   4.5  AA
-     marker on raised cell           #E8B93C   #242A30     7.89   4.5  AA
+   PALETTE — measured, never eyeballed. Every pairing checked against ALL FOUR
+   surfaces it can sit on, not just the page ground.
+
+     pairing                    fg        bg         ratio   target
+     heading / body             #F2E7D9   #100D0C    15.86   7.0
+       "        on surf-1       #F2E7D9   #191413    14.95   7.0
+       "        on surf-2       #F2E7D9   #241C1A    13.70   7.0
+       "        on surf-3       #F2E7D9   #2E2321    12.48   7.0
+     secondary body             #CFC2B4   #100D0C    11.09   7.0
+       "        on surf-3       #CFC2B4   #2E2321     8.73   7.0
+     muted / captions           #A2968C   #100D0C     6.71   4.5
+       "        on surf-3       #A2968C   #2E2321     5.28   4.5
+     orange accent              #E1701F   #100D0C     6.03   4.5
+       "        on surf-3       #E1701F   #2E2321     4.74   4.5
+     ember accent               #F0913F   #100D0C     8.14   4.5
+       "        on surf-3       #F0913F   #2E2321     6.40   4.5
+     red accent text            #CD726C   #100D0C     5.73   4.5
+       "        on surf-3       #CD726C   #2E2321     4.51   4.5
+     white on red fill          #FFFFFF   #B01F16     6.88   4.5
+     cream on red fill          #F2E7D9   #B01F16     5.64   4.5
+     ink on orange fill         #100D0C   #E1701F     6.03   4.5
+     ink on ember fill          #100D0C   #F0913F     8.14   4.5
 
    WHAT NOT TO CHANGE BACK, AND WHY
-   - The ground is NOT cream. #E9ECEE is hue 204deg with blue > red — cool steel,
-     the material of a service counter. Tier doc §4: four builds have been
-     flagged for a cream/beige ground, and the previous version of this site
-     shipped #FFFBF4. Warming it re-breaks the rule.
-   - No prices render in the matrix. No per-item price exists in any source.
-     verify.mjs asserts this; it is the architecture's invariant.
-   - Anton + Archivo. Fraunces is banned here (swapped out of a shipped build as
-     the obvious warm serif; the previous version of this site used it). Petrona,
-     Gabarito, Hanken Grotesk, Familjen Grotesk, Karla, Chivo, Figtree, Bricolage
-     and Zilla are already used on other builds. Instrument Sans, Playfair, Lora
-     and Cormorant are flagged overused.
-   - Five type steps with real gaps (12 / 16 / 22 / 34 / 68px). Do not add a
-     sixth a fraction away from an existing one; map it onto the nearest step.
+   - Never a cream/beige PAGE GROUND. §4 has flagged four builds for it and an
+     earlier version of this site shipped #FFFBF4. Cream lives in the TEXT here,
+     which is what the client asked for. The ground stays near-black.
+   - No eyebrow label above a heading, and no thick accent border on one side of
+     a card. The detector caught both on the previous build; they are the two
+     most recognizable generated-UI tells. Do not reintroduce either.
+   - No prices render anywhere. No per-item price exists in any source. This is
+     the architecture's invariant and verify.mjs asserts it.
+   - No order-online button, cart, or delivery link. The DoorDash store is
+     switched off (§1).
+   - No hours are stated. Nothing was ever verified, and a guessed closing time
+     sends a real customer to a closed counter.
+   - Photography degrades to a painted gradient, never to a broken-image icon.
+     script.js flags a failed load and the .shot backdrop carries the panel.
+   - Anton + Archivo, self-hosted. Fraunces is banned here; Petrona, Gabarito,
+     Hanken Grotesk, Familjen Grotesk, Karla, Chivo, Figtree, Bricolage and
+     Zilla are used on other builds; Instrument Sans, Playfair, Lora and
+     Cormorant are flagged overused.
+   - Five type steps with real gaps (12 / 16 / 22 / 44 / 88px at 1280). Do not
+     add a sixth a fraction from an existing one; map it onto the nearest.
 
    RECORDED MISTAKES
-   The impeccable detector found eight, five of them real, on a page that had
-   already passed the hand-rolled gate:
-     - Two side-tab accent borders — a 3px accent rule under the sticky bar and
-       a 4px accent tab on the note callout. Both removed. The bar is dark on a
-       light ground and already reads as an edge; the note is carried by its
-       sunk ground and its accent label. Do not put either back.
-     - A tracked-caps eyebrow above the h1 ("Mexican food · Kennewick,
-       Washington"). Removed outright — the lead already says the category and
-       the venue plainly, which is what §4 actually asks for. Do not
-       reintroduce an eyebrow above the masthead heading.
-     - Two all-caps body runs: that same eyebrow (36 chars) and the services
-       line (41 chars). The services line is body copy and now reads in
-       sentence case at body size.
-   Three cramped-padding findings were DISMISSED, measured not assumed:
-     .board  24px on all four sides, board edge to first cell 24px
-     .note   28px on all four sides, note edge to paragraph 28px top
-     .strip  0 inline on the section by design; the inner .wrap carries 48px,
-             and the measured strip edge to heading is 148px
-   That last one is the documented full-bleed false positive. Re-measure before
-   ever "fixing" it — adding padding to .strip would double the inset.
-
-   Contrast was first measured only against the page ground and passed. It then
-   failed twice on the sunk panel (#DDE1E4) and twice more on the raised board
-   cell (#242A30) — the Lucky Bao failure exactly: a colour checked against white
-   and against ink, but never against the field it actually sits on. Every token
-   above is now swept against the worst background it appears on. Re-measure on
-   that basis, never against the page ground alone.
+   - Contrast measured against the page ground alone passed, then failed on the
+     sunk panel and the raised cell — the Lucky Bao failure. Every token is now
+     swept against the WORST surface it appears on. Re-measure that way.
+   - The detector found a tracked-caps eyebrow and two side-tab borders on the
+     previous build after it had already passed the hand-rolled gate. A passing
+     gate is not a passing detector; run both.
+   - Hover states must be repainted on the ELEMENT, never by a ::before overlay.
+     An overlay leaves the element's real background under the text, so a
+     contrast checker measures a pair that is never on screen — and it passed
+     the eye while failing the number, which is the worst possible direction.
+   - Every inline SVG needs an explicit size. Unsized, the global
+     `svg { height: auto }` let a 15px arrow grow to fill a card and its
+     min-content width dropped the four-up dish row to three-up.
+   - The gallery is an EXACT mosaic (6 tiles, 4 cols x 3 rows, 12 cells), not an
+     auto-fit grid. Mixed aspect ratios in auto-fit make every row as tall as its
+     tallest tile and leave dead space under the short ones.
 
    REVISION LOG
-   2026-09-01  Detector pass: impeccable v4.1.2, vendored at
-               .claude/skills/impeccable. Eight findings, five fixed, three
-               dismissed with measurements above. Confirmed not DEGRADED first.
-   2026-09-01  Built. Replaces a cream-ground, Fraunces-display page with
-               AI-generated food photography and three unattributed review
-               quotes — none of which survive §1 or §4.
+   2026-09-01  Detector pass on the redesign: 13 findings, 6 fixed (three
+               icon-tile-stacks, a 33-char all-caps label, a coloured dark-page
+               glow, a repeating-stripes texture), 7 dismissed with
+               measurements. Own-gate findings fixed the same pass: a nine-step
+               type ramp mapped down to six; button hover painted by a ::before
+               overlay so the measured pair was ink-on-red at 2.81:1 while the
+               eye saw ink-on-orange at 6.03:1; and `.nav a` at (0,1,1) beating
+               `.btn--fill` at (0,1,0), which left the Call button at 3.94:1
+               resting and 1.35:1 hovered.
+   2026-09-01  Redesign to the client's pinned dark direction. Photography
+               throughout, eight sections. Replaces the steel-ground order
+               counter; the five-meat matrix survives as the menu band, since
+               it is still the one structurally true thing about this counter.
+   2026-09-01  Detector pass on the previous build: 8 findings, 5 fixed.
+   2026-09-01  Built (steel ground, order counter).
    ============================================================================ */
 
-/* --------------------------------------------------------------- 1. fonts */
+/* ---------------------------------------------------------------- 1. fonts */
 @font-face {
   font-family: 'Anton'; font-style: normal; font-weight: 400; font-display: swap;
   src: url('fonts/anton-400-latin.woff2') format('woff2');
@@ -116,375 +123,480 @@
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-/* -------------------------------------------------------------- 2. tokens */
+/* --------------------------------------------------------------- 2. tokens */
 :root {
-  --ground: #E9ECEE;
-  --ground-sunk: #DDE1E4;
-  --rule: #C4CBD0;
-  --board: #1A1E22;
-  --board-2: #242A30;
+  --ink: #100D0C;
+  --surf-1: #191413;
+  --surf-2: #241C1A;
+  --surf-3: #2E2321;
 
-  --ink: #1A1E22;
-  --ink-body: #3A4148;
-  --ink-mute: #5D656B;
+  --cream: #F2E7D9;
+  --cream-2: #CFC2B4;
+  --mute: #A2968C;
 
-  --accent-text: #B03D1C;
-  --accent-fill: #C4441F;
-  --accent-board: #D4765A;
+  --orange: #E1701F;
+  --ember: #F0913F;
+  --red-text: #CD726C;
+  --red-fill: #B01F16;
 
-  --masa-board: #E8B93C;
-  --masa-ground: #79611F;
-
-  --on-board: #AFB5BB;
-  --on-board-mute: #889197;
+  --line: rgba(242, 231, 217, 0.13);
+  --line-strong: rgba(242, 231, 217, 0.24);
 
   --display: 'Anton', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
   --text: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 
-  /* Five steps, real gaps: 12 / 16 / 22 / 34 / 68. Nothing functional below 11px. */
+  /* Six steps, real gaps: 12 / 16 / 22 / 32 / 44 / 88 at 1280
+     (1.33x, 1.375x, 1.45x, 1.375x, 2.0x). */
   --t-label: 0.75rem;
   --t-body: 1rem;
   --t-lead: clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem);
-  --t-head: clamp(1.75rem, 1.35rem + 1.7vw, 2.125rem);
-  --t-display: clamp(2.75rem, 1.4rem + 5.6vw, 4.25rem);
+  --t-stat: clamp(1.75rem, 1.2rem + 1.7vw, 2rem);
+  --t-head: clamp(2rem, 1.3rem + 2.4vw, 2.75rem);
+  --t-display: clamp(2.75rem, 1.1rem + 6.6vw, 5.5rem);
 
-  --wrap: 1080px;
-  --gutter: clamp(1.25rem, 5vw, 3rem);
-  --bar-h: 62px;
+  --wrap: 1180px;
+  --gutter: clamp(1.25rem, 5vw, 3.5rem);
+  --bay: clamp(4rem, 9vw, 7.5rem);
+  --bar-h: 68px;
+  --ease: cubic-bezier(0.22, 0.68, 0.32, 1);
 }
 
-/* ---------------------------------------------------------- 3. reset/base */
+/* ----------------------------------------------------------- 3. reset/base */
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
   -webkit-text-size-adjust: 100%;
-  /* ONE anchor offset mechanism only — tier doc §7: scroll-padding-top on html
-     AND scroll-margin-top on targets stack and you get both. */
-  scroll-padding-top: calc(var(--bar-h) + 16px);
+  scroll-behavior: smooth;
+  /* ONE anchor-offset mechanism — never stacked with scroll-margin-top (§7). */
+  scroll-padding-top: calc(var(--bar-h) + 14px);
 }
 
 body {
   margin: 0;
-  background: var(--ground);
-  color: var(--ink-body);
+  background: var(--ink);
+  color: var(--cream-2);
   font-family: var(--text);
   font-size: var(--t-body);
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
+body.is-locked { overflow: hidden; }
 
-/* Tier doc §7: keeps aspect-ratio from losing to width/height attributes. */
 img, svg { max-width: 100%; height: auto; display: block; }
-
-h1, h2 { margin: 0; font-weight: 400; }
-p, dl, dd, ul { margin: 0; }
+h1, h2, h3 { margin: 0; font-weight: 400; }
+p, ul, dl, dd { margin: 0; }
 ul { padding: 0; list-style: none; }
-abbr[title] { text-decoration: none; border-bottom: 1px dotted currentColor; cursor: help; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 3px solid var(--ember); outline-offset: 3px; border-radius: 2px; }
 
-a { color: inherit; }
+.vh { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
-:focus-visible { outline: 3px solid var(--accent-fill); outline-offset: 3px; }
-
-.vh {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
-}
-
-.skip {
-  position: absolute; left: 50%; top: -80px; transform: translateX(-50%); z-index: 50;
-  background: var(--accent-fill); color: #FFFFFF; padding: 0.7rem 1.2rem;
-  font-weight: 700; text-decoration: none; border-radius: 0 0 6px 6px;
-}
+.skip { position: absolute; left: 50%; top: -90px; transform: translateX(-50%); z-index: 90;
+  background: var(--red-fill); color: #FFFFFF; padding: 0.75rem 1.25rem; font-weight: 700;
+  border-radius: 0 0 6px 6px; transition: top .2s var(--ease); }
 .skip:focus { top: 0; }
 
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+.bay { padding-block: var(--bay); }
+.bay--tight { padding-block: clamp(3rem, 6vw, 4.5rem); }
 
 .h2 {
-  font-family: var(--display);
-  font-size: var(--t-head);
-  line-height: 1.02;
-  letter-spacing: 0.005em;
-  color: var(--ink);
-  text-transform: uppercase;
+  font-family: var(--display); font-size: var(--t-head); line-height: 0.98;
+  letter-spacing: 0.005em; text-transform: uppercase; color: var(--cream);
+  text-wrap: balance;
 }
-.h2--light { color: #FFFFFF; }
+.h2 em { font-style: normal; color: var(--orange); }
+.lede { margin-top: 1.15rem; font-size: var(--t-lead); line-height: 1.55;
+  color: var(--cream-2); max-width: 42rem; }
+.head { margin-bottom: clamp(2.25rem, 4vw, 3.25rem); max-width: 46rem; }
+.head--mid { margin-inline: auto; text-align: center; }
 
-/* -------------------------------------------------------------- 4. header */
+/* -------------------------------------------------------------- 4. buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  padding: 1rem 1.9rem; border: 1px solid transparent; border-radius: 2px;
+  font-family: var(--text); font-size: var(--t-body); font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+  position: relative;
+  transition: transform .3s var(--ease), color .3s var(--ease),
+              background-color .3s var(--ease), border-color .3s var(--ease),
+              box-shadow .3s var(--ease);
+}
+.btn svg { width: 17px; height: 17px; flex: none; }
+/* Hover paints the BUTTON's own background, never a ::before overlay. An
+   overlay leaves the element's real background underneath the text, so the
+   resting-and-hover pair a contrast checker measures is the wrong one — and it
+   was: ink on red at 2.81:1 while the eye saw ink on orange at 6.03:1. Keep the
+   colour on the element so what is measured is what is rendered. */
+.btn:hover { transform: translateY(-2px); }
+
+.btn--fill { background: var(--red-fill); color: #FFFFFF; }
+.btn--fill:hover {
+  background: var(--orange); color: var(--ink);
+  box-shadow: 0 14px 30px -16px rgba(0, 0, 0, .85);
+}
+
+.btn--line { background: transparent; color: var(--cream); border-color: var(--line-strong); }
+.btn--line:hover { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 2.25rem; }
+.btn-row--mid { justify-content: center; }
+@media (max-width: 480px) { .btn-row .btn { flex: 1 1 100%; } }
+
+/* ------------------------------------------------- 5. photography + fallback */
+/* A .shot is a painted panel that a photograph sits on top of. If the image
+   never loads, the panel is what you see — a deliberate ember gradient, never a
+   broken-image icon. script.js adds .is-missing when a load fails. */
+.shot {
+  position: relative; overflow: hidden; min-width: 0;
+  background:
+    radial-gradient(120% 100% at 24% 12%, rgba(225, 112, 31, .30), transparent 62%),
+    radial-gradient(120% 120% at 84% 92%, rgba(176, 31, 22, .34), transparent 66%),
+    linear-gradient(155deg, var(--surf-3), var(--surf-1) 62%, var(--ink));
+}
+.shot img {
+  width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1;
+  transition: transform .8s var(--ease), opacity .5s var(--ease);
+}
+.shot.is-missing img { display: none; }
+.shot--fill { position: absolute; inset: 0; }
+
+/* --------------------------------------------------------------- 6. header */
 .bar {
-  position: sticky; top: 0; z-index: 40;
-  background: var(--board);
+  position: sticky; top: 0; z-index: 60;
+  background: rgba(16, 13, 12, .82);
+  backdrop-filter: saturate(150%) blur(14px);
+  -webkit-backdrop-filter: saturate(150%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: background-color .35s var(--ease), border-color .35s var(--ease);
 }
-.bar__in {
-  min-height: var(--bar-h);
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-}
-.mark { text-decoration: none; display: block; min-width: 0; }
-.mark__name {
-  display: block;
-  font-family: var(--display);
-  font-size: var(--t-lead);
-  line-height: 1;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-}
-.mark__where {
-  display: block; margin-top: 3px;
-  font-size: var(--t-label); color: var(--on-board-mute);
-}
-.bar__nav { display: flex; gap: 1.25rem; flex: none; }
-.bar__nav a {
-  font-size: var(--t-label);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--on-board);
-  text-decoration: none;
-  padding-block: 0.5rem;
-  border-bottom: 2px solid transparent;
-}
-.bar__nav a:hover { color: var(--masa-board); border-bottom-color: var(--masa-board); }
+.bar.is-stuck { background: rgba(16, 13, 12, .96); border-bottom-color: var(--line); }
+.bar__in { min-height: var(--bar-h); display: flex; align-items: center;
+  justify-content: space-between; gap: 1.25rem; }
+.brand { display: block; min-width: 0; }
+.brand__n { display: block; font-family: var(--display); font-size: var(--t-lead);
+  line-height: 1; letter-spacing: .01em; text-transform: uppercase; color: var(--cream); }
+.brand__w { display: block; margin-top: 4px; font-size: var(--t-label); color: var(--mute); }
 
-/* ------------------------------------------------------------ 5. masthead */
-.mast { padding-block: clamp(3rem, 8vw, 5.5rem) clamp(2.5rem, 6vw, 4rem); }
-.mast__h1 {
-  font-family: var(--display);
-  font-size: var(--t-display);
-  line-height: 0.94;
-  letter-spacing: 0.005em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.mast__lead {
-  margin-top: 1.5rem;
-  max-width: 34rem;
-  font-size: var(--t-lead);
-  line-height: 1.5;
-  color: var(--ink-body);
-}
+.nav { display: flex; align-items: center; gap: clamp(1rem, 2.2vw, 2rem); }
+.nav a:not(.btn) { font-size: var(--t-label); font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--cream-2); padding-block: .45rem;
+  border-bottom: 2px solid transparent; transition: color .22s var(--ease), border-color .22s var(--ease); }
+.nav a:not(.btn):hover, .nav a:not(.btn).is-on { color: var(--ember); border-bottom-color: var(--ember); }
 
-.facts {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 1px;
-  margin-top: 2.5rem;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-@media (min-width: 700px) { .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.fact { min-width: 0; background: var(--ground); padding: 1.1rem 1.25rem; }
-.fact dt {
-  font-size: var(--t-label); font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--ink-mute);
-}
-.fact dd { margin: 0.35rem 0 0; color: var(--ink-body); }
-.fact strong { color: var(--ink); }
+.burger { display: none; width: 46px; height: 46px; padding: 0; cursor: pointer;
+  background: rgba(242,231,217,.06); border: 1px solid var(--line-strong);
+  border-radius: 3px; color: var(--cream); place-items: center; }
+.burger i { position: relative; display: block; width: 19px; height: 2px;
+  background: currentColor; transition: background-color .2s var(--ease); }
+.burger i::before, .burger i::after { content: ""; position: absolute; left: 0;
+  width: 19px; height: 2px; background: currentColor; transition: transform .3s var(--ease); }
+.burger i::before { top: -6px; } .burger i::after { top: 6px; }
+.burger[aria-expanded="true"] i { background: transparent; }
+.burger[aria-expanded="true"] i::before { transform: translateY(6px) rotate(45deg); }
+.burger[aria-expanded="true"] i::after { transform: translateY(-6px) rotate(-45deg); }
 
-/* ------------------------------------------------------------- 6. counter */
-.counter { padding-block: clamp(2.5rem, 6vw, 4rem) clamp(3rem, 7vw, 4.5rem); }
-.counter__sub { margin-top: 0.6rem; color: var(--ink-mute); }
+@media (max-width: 900px) {
+  .burger { display: grid; }
+  .nav {
+    position: fixed; inset: var(--bar-h) 0 auto 0; flex-direction: column;
+    align-items: stretch; gap: 0; padding: .5rem var(--gutter) 1.5rem;
+    background: rgba(16,13,12,.985); border-bottom: 1px solid var(--line);
+    max-height: calc(100dvh - var(--bar-h)); overflow-y: auto;
+    opacity: 0; visibility: hidden; transform: translateY(-10px);
+    transition: opacity .3s var(--ease), transform .3s var(--ease), visibility .3s;
+  }
+  .nav.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav a:not(.btn) { display: block; font-size: var(--t-body); padding: .95rem .2rem;
+    border-bottom: 1px solid var(--line); }
+  .nav .btn { margin-top: 1.25rem; width: 100%; }
+}
+.nav__cta { display: none; }
+@media (min-width: 901px) { .nav__cta { display: inline-flex; } }
 
-.picker { margin-top: 1.75rem; }
-.picker__row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 0.6rem;
+/* ----------------------------------------------------------------- 7. hero */
+.hero { position: relative; isolation: isolate; min-height: min(100svh, 900px);
+  display: flex; align-items: flex-end; overflow: hidden;
+  padding-top: calc(var(--bar-h) + 3rem); padding-bottom: clamp(3rem, 7vw, 5.5rem); }
+.hero__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(to top, var(--ink) 4%, rgba(16,13,12,.72) 44%, rgba(16,13,12,.40) 72%, rgba(16,13,12,.62)),
+    linear-gradient(to right, rgba(16,13,12,.86), rgba(16,13,12,.16) 62%); }
+.hero .shot--fill img { animation: heroIn 16s var(--ease) forwards; }
+@keyframes heroIn { from { transform: scale(1.08); } to { transform: scale(1); } }
+.hero__in { position: relative; z-index: 2; width: 100%; }
+.hero__body { max-width: 46rem; }
+.hero h1 {
+  font-family: var(--display); font-size: var(--t-display); line-height: .92;
+  letter-spacing: .004em; text-transform: uppercase; color: var(--cream);
+  text-wrap: balance; text-shadow: 0 8px 44px rgba(0,0,0,.5);
 }
-.chip {
-  min-width: 0;
-  display: block;
-  padding: 0.85rem 1rem;
-  background: var(--ground-sunk);
-  border: 2px solid var(--rule);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color .18s, border-color .18s, color .18s;
-}
-.chip span {
-  display: block;
-  font-family: var(--display);
-  font-size: var(--t-lead); line-height: 1.05;
-  text-transform: uppercase; letter-spacing: 0.01em;
-  color: var(--ink);
-}
-.chip small { display: block; margin-top: 3px; font-size: var(--t-label); color: var(--ink-mute); }
-.chip:hover { background: var(--ground); border-color: var(--accent-text); }
-.chip:hover span { color: var(--accent-text); }
+.hero h1 span { color: var(--ember); display: block; }
+.hero__p { margin-top: 1.5rem; font-size: var(--t-lead); line-height: 1.55;
+  color: var(--cream-2); max-width: 36rem; }
 
-#m-birria:checked  ~ .picker__row label[for="m-birria"],
-#m-adobada:checked ~ .picker__row label[for="m-adobada"],
-#m-chorizo:checked ~ .picker__row label[for="m-chorizo"],
-#m-chicken:checked ~ .picker__row label[for="m-chicken"],
-#m-asada:checked   ~ .picker__row label[for="m-asada"] {
-  background: var(--accent-fill); border-color: var(--accent-fill);
-}
-#m-birria:checked  ~ .picker__row label[for="m-birria"] span,
-#m-adobada:checked ~ .picker__row label[for="m-adobada"] span,
-#m-chorizo:checked ~ .picker__row label[for="m-chorizo"] span,
-#m-chicken:checked ~ .picker__row label[for="m-chicken"] span,
-#m-asada:checked   ~ .picker__row label[for="m-asada"] span,
-#m-birria:checked  ~ .picker__row label[for="m-birria"] small,
-#m-adobada:checked ~ .picker__row label[for="m-adobada"] small,
-#m-chorizo:checked ~ .picker__row label[for="m-chorizo"] small,
-#m-chicken:checked ~ .picker__row label[for="m-chicken"] small,
-#m-asada:checked   ~ .picker__row label[for="m-asada"] small { color: #FFFFFF; }
+.stars { display: inline-flex; align-items: center; gap: .6rem; padding: .5rem .95rem;
+  border: 1px solid var(--line-strong); border-radius: 2px; background: rgba(16,13,12,.5);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  font-size: var(--t-label); color: var(--cream-2); margin-bottom: 1.5rem; }
+.stars b { color: var(--ember); font-size: var(--t-body); }
+.stars svg { width: 13px; height: 13px; color: var(--ember); }
 
-.vh:focus-visible ~ .picker__row label { outline: none; }
-#m-birria:focus-visible  ~ .picker__row label[for="m-birria"],
-#m-adobada:focus-visible ~ .picker__row label[for="m-adobada"],
-#m-chorizo:focus-visible ~ .picker__row label[for="m-chorizo"],
-#m-chicken:focus-visible ~ .picker__row label[for="m-chicken"],
-#m-asada:focus-visible   ~ .picker__row label[for="m-asada"] {
-  outline: 3px solid var(--accent-fill); outline-offset: 3px;
-}
+.hero__meta { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; margin-top: 2.5rem;
+  padding-top: 1.6rem; border-top: 1px solid var(--line);
+  font-size: var(--t-label); font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--mute); }
+.hero__meta li { display: inline-flex; align-items: center; gap: .55rem; }
+.hero__meta li::before { content: ""; width: 5px; height: 5px; background: var(--orange); }
 
-/* All panels occupy one grid cell, so switching meats never changes the page
-   height. Deliberately NOT a 0fr->1fr accordion (Hand-Built §6: overflow:hidden
-   zeroes the max-content contribution and the track resolves to 0px). */
-.board {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  margin-top: 1.25rem;
-  background: var(--board);
-  border-radius: 6px;
-  padding: clamp(1rem, 3vw, 1.5rem);
-}
-.panel {
-  grid-row: 1; grid-column: 1;
-  min-width: 0;
-  opacity: 0; visibility: hidden;
-  transition: opacity .22s ease;
-}
-#m-birria:checked  ~ .board .panel[data-meat="birria"],
-#m-adobada:checked ~ .board .panel[data-meat="adobada"],
-#m-chorizo:checked ~ .board .panel[data-meat="chorizo"],
-#m-chicken:checked ~ .board .panel[data-meat="chicken"],
-#m-asada:checked   ~ .board .panel[data-meat="asada"] { opacity: 1; visibility: visible; }
+/* ------------------------------------------------------------- 8. featured */
+.dishes { display: grid; gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.dish { min-width: 0; display: flex; flex-direction: column;
+  background: var(--surf-1); border: 1px solid var(--line); border-radius: 3px;
+  overflow: hidden; transition: transform .4s var(--ease), border-color .4s var(--ease),
+  box-shadow .4s var(--ease); }
+.dish:hover { transform: translateY(-7px); border-color: rgba(225,112,31,.5);
+  box-shadow: 0 26px 50px -28px rgba(0,0,0,.95); }
+.dish .shot { aspect-ratio: 4 / 3; }
+.dish:hover .shot img { transform: scale(1.07); }
+.dish__b { padding: 1.4rem 1.45rem 1.6rem; display: flex; flex-direction: column;
+  gap: .55rem; flex: 1; }
+.dish__n { font-family: var(--display); font-size: var(--t-lead); line-height: 1.1;
+  text-transform: uppercase; letter-spacing: .01em; color: var(--cream); }
+.dish__d { font-size: var(--t-body); color: var(--mute); line-height: 1.6; }
+.dish__l { margin-top: auto; padding-top: .9rem; font-size: var(--t-label);
+  font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ember);
+  display: inline-flex; align-items: center; gap: .45rem; }
+/* Without an explicit size the global `svg { height: auto }` lets this arrow
+   grow to fill the card, and its min-content width drops the 4-up dish row to
+   3-up. Every inline SVG on this page needs a size. */
+.dish__l svg { width: 15px; height: 15px; flex: none; }
+.dish:hover .dish__l { color: var(--cream); }
 
-.cells {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 2px;
-}
-@media (min-width: 620px) { .cells { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 900px) { .cells { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* ------------------------------------------------------- 9. the meat matrix */
+.matrix { margin-top: clamp(2.5rem, 5vw, 3.5rem); padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--surf-1); border: 1px solid var(--line); border-radius: 3px; }
+.matrix__t { font-family: var(--display); font-size: var(--t-lead);
+  text-transform: uppercase; letter-spacing: .01em; color: var(--cream); }
+.matrix__s { margin-top: .5rem; font-size: var(--t-body); color: var(--mute); }
+.chips { display: grid; gap: .5rem; margin-top: 1.35rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); }
+.chip { min-width: 0; display: block; padding: .8rem .95rem; cursor: pointer;
+  background: var(--surf-2); border: 1px solid var(--line); border-radius: 2px;
+  transition: background-color .22s var(--ease), border-color .22s var(--ease); }
+.chip b { display: block; font-family: var(--display); font-size: var(--t-body);
+  line-height: 1.1; text-transform: uppercase; letter-spacing: .02em; color: var(--cream); }
+.chip small { display: block; margin-top: 3px; font-size: var(--t-label); color: var(--mute); }
+.chip:hover { background: var(--surf-3); border-color: rgba(225,112,31,.45); }
 
-.cell {
-  min-width: 0;
-  background: var(--board-2);
-  padding: 0.85rem 1rem;
-  border-left: 3px solid var(--on-board-mute);
-  border-radius: 3px;
-}
-.cell__fmt {
-  display: block;
-  font-size: var(--t-label); font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--on-board);
-}
-.cell__item {
-  display: block; margin-top: 4px;
-  font-family: var(--display); font-size: var(--t-lead); line-height: 1.1;
-  text-transform: uppercase; letter-spacing: 0.01em;
-  color: var(--on-board);
-}
-.cell.is-named { border-left-color: var(--masa-board); }
-.cell.is-named .cell__item { color: var(--masa-board); }
-.cell.is-assumed { border-left-color: var(--accent-board); }
-.cell.is-assumed .cell__item { color: var(--accent-board); }
-.cell.is-assumed abbr {
-  display: inline-block; margin-top: 4px;
-  font-family: var(--text); font-size: var(--t-label); font-weight: 400;
-  letter-spacing: 0; text-transform: none; color: var(--on-board-mute);
-}
-.cell.is-ask .cell__item {
-  font-family: var(--text); font-size: var(--t-body); font-weight: 400;
-  text-transform: none; letter-spacing: 0; color: var(--on-board-mute);
-}
+#k-birria:checked ~ .chips label[for="k-birria"],
+#k-adobada:checked ~ .chips label[for="k-adobada"],
+#k-chorizo:checked ~ .chips label[for="k-chorizo"],
+#k-chicken:checked ~ .chips label[for="k-chicken"],
+#k-asada:checked ~ .chips label[for="k-asada"] { background: var(--red-fill); border-color: var(--red-fill); }
+#k-birria:checked ~ .chips label[for="k-birria"] b,
+#k-adobada:checked ~ .chips label[for="k-adobada"] b,
+#k-chorizo:checked ~ .chips label[for="k-chorizo"] b,
+#k-chicken:checked ~ .chips label[for="k-chicken"] b,
+#k-asada:checked ~ .chips label[for="k-asada"] b { color: #FFFFFF; }
+#k-birria:checked ~ .chips label[for="k-birria"] small,
+#k-adobada:checked ~ .chips label[for="k-adobada"] small,
+#k-chorizo:checked ~ .chips label[for="k-chorizo"] small,
+#k-chicken:checked ~ .chips label[for="k-chicken"] small,
+#k-asada:checked ~ .chips label[for="k-asada"] small { color: #F2E7D9; }
+#k-birria:focus-visible ~ .chips label[for="k-birria"],
+#k-adobada:focus-visible ~ .chips label[for="k-adobada"],
+#k-chorizo:focus-visible ~ .chips label[for="k-chorizo"],
+#k-chicken:focus-visible ~ .chips label[for="k-chicken"],
+#k-asada:focus-visible ~ .chips label[for="k-asada"] { outline: 3px solid var(--ember); outline-offset: 3px; }
 
-.panel__note {
-  margin-top: 1rem;
-  font-size: var(--t-body); color: var(--on-board);
-  max-width: 46rem;
-}
+/* One grid cell for every panel: switching meats never moves the page, and no
+   fr track can resolve to 0px (Hand-Built §6). */
+.slab { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto;
+  margin-top: 1rem; }
+.pane { grid-row: 1; grid-column: 1; min-width: 0; opacity: 0; visibility: hidden;
+  transition: opacity .24s var(--ease); }
+#k-birria:checked ~ .slab .pane[data-k="birria"],
+#k-adobada:checked ~ .slab .pane[data-k="adobada"],
+#k-chorizo:checked ~ .slab .pane[data-k="chorizo"],
+#k-chicken:checked ~ .slab .pane[data-k="chicken"],
+#k-asada:checked ~ .slab .pane[data-k="asada"] { opacity: 1; visibility: visible; }
 
-/* The legend sits ON the board, so each swatch is the exact colour it
-   describes. On the light ground it had to use contrast-safe cuts
-   (#79611F, #B03D1C) that no longer looked like the board markers — a legend
-   that misdescribes its own key is worse than no legend. */
-.legend {
-  grid-row: 2; grid-column: 1;
-  display: flex; flex-wrap: wrap; gap: 0.55rem 1.5rem;
-  margin-top: 1.35rem; padding-top: 1rem;
-  border-top: 1px solid rgba(175, 181, 187, 0.28);
-  font-size: var(--t-label); color: var(--on-board);
-}
-.legend li { display: flex; align-items: center; gap: 0.5rem; min-width: 0; }
-.key { width: 12px; height: 12px; border-radius: 2px; flex: none; }
-.key--named { background: var(--masa-board); }
-.key--assumed { background: var(--accent-board); }
-.key--ask { background: var(--on-board-mute); }
+.forms { display: grid; gap: 2px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 620px) { .forms { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 900px) { .forms { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.form { min-width: 0; background: var(--surf-2); padding: .8rem .95rem; border-radius: 2px; }
+.form span { display: block; font-size: var(--t-label); font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
+.form b { display: block; margin-top: 4px; font-family: var(--display);
+  font-size: var(--t-body); line-height: 1.15; text-transform: uppercase;
+  letter-spacing: .02em; color: var(--cream-2); }
+.form.on b { color: var(--ember); }
+.form.ask b { font-family: var(--text); font-weight: 400; text-transform: none;
+  letter-spacing: 0; color: var(--mute); }
+.pane__n { margin-top: .9rem; font-size: var(--t-body); color: var(--cream-2); }
+.legend { grid-row: 2; grid-column: 1; display: flex; flex-wrap: wrap;
+  gap: .5rem 1.4rem; margin-top: 1.1rem; padding-top: .95rem;
+  border-top: 1px solid var(--line); font-size: var(--t-label); color: var(--mute); }
+.legend li { display: flex; align-items: center; gap: .45rem; min-width: 0; }
+.legend i { width: 11px; height: 11px; border-radius: 2px; flex: none; }
+.legend .on { background: var(--ember); } .legend .ask { background: var(--mute); }
 
-.counter__foot {
-  margin-top: 1.75rem; padding-top: 1.25rem;
-  border-top: 1px solid var(--rule);
-  max-width: 46rem; color: var(--ink-body);
-}
+/* ---------------------------------------------------------------- 10. about */
+.split { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center;
+  grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .split { grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); } }
+.split .shot { aspect-ratio: 4 / 5; border-radius: 3px; }
+.split__c { min-width: 0; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px; margin-top: 2.25rem; background: var(--line); border: 1px solid var(--line); }
+.stat { min-width: 0; background: var(--ink); padding: 1.1rem 1rem; }
+.stat b { display: block; font-family: var(--display);
+  font-size: var(--t-stat); line-height: 1; color: var(--ember); }
+.stat span { display: block; margin-top: .4rem; font-size: var(--t-label);
+  font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
 
-/* --------------------------------------------------------- 7. street strip */
-.strip { background: var(--board); padding-block: clamp(2.5rem, 6vw, 3.5rem); }
-.strip__in { display: grid; grid-template-columns: minmax(0, 1fr); }
-.strip__copy {
-  margin-top: 0.9rem; max-width: 40rem;
-  font-size: var(--t-lead); line-height: 1.5; color: var(--on-board);
-}
+/* -------------------------------------------------------------- 11. gallery */
+/* A grid, never CSS multi-column: `columns` needs a definite height to balance
+   against and collapses inside an indefinite container (Hand-Built §6). */
+/* An exact mosaic, not auto-fit. Mixed aspect ratios in an auto-fit grid make
+   every row as tall as its tallest tile and leave dead space under the short
+   ones — which is what "too much empty space" looked like. Six tiles tile 4
+   columns x 3 rows with no holes: 4 + 1 + 1 + 2 + 2 + 2 = 12 cells. */
+.gal { display: grid; gap: clamp(.6rem, 1.4vw, 1rem);
+  grid-template-columns: minmax(0, 1fr); }
+.gal .shot { aspect-ratio: 4 / 3; border-radius: 3px; }
 
-/* ------------------------------------------------------------ 8. the note */
-.note-wrap { padding-block: clamp(2.5rem, 6vw, 3.5rem); }
-.note {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.75rem;
-  background: var(--ground-sunk);
-  padding: clamp(1.25rem, 3vw, 1.75rem);
-  border-radius: 4px;
+@media (min-width: 620px) {
+  .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (min-width: 700px) { .note { grid-template-columns: 88px minmax(0, 1fr); gap: 1.5rem; } }
-.note__label {
-  font-size: var(--t-label); font-weight: 700; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--accent-text);
+@media (min-width: 960px) {
+  .gal { grid-template-columns: repeat(4, minmax(0, 1fr));
+         grid-auto-rows: clamp(150px, 15vw, 195px); }
+  .gal .shot { aspect-ratio: auto; grid-column: span 2; grid-row: span 1; }
+  .gal .shot:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gal .shot:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+  .gal .shot:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+  .gal .shot:nth-child(4) { grid-column: span 2; grid-row: span 1; }
+  .gal .shot:nth-child(5) { grid-column: span 2; grid-row: span 1; }
+  .gal .shot:nth-child(6) { grid-column: span 2; grid-row: span 1; }
 }
-.note__body { min-width: 0; }
-.note__body p { color: var(--ink-body); max-width: 44rem; }
+.gal .shot img { transition: transform .9s var(--ease), filter .5s var(--ease); }
+.gal .shot:hover img { transform: scale(1.07); }
+.gal .shot figcaption { position: absolute; left: 1rem; bottom: .9rem; z-index: 2;
+  font-size: var(--t-label); font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--cream); opacity: 0; transform: translateY(7px);
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
+  text-shadow: 0 2px 12px rgba(0,0,0,.9); }
+.gal .shot:hover figcaption { opacity: 1; transform: translateY(0); }
 
-/* --------------------------------------------------------------- 9. visit */
-.visit { padding-block: clamp(2.5rem, 6vw, 4rem); }
-.visit__in { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
-@media (min-width: 760px) { .visit__in { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.visit__col { min-width: 0; }
-.addr {
-  margin-top: 1rem; font-style: normal;
-  font-size: var(--t-lead); line-height: 1.45; color: var(--ink-body);
-}
-.addr strong { color: var(--ink); }
-.visit__services { margin-top: 1rem; font-size: var(--t-body); color: var(--ink-mute); }
-.phone {
-  margin-top: 1rem;
-  font-family: var(--display); font-size: var(--t-head); line-height: 1;
-  letter-spacing: 0.01em; color: var(--accent-text);
-}
-.phone__note { margin-top: 0.85rem; color: var(--ink-mute); max-width: 24rem; }
+/* ------------------------------------------------------------------ 12. why */
+.why { display: grid; gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); }
+.card { min-width: 0; position: relative; overflow: hidden; padding: 2.25rem 1.85rem;
+  background: var(--surf-1); border: 1px solid var(--line); border-radius: 3px;
+  transition: transform .4s var(--ease), border-color .4s var(--ease), background-color .4s var(--ease); }
+.card::after { content: ""; position: absolute; inset: auto -30% -55% auto;
+  width: 230px; height: 230px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle, rgba(225,112,31,.30), transparent 68%);
+  transition: opacity .45s var(--ease); }
+.card:hover { transform: translateY(-6px); background: var(--surf-2);
+  border-color: rgba(225,112,31,.42); }
+.card:hover::after { opacity: 1; }
+.card__h { display: flex; align-items: center; gap: .8rem; margin-bottom: .85rem; }
+.card__i { flex: none; display: block; color: var(--ember); }
+.card__i svg { width: 26px; height: 26px; }
+.card h3 { font-family: var(--display); font-size: var(--t-lead); line-height: 1.1;
+  text-transform: uppercase; letter-spacing: .01em; color: var(--cream); min-width: 0; }
+.card p { font-size: var(--t-body); color: var(--mute); }
 
-/* -------------------------------------------------------------- 10. footer */
-.foot { background: var(--board); padding-block: 2.25rem; }
-.foot__in { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
-.foot__name {
-  font-family: var(--display); font-size: var(--t-lead); line-height: 1;
-  text-transform: uppercase; letter-spacing: 0.01em; color: #FFFFFF;
-}
-.foot__meta { font-size: var(--t-body); color: var(--on-board); }
-.foot__copy { font-size: var(--t-label); color: var(--on-board-mute); margin-top: 0.5rem; }
+/* -------------------------------------------------------------- 13. reviews */
+.revs { display: grid; gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.rev { min-width: 0; display: flex; flex-direction: column; gap: 1rem;
+  padding: 2rem 1.85rem; background: var(--surf-1); border: 1px solid var(--line);
+  border-radius: 3px; transition: transform .4s var(--ease), border-color .4s var(--ease); }
+.rev:hover { transform: translateY(-5px); border-color: var(--line-strong); }
+.rev__s { display: flex; gap: 3px; color: var(--ember); }
+.rev__s svg { width: 16px; height: 16px; }
+.rev blockquote { margin: 0; font-family: var(--display); font-size: var(--t-lead);
+  line-height: 1.32; letter-spacing: .005em; color: var(--cream); text-transform: none; }
+.rev figcaption { margin-top: auto; font-size: var(--t-label); color: var(--mute); }
+.score { display: grid; gap: .35rem; place-items: center; text-align: center;
+  padding: clamp(1.75rem, 3vw, 2.5rem); background: var(--surf-2);
+  border: 1px solid var(--line); border-radius: 3px; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+.score b { font-family: var(--display); font-size: var(--t-head);
+  line-height: 1; color: var(--ember); }
+.score span { font-size: var(--t-label); font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--mute); }
+.disc { margin-top: 1.75rem; text-align: center; font-size: var(--t-body); color: var(--mute);
+  max-width: 46rem; margin-inline: auto; }
+
+/* --------------------------------------------------------------- 14. visit */
+.visit { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .visit { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.visit__c { min-width: 0; }
+.rows { display: grid; gap: 1.35rem; margin-top: 1.75rem; }
+.row { display: flex; gap: .95rem; min-width: 0; }
+.row__i { width: 40px; height: 40px; flex: none; display: grid; place-items: center;
+  border: 1px solid var(--line-strong); border-radius: 3px; color: var(--ember); }
+.row__i svg { width: 18px; height: 18px; }
+.row div { min-width: 0; }
+.row span { display: block; font-size: var(--t-label); font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin-bottom: .2rem; }
+.row p, .row address { font-style: normal; color: var(--cream); line-height: 1.5; }
+.row a:hover { color: var(--ember); }
+.visit > div:last-child { display: flex; min-width: 0; }
+.visit .shot { flex: 1; aspect-ratio: 4 / 3; border-radius: 3px; min-height: 300px; }
+@media (min-width: 900px) { .visit .shot { aspect-ratio: auto; } }
+
+/* -------------------------------------------------------------- 15. footer */
+.foot { background: var(--surf-1); border-top: 1px solid var(--line);
+  padding-top: clamp(3rem, 6vw, 4.5rem); }
+.foot__g { display: grid; gap: clamp(2rem, 4vw, 3rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+.foot__g > div { min-width: 0; }
+.foot__t { font-size: var(--t-label); font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ember); margin-bottom: 1.1rem; }
+.foot__l { display: grid; gap: .7rem; font-size: var(--t-body); color: var(--cream-2); }
+.foot__l a { transition: color .2s var(--ease), padding-left .25s var(--ease); }
+.foot__l a:hover { color: var(--ember); padding-left: 4px; }
+.foot__l address { font-style: normal; line-height: 1.6; }
+.social { display: flex; gap: .6rem; margin-top: 1.25rem; }
+.social a { width: 40px; height: 40px; display: grid; place-items: center;
+  border: 1px solid var(--line-strong); border-radius: 3px; color: var(--cream-2);
+  transition: color .25s var(--ease), border-color .25s var(--ease),
+              background-color .25s var(--ease), transform .25s var(--ease); }
+.social a:hover { color: var(--ink); background: var(--ember); border-color: var(--ember);
+  transform: translateY(-3px); }
+.social svg { width: 18px; height: 18px; }
+.foot__b { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: .6rem 1.5rem; padding-block: 1.5rem; border-top: 1px solid var(--line);
+  font-size: var(--t-label); color: var(--mute); }
+
+/* ---------------------------------------------------------- 16. the note */
+.note { display: grid; gap: .75rem; grid-template-columns: minmax(0, 1fr);
+  background: var(--surf-2); border: 1px solid var(--line); border-radius: 3px;
+  padding: clamp(1.25rem, 3vw, 1.75rem); }
+@media (min-width: 700px) { .note { grid-template-columns: 84px minmax(0, 1fr); gap: 1.5rem; } }
+.note__l { font-size: var(--t-label); font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ember); }
+.note p { color: var(--cream-2); max-width: 46rem; min-width: 0; }
+
+/* ------------------------------------------------------------- 17. reveal */
+[data-r] { opacity: 0; transform: translateY(20px);
+  transition: opacity .75s var(--ease), transform .75s var(--ease);
+  transition-delay: var(--d, 0ms); }
+[data-r].seen { opacity: 1; transform: none; }
+.no-js [data-r] { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  * { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important; }
+  [data-r] { opacity: 1; transform: none; }
+  .hero .shot--fill img { animation: none; }
 }

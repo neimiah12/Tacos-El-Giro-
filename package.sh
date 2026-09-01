@@ -9,11 +9,12 @@ rm -rf deploy
 mkdir -p deploy/fonts
 cp index.html styles.css script.js favicon.svg deploy/
 cp fonts/*.woff2 deploy/fonts/
+if [ -d img ] && compgen -G "img/*" >/dev/null; then mkdir -p deploy/img && cp img/* deploy/img/; fi
 
 echo "deploy/ contents:"
 find deploy -type f | sort | sed 's/^/  /'
 
-for internal in PRODUCT.md DESIGN.md CLAUDE.md verify.mjs package.json package.sh preview.mjs preview.artifact.html .claude; do
+for internal in PRODUCT.md DESIGN.md CLAUDE.md verify.mjs package.json package.sh preview.mjs preview.artifact.html scripts .claude; do
   if [ -e "deploy/$internal" ]; then
     echo "REFUSING: $internal must never ship" >&2; exit 1
   fi
