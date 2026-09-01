@@ -144,6 +144,49 @@ first viewport. **The counter photo is the highest-value asset to collect.**
 
 ---
 
+## Detector
+
+`impeccable` v4.1.2 is vendored at `.claude/skills/impeccable/` (upstream
+`pbakaus/impeccable`, Apache-2.0, commit `5b585c0`), so it travels with a clone.
+
+```bash
+cd .claude/skills/impeccable && npm install   # once per machine
+npm run verify:design                          # from the repo root
+```
+
+**Confirm the run is not `DEGRADED` before trusting it.** Degraded mode returns `[]`,
+which is indistinguishable from a clean pass.
+
+### Last run — 8 findings, 5 fixed, 3 dismissed
+
+Fixed:
+
+| Finding | Where | Resolution |
+|---|---|---|
+| `side-tab` | 3px accent rule under the sticky bar | Removed — the dark bar already reads as an edge |
+| `side-tab` | 4px accent tab on the note callout | Removed — the sunk ground and accent label carry it |
+| `hero-eyebrow-chip` | Tracked-caps kicker above the h1 | Removed — the lead states the category and venue plainly |
+| `all-caps-body` (36 ch) | That same kicker | Gone with it |
+| `all-caps-body` (41 ch) | Services line in the visit block | Sentence case at body size; it is body copy, not a label |
+
+Dismissed as false positives — **measured, not assumed**:
+
+| Finding | Measurement |
+|---|---|
+| `cramped-padding` on `.board` | 24px on all four sides; board edge → first cell 24px |
+| `cramped-padding` on `.note` | 28px on all four sides; note edge → paragraph 28px top |
+| `cramped-padding` on `.strip` | 0 inline by design; inner `.wrap` carries 48px; strip edge → heading **148px** |
+
+`.strip` is the documented full-bleed false positive. Adding padding to it would
+double the inset — re-measure before ever "fixing" it.
+
+The board cells keep a coloured `border-left`, and that is deliberate: it is the
+state marker keyed to the legend (on the menu / ask how it comes / ask at the
+counter), so it encodes information rather than decorating. The detector did not
+flag it.
+
+---
+
 ## Recurring CSS bugs — guarded, not discovered
 
 Hand-Built §6 traps, handled up front:

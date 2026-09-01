@@ -48,7 +48,28 @@
    - Five type steps with real gaps (12 / 16 / 22 / 34 / 68px). Do not add a
      sixth a fraction away from an existing one; map it onto the nearest step.
 
-   RECORDED MISTAKE
+   RECORDED MISTAKES
+   The impeccable detector found eight, five of them real, on a page that had
+   already passed the hand-rolled gate:
+     - Two side-tab accent borders — a 3px accent rule under the sticky bar and
+       a 4px accent tab on the note callout. Both removed. The bar is dark on a
+       light ground and already reads as an edge; the note is carried by its
+       sunk ground and its accent label. Do not put either back.
+     - A tracked-caps eyebrow above the h1 ("Mexican food · Kennewick,
+       Washington"). Removed outright — the lead already says the category and
+       the venue plainly, which is what §4 actually asks for. Do not
+       reintroduce an eyebrow above the masthead heading.
+     - Two all-caps body runs: that same eyebrow (36 chars) and the services
+       line (41 chars). The services line is body copy and now reads in
+       sentence case at body size.
+   Three cramped-padding findings were DISMISSED, measured not assumed:
+     .board  24px on all four sides, board edge to first cell 24px
+     .note   28px on all four sides, note edge to paragraph 28px top
+     .strip  0 inline on the section by design; the inner .wrap carries 48px,
+             and the measured strip edge to heading is 148px
+   That last one is the documented full-bleed false positive. Re-measure before
+   ever "fixing" it — adding padding to .strip would double the inset.
+
    Contrast was first measured only against the page ground and passed. It then
    failed twice on the sunk panel (#DDE1E4) and twice more on the raised board
    cell (#242A30) — the Lucky Bao failure exactly: a colour checked against white
@@ -57,6 +78,9 @@
    that basis, never against the page ground alone.
 
    REVISION LOG
+   2026-09-01  Detector pass: impeccable v4.1.2, vendored at
+               .claude/skills/impeccable. Eight findings, five fixed, three
+               dismissed with measurements above. Confirmed not DEGRADED first.
    2026-09-01  Built. Replaces a cream-ground, Fraunces-display page with
                AI-generated food photography and three unattributed review
                quotes — none of which survive §1 or §4.
@@ -185,19 +209,10 @@ a { color: inherit; }
 }
 .h2--light { color: #FFFFFF; }
 
-.kicker {
-  font-size: var(--t-label);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-text);
-}
-
 /* -------------------------------------------------------------- 4. header */
 .bar {
   position: sticky; top: 0; z-index: 40;
   background: var(--board);
-  border-bottom: 3px solid var(--accent-fill);
 }
 .bar__in {
   min-height: var(--bar-h);
@@ -233,7 +248,6 @@ a { color: inherit; }
 /* ------------------------------------------------------------ 5. masthead */
 .mast { padding-block: clamp(3rem, 8vw, 5.5rem) clamp(2.5rem, 6vw, 4rem); }
 .mast__h1 {
-  margin-top: 1rem;
   font-family: var(--display);
   font-size: var(--t-display);
   line-height: 0.94;
@@ -432,9 +446,8 @@ a { color: inherit; }
   grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
   background: var(--ground-sunk);
-  border-left: 4px solid var(--accent-fill);
   padding: clamp(1.25rem, 3vw, 1.75rem);
-  border-radius: 0 4px 4px 0;
+  border-radius: 4px;
 }
 @media (min-width: 700px) { .note { grid-template-columns: 88px minmax(0, 1fr); gap: 1.5rem; } }
 .note__label {
@@ -454,8 +467,7 @@ a { color: inherit; }
   font-size: var(--t-lead); line-height: 1.45; color: var(--ink-body);
 }
 .addr strong { color: var(--ink); }
-.visit__services { margin-top: 1rem; font-size: var(--t-label); font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); }
+.visit__services { margin-top: 1rem; font-size: var(--t-body); color: var(--ink-mute); }
 .phone {
   margin-top: 1rem;
   font-family: var(--display); font-size: var(--t-head); line-height: 1;

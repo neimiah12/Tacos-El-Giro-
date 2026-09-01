@@ -13,7 +13,7 @@ cp fonts/*.woff2 deploy/fonts/
 echo "deploy/ contents:"
 find deploy -type f | sort | sed 's/^/  /'
 
-for internal in PRODUCT.md DESIGN.md CLAUDE.md verify.mjs package.json; do
+for internal in PRODUCT.md DESIGN.md CLAUDE.md verify.mjs package.json package.sh .claude; do
   if [ -e "deploy/$internal" ]; then
     echo "REFUSING: $internal must never ship" >&2; exit 1
   fi

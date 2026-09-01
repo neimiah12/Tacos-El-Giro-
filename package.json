@@ -1,12 +1,14 @@
 {
   "name": "tacos-el-giro-site",
   "private": true,
-  "description": "Tacos El Giro — Verified Launch tier build. The site itself is static and has no build step; this file exists only for the verification gate.",
+  "description": "Tacos El Giro \u2014 Verified Launch tier build. The site itself is static and has no build step; this file exists only for the verification gate.",
   "scripts": {
     "serve": "python3 -m http.server 8000",
     "verify": "node verify.mjs http://localhost:8000",
     "verify:deploy": "node verify.mjs http://localhost:8001",
-    "package": "bash package.sh"
+    "package": "bash package.sh",
+    "verify:design": "node .claude/skills/impeccable/scripts/detect.mjs --json index.html",
+    "verify:all": "npm run verify && npm run verify:design"
   },
   "devDependencies": {
     "playwright": "^1.40.0"

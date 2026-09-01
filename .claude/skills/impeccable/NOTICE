@@ -1,0 +1,45 @@
+# impeccable — vendored
+
+Vendored so the detector travels with a clone of this repo, per §7 of the Verified
+Launch tier process.
+
+    Upstream   https://github.com/pbakaus/impeccable
+    Skill      v4.1.2
+    Commit     5b585c0885a7c7d68523169b5b1934711794b80d (2026-09-01)
+    License    Apache-2.0 — see LICENSE (and NOTICE.upstream.md for its own
+               third-party attributions)
+
+This is a copy of upstream's `.claude/skills/impeccable/`, plus the four
+`impeccable-*` subagents in `.claude/agents/`. Nothing in it has been modified.
+`package.json` is the only file added here — upstream declares these dependencies
+at its own repo root, which a vendored copy does not inherit.
+
+## Install once per machine
+
+    cd .claude/skills/impeccable && npm install
+
+`node_modules/` here is gitignored. `puppeteer` is optional and only needed for the
+browser engine; the static-HTML engine used below does not require it.
+
+## Run it
+
+    node .claude/skills/impeccable/scripts/detect.mjs --json index.html
+
+## DEGRADED is not a warning you can work around
+
+If the run prints `DEGRADED`, **stop and install.** In degraded mode the detector
+returns `[]`, which is indistinguishable from a clean pass. Measured upstream on a
+real build: 0 findings degraded versus 5 installed; on a larger file, 7 versus 68.
+
+**Never record a degraded run as a pass.**
+
+## Verify findings before acting on them
+
+Two classes are consistent false positives on these builds:
+
+- `cramped-padding` on full-bleed sections whose inner `.wrap` carries the padding —
+  measure it before touching anything (54–63px on past builds).
+- `clipped-overflow-container` from `body { overflow-x: hidden }`.
+
+It has caught real ones: an 11.2px label, an overused font, a cream ground, and a
+flat type ramp.
