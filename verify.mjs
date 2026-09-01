@@ -289,7 +289,12 @@ note('\n[4] Structure, assets and the architecture invariant');
   if (res.creamGround) bad(`ground rgb(${res.g.join(',')}) is light and warm — §4 forbids a cream ground`);
   else note(`  ground rgb(${res.g.join(',')}), luminance ${res.L} — dark, not cream`);
 
-  const realFails = failedReq.filter(u => !/favicon/.test(u) && !/cloudfront\.net/.test(u));
+  const missingPhotos = failedReq.filter(u => /\/img\//.test(u));
+  const realFails = failedReq.filter(u => !/favicon/.test(u) && !/cloudfront\.net/.test(u) && !/\/img\//.test(u));
+  if (missingPhotos.length) {
+    bad(`${missingPhotos.length} photo file(s) referenced but not in the repo — add them to img/: ` +
+        missingPhotos.map(u => u.split('/').pop()).join(', '));
+  }
   if (realFails.length) bad('local asset requests failed: ' + realFails.join(', '));
   else note('  every local asset request returned OK (the photo CDN is blocked in this environment)');
 

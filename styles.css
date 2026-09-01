@@ -134,10 +134,10 @@
   --cream-2: #CFC2B4;
   --mute: #A2968C;
 
-  --orange: #E1701F;
-  --ember: #F0913F;
-  --red-text: #CD726C;
-  --red-fill: #B01F16;
+  --orange: #F9C22E;   /* brand gold, sampled from the logo   9.27:1 on the darks */
+  --ember: #F9C22E;    /* same gold; the ramp is value, not hue */
+  --red-text: #E36269; /* brand red lifted to clear 4.5 on the darks */
+  --red-fill: #D8202A; /* brand red, sampled from the logo    5.05:1 with white */
 
   --line: rgba(242, 231, 217, 0.13);
   --line-strong: rgba(242, 231, 217, 0.24);
@@ -252,7 +252,7 @@ a { color: inherit; text-decoration: none; }
   position: relative; overflow: hidden; min-width: 0;
   background:
     radial-gradient(120% 100% at 24% 12%, rgba(225, 112, 31, .30), transparent 62%),
-    radial-gradient(120% 120% at 84% 92%, rgba(176, 31, 22, .34), transparent 66%),
+    radial-gradient(120% 120% at 84% 92%, rgba(216,32,42,.30), transparent 66%),
     linear-gradient(155deg, var(--surf-3), var(--surf-1) 62%, var(--ink));
 }
 .shot img {
@@ -357,7 +357,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--surf-1); border: 1px solid var(--line); border-radius: 3px;
   overflow: hidden; transition: transform .4s var(--ease), border-color .4s var(--ease),
   box-shadow .4s var(--ease); }
-.dish:hover { transform: translateY(-7px); border-color: rgba(225,112,31,.5);
+.dish:hover { transform: translateY(-7px); border-color: rgba(249,194,46,.5);
   box-shadow: 0 26px 50px -28px rgba(0,0,0,.95); }
 .dish .shot { aspect-ratio: 4 / 3; }
 .dish:hover .shot img { transform: scale(1.07); }
@@ -389,7 +389,7 @@ a { color: inherit; text-decoration: none; }
 .chip b { display: block; font-family: var(--display); font-size: var(--t-body);
   line-height: 1.1; text-transform: uppercase; letter-spacing: .02em; color: var(--cream); }
 .chip small { display: block; margin-top: 3px; font-size: var(--t-label); color: var(--mute); }
-.chip:hover { background: var(--surf-3); border-color: rgba(225,112,31,.45); }
+.chip:hover { background: var(--surf-3); border-color: rgba(249,194,46,.45); }
 
 #k-birria:checked ~ .chips label[for="k-birria"],
 #k-adobada:checked ~ .chips label[for="k-adobada"],
@@ -405,7 +405,7 @@ a { color: inherit; text-decoration: none; }
 #k-adobada:checked ~ .chips label[for="k-adobada"] small,
 #k-chorizo:checked ~ .chips label[for="k-chorizo"] small,
 #k-chicken:checked ~ .chips label[for="k-chicken"] small,
-#k-asada:checked ~ .chips label[for="k-asada"] small { color: #F2E7D9; }
+#k-asada:checked ~ .chips label[for="k-asada"] small { color: #FFFFFF; }
 #k-birria:focus-visible ~ .chips label[for="k-birria"],
 #k-adobada:focus-visible ~ .chips label[for="k-adobada"],
 #k-chorizo:focus-visible ~ .chips label[for="k-chorizo"],
@@ -500,10 +500,10 @@ a { color: inherit; text-decoration: none; }
   transition: transform .4s var(--ease), border-color .4s var(--ease), background-color .4s var(--ease); }
 .card::after { content: ""; position: absolute; inset: auto -30% -55% auto;
   width: 230px; height: 230px; border-radius: 50%; pointer-events: none; opacity: 0;
-  background: radial-gradient(circle, rgba(225,112,31,.30), transparent 68%);
+  background: radial-gradient(circle, rgba(249,194,46,.26), transparent 68%);
   transition: opacity .45s var(--ease); }
 .card:hover { transform: translateY(-6px); background: var(--surf-2);
-  border-color: rgba(225,112,31,.42); }
+  border-color: rgba(249,194,46,.42); }
 .card:hover::after { opacity: 1; }
 .card__h { display: flex; align-items: center; gap: .8rem; margin-bottom: .85rem; }
 .card__i { flex: none; display: block; color: var(--ember); }
@@ -550,6 +550,8 @@ a { color: inherit; text-decoration: none; }
 .row a:hover { color: var(--ember); }
 .visit > div:last-child { display: flex; min-width: 0; }
 .visit .shot { flex: 1; aspect-ratio: 4 / 3; border-radius: 3px; min-height: 300px; }
+.map { flex: 1; width: 100%; min-height: 320px; border: 1px solid var(--line);
+  border-radius: 3px; filter: saturate(.85) contrast(1.05); }
 @media (min-width: 900px) { .visit .shot { aspect-ratio: auto; } }
 
 /* -------------------------------------------------------------- 15. footer */
