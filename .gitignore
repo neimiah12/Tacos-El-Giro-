@@ -1,8 +1,17 @@
-# Dependencies (only used for local tooling/QA)
+# Internal — never ships, and this repo is PUBLIC (tier doc §2).
+# PRODUCT.md carries the sourcing trail, the "must NOT claim" list and the pitch.
+PRODUCT.md
+work/
+photos_raw/
+
+# Derived — regenerate with ./package.sh
+deploy/
+
+# Tooling for the verification gate only; the site itself has no build step.
 node_modules/
 package-lock.json
 
-# OS / editor noise
+# OS / editor
 .DS_Store
 Thumbs.db
 *.swp

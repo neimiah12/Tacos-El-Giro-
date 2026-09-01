@@ -1,0 +1,14 @@
+{
+  "name": "tacos-el-giro-site",
+  "private": true,
+  "description": "Tacos El Giro — Verified Launch tier build. The site itself is static and has no build step; this file exists only for the verification gate.",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "verify": "node verify.mjs http://localhost:8000",
+    "verify:deploy": "node verify.mjs http://localhost:8001",
+    "package": "bash package.sh"
+  },
+  "devDependencies": {
+    "playwright": "^1.40.0"
+  }
+}
