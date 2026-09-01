@@ -9,7 +9,9 @@ rm -rf deploy
 mkdir -p deploy/fonts
 cp index.html styles.css script.js favicon.svg deploy/
 cp fonts/*.woff2 deploy/fonts/
-if [ -d img ] && compgen -G "img/*" >/dev/null; then mkdir -p deploy/img && cp img/* deploy/img/; fi
+# Only the optimised web copies ship. The .jpg originals and the three promo
+# graphics stay in the repo as source and evidence, never in deploy/.
+if compgen -G "img/*.webp" >/dev/null; then mkdir -p deploy/img && cp img/*.webp deploy/img/; fi
 
 echo "deploy/ contents:"
 find deploy -type f | sort | sed 's/^/  /'

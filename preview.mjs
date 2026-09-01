@@ -10,13 +10,17 @@
  *   1. Fonts load from Google Fonts instead of the self-hosted woff2, because
  *      the artifact sandbox only admits font files from fonts.gstatic.com.
  *      Same two families, same weights — Anton 400, Archivo 400..700.
- *   2. The <meta robots="noindex"> is dropped, because the wrapper owns <head>.
+ *   2. Photographs are inlined as data: URIs, because a published single file has
+ *      no img/ folder beside it and the sandbox serves only the artifact's own
+ *      content. The SHIPPED site keeps normal <img src="img/..."> files.
+ *   3. The <meta robots="noindex"> is dropped, because the wrapper owns <head>.
  *      The published page is private by default; the SHIPPED file keeps its
  *      noindex, and that is the one that matters.
  *
  *   node preview.mjs   ->  preview.artifact.html
  */
 import fs from 'node:fs';
+import path from 'node:path';
 
 const html = fs.readFileSync('index.html', 'utf8');
 const css = fs.readFileSync('styles.css', 'utf8');
@@ -26,10 +30,20 @@ const js = fs.readFileSync('script.js', 'utf8');
 const cssNoFaces = css.replace(/@font-face\s*\{[^}]*\}\s*/g, '').trimStart();
 if (/@font-face/.test(cssNoFaces)) throw new Error('a @font-face block survived the strip');
 
+// Inline every photograph. Without this the preview link shows painted fallback
+// panels instead of the food, which is the one thing the link exists to show.
+let inlined = 0, bytes = 0;
+const embed = (html) => html.replace(/src="(img\/[\w-]+\.webp)"/g, (m, rel) => {
+  if (!fs.existsSync(rel)) return m;
+  const b64 = fs.readFileSync(rel).toString('base64');
+  inlined++; bytes += b64.length;
+  return `src="data:image/webp;base64,${b64}"`;
+});
+
 // The artifact wrapper owns <!doctype>, <html>, <head> and <body>.
 const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/);
 if (!bodyMatch) throw new Error('could not find <body>');
-const body = bodyMatch[1].replace(/\s*<script src="script\.js"[^>]*><\/script>\s*/, '\n');
+const body = embed(bodyMatch[1]).replace(/\s*<script src="script\.js"[^>]*><\/script>\s*/, '\n');
 
 const out = `<title>Tacos El Giro</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400..700&display=swap">
@@ -46,6 +60,8 @@ ${js}
 fs.writeFileSync('preview.artifact.html', out);
 const kb = (Buffer.byteLength(out) / 1024).toFixed(1);
 console.log(`preview.artifact.html written — ${kb} KB, single file`);
+console.log(`  ${inlined} photograph(s) inlined as data: URIs (${(bytes/1024/1024).toFixed(2)} MB base64)`);
+if (Buffer.byteLength(out) > 15 * 1024 * 1024) throw new Error('over the 16MB artifact limit');
 // Match real tags only — /<head/ alone also hits <header class="bar">.
 const leaks = [
   ['stylesheet link to styles.css', /href="styles\.css"/i],

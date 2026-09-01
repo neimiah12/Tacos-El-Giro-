@@ -1,15 +1,16 @@
-asada-tacos	hero	USE	Five carne asada street tacos on soft corn tortillas with chopped cilantro and onion, lime wedges and salsa cups
-quesabirria	card	USE	Three crispy quesabirria tacos with a cup of consomme, red and green salsa and lime wedges
-birria-ramen-torta	card	USE	Birria ramen in a cup topped with a fried quesabirria taco, beside a torta with shredded beef, avocado, lettuce and tomato
-burrito	card	USE	A burrito cut in half showing rice, beans, chopped meat, cheese and onion, with red and green salsa
-birria-quesadilla	card	USE	A birria quesadilla folded and cut, cheese and shredded beef inside, served with consomme, lettuce and tomato
-quesadilla-fresh	about	USE	A birria quesadilla cut into wedges on the counter, cheese stretching between the pieces
-street-tacos	gallery	USE	Three street tacos on soft corn tortillas topped with cilantro and onion, lime wedges alongside
-sopes	gallery	USE	Two sopes on thick fried masa, topped with seasoned meat, lettuce, crema, tomato and cotija
-vampiro	gallery	USE	A crispy griddled taco loaded with steak, lettuce, crema and hot sauce, with green and red salsa
-quesadilla-flour	gallery	USE	A flour quesadilla cut into wedges with shredded beef and melted cheese, lettuce, tomato and lime
-flautas	gallery	USE	Two rolled and fried flautas topped with salsa, crema and cotija
-truck	venue	USE	The Tacos El Giro food truck with its order window open and customers waiting
-promo-ramen	evidence	DO-NOT-SHIP	Marketing graphic with baked-in text: "Rainy Day? Treat Yourself to Birria Ramen"
-promo-nortenos	evidence	DO-NOT-SHIP	Marketing graphic: Tacos Nortenos on flour tortilla; carries the logo and "visit us at both locations"
-promo-quesabirrias	evidence	DO-NOT-SHIP	Marketing graphic: large quesabirria on flour, regular on corn, "birria 100% de res"; carries the logo
+hero	hero	SHIP	Overhead street tacos, cropped to a wide band from the square original
+quesabirria	card	SHIP	Three crispy quesabirria tacos with consomme, salsa and lime — TOP 6% CROPPED to remove a fly
+birria-ramen-torta	card	SHIP	Birria ramen in a cup with a fried quesabirria taco on top, beside the torta
+burrito	card	SHIP	Burrito cut in half, rice, beans, meat, cheese and onion, with red and green salsa
+birria-quesadilla	card+gallery	SHIP	Birria quesadilla cut in half, served with consomme, lettuce and tomato
+quesadilla-fresh	about	SHIP	Quesadilla cut into wedges, gloved hand, cheese pulling — native 720px, never upscaled
+asada-tacos	gallery	SHIP	Carne asada street tacos with cilantro, onion, lime and salsa cups
+sopes	gallery	SHIP	Two sopes with seasoned meat, lettuce, crema, tomato and cotija
+vampiro	gallery	SHIP	Crispy griddled taco loaded with steak, lettuce, crema and hot sauce
+quesadilla-flour	gallery	SHIP	Flour quesadilla wedges with shredded beef and cheese, on blue-check paper
+flautas	gallery	SHIP	Two rolled flautas with salsa, crema and cotija, on black-check paper
+truck	venue	SHIP	The blue Tacos El Giro truck, order window open, customers waiting
+street-tacos	source	SOURCE-ONLY	Square overhead the hero is cropped from; not referenced directly
+promo-ramen	evidence	DO-NOT-SHIP	Marketing graphic, baked-in text: "Rainy Day? Birria Ramen"
+promo-nortenos	evidence	DO-NOT-SHIP	Marketing graphic: Tacos Nortenos; source of the logo and "both locations"
+promo-quesabirrias	evidence	DO-NOT-SHIP	Marketing graphic: large/regular quesabirria, "birria 100% de res"

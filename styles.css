@@ -555,6 +555,14 @@ a { color: inherit; text-decoration: none; }
 .row p, .row address { font-style: normal; color: var(--cream); line-height: 1.5; }
 .row a:hover { color: var(--ember); }
 .visit > div:last-child { display: flex; min-width: 0; }
+/* The venue column stacks the truck over the map: the photo says which window to
+   walk up to, the map says where to drive. */
+.visit__r { flex-direction: column; gap: clamp(.6rem, 1.4vw, 1rem); }
+.visit__r .shot { flex: 0 0 auto; aspect-ratio: 4 / 3; }
+.visit__r .map { flex: 0 0 clamp(200px, 22vw, 280px); min-height: 0; }
+.visit__r figcaption { position: absolute; left: 1rem; bottom: .9rem; z-index: 2;
+  font-size: var(--t-label); font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--cream); text-shadow: 0 2px 12px rgba(0,0,0,.9); }
 .visit .shot { flex: 1; aspect-ratio: 4 / 3; border-radius: 3px; min-height: 300px; }
 .map { flex: 1; width: 100%; min-height: 320px; border: 1px solid var(--line);
   border-radius: 3px; filter: saturate(.85) contrast(1.05); }
