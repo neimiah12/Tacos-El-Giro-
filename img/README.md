@@ -18,6 +18,9 @@ references them; `verify.mjs` names any that are missing and goes green once the
 | `flautas.jpg` | Two rolled flautas with orange sauce, crema and cotija, black-check paper |
 | `truck.jpg` | VENUE. The blue Tacos El Giro truck with the order window open |
 
+The gallery mosaic repeats every six tiles, so it looks tightest with **6, 12 or 18**
+photos in it. Any count works; a remainder just leaves a shorter last row.
+
 Any format works (`.jpg`, `.png`, `.webp`) — if you upload a different extension, say so
 and the references get updated in one pass.
 

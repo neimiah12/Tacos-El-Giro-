@@ -475,13 +475,19 @@ a { color: inherit; text-decoration: none; }
 @media (min-width: 960px) {
   .gal { grid-template-columns: repeat(4, minmax(0, 1fr));
          grid-auto-rows: clamp(150px, 15vw, 195px); }
+  /* The pattern repeats every SIX tiles and each group fills exactly
+     4 cols x 3 rows: 4 + 1 + 1 + 2 + 2 + 2 = 12 cells. Hard-coding
+     nth-child(1..6) broke the moment a seventh photo arrived, so this is
+     written as 6n groups instead. Any multiple of six tiles perfectly; a
+     remainder is closed up by grid-auto-flow: dense. Add photos freely. */
+  .gal { grid-auto-flow: dense; }
   .gal .shot { aspect-ratio: auto; grid-column: span 2; grid-row: span 1; }
-  .gal .shot:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-  .gal .shot:nth-child(2) { grid-column: span 1; grid-row: span 1; }
-  .gal .shot:nth-child(3) { grid-column: span 1; grid-row: span 1; }
-  .gal .shot:nth-child(4) { grid-column: span 2; grid-row: span 1; }
-  .gal .shot:nth-child(5) { grid-column: span 2; grid-row: span 1; }
-  .gal .shot:nth-child(6) { grid-column: span 2; grid-row: span 1; }
+  .gal .shot:nth-child(6n + 1) { grid-column: span 2; grid-row: span 2; }
+  .gal .shot:nth-child(6n + 2),
+  .gal .shot:nth-child(6n + 3) { grid-column: span 1; grid-row: span 1; }
+  .gal .shot:nth-child(6n + 4),
+  .gal .shot:nth-child(6n + 5),
+  .gal .shot:nth-child(6n + 6) { grid-column: span 2; grid-row: span 1; }
 }
 .gal .shot img { transition: transform .9s var(--ease), filter .5s var(--ease); }
 .gal .shot:hover img { transform: scale(1.07); }
