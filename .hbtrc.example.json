@@ -1,0 +1,12 @@
+{
+  "legalName": "Summer's Hub of Kennewick LLC",
+  "category": "food trucks",
+  "shorthand": ["trucks", "the Hub"],
+  "counts": {
+    "trucks": 12,
+    "taps": 32
+  },
+  "minPhotoWidth": 1200,
+  "maxPhotoBytes": 1500000,
+  "ignore": []
+}

@@ -1,0 +1,14 @@
+{
+  "name": "tacos-el-giro",
+  "private": true,
+  "type": "module",
+  "description": "Hand-built tier website build.",
+  "scripts": {
+    "check": "node scripts/hbt.mjs all",
+    "check:css": "node scripts/hbt.mjs css",
+    "check:copy": "node scripts/hbt.mjs copy",
+    "check:links": "node scripts/hbt.mjs links",
+    "check:photos": "node scripts/hbt.mjs photos",
+    "check:counts": "node scripts/hbt.mjs counts"
+  }
+}
