@@ -8,7 +8,8 @@
     "verify:deploy": "node verify.mjs http://localhost:8001",
     "package": "bash package.sh",
     "verify:design": "node .claude/skills/impeccable/scripts/detect.mjs --json index.html",
-    "verify:all": "npm run verify && npm run verify:design"
+    "verify:all": "npm run verify && npm run verify:design",
+    "preview": "node preview.mjs"
   },
   "devDependencies": {
     "playwright": "^1.40.0"

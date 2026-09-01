@@ -4,8 +4,9 @@ PRODUCT.md
 work/
 photos_raw/
 
-# Derived — regenerate with ./package.sh
+# Derived — regenerate with ./package.sh and `npm run preview`
 deploy/
+preview.artifact.html
 
 # Tooling for the verification gate only; the site itself has no build step.
 node_modules/
