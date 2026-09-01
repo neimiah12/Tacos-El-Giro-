@@ -1,0 +1,146 @@
+/* ==========================================================================
+   hand-built-baseline.css
+   Preventative fixes for the layout bugs in section 6 of
+   docs/process/HAND-BUILT-TIER.md. Every rule here exists because the bug it
+   prevents cost real debugging time on a real build.
+
+   Load this before the site's own stylesheet. It sets defaults only — no
+   colours, no type, no spacing. The visual world stays in the site's CSS.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   BUG 1 — text overflowing or invisible in a grid card.
+   Three separate causes, stacked.
+
+   1a. Grid and flex items default to min-width: auto, so one long unbroken
+       line (a URL, a long word) forces the whole column wider than the page.
+   -------------------------------------------------------------------------- */
+.grid > *,
+.flex > * {
+  min-width: 0;
+}
+
+/* Card-like elements are the usual victim; catch them wherever they sit. */
+[class*="card"],
+[class*="tile"],
+[class*="panel"] {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* 1b. A grid container with no grid-template-columns gets one implicit
+       auto-sized column, which grows past its parent. An explicit
+       minmax(0, 1fr) is the floor; real column definitions override it. */
+.grid,
+[class*="grid"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* 1c. span:last-child ALSO matches a lone span — it is both first and last
+       child — so a price rule silently applied nowrap to plain text rows.
+       Target the second of a pair instead: span:first-child + span.
+
+       Use .row for a label/value pair (menu item + price, spec + value). */
+.row {
+  display: flex;
+  gap: 0.75em;
+  align-items: baseline;
+  justify-content: space-between;
+  min-width: 0;
+}
+.row > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.row > span:first-child + span {
+  white-space: nowrap;   /* the price. Never on a lone span. */
+  flex: 0 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   BUG 2 — the 0fr -> 1fr accordion opening silently to nothing.
+
+   overflow: hidden on the inner wrapper zeroes its max-content contribution,
+   so the fr track resolves to 0px. The DOM is correct and the content is
+   present at zero height, which makes it look like a data bug. It happens to
+   work inside a flex column card and fails elsewhere — it is not portable.
+
+   Use this fade reveal instead. No magic max-height number to drift.
+   -------------------------------------------------------------------------- */
+.reveal {
+  display: none;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+.reveal[data-open] {
+  display: block;
+  opacity: 1;
+}
+@starting-style {
+  .reveal[data-open] { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; }
+}
+
+/* --------------------------------------------------------------------------
+   BUG 3 — CSS multi-column collapsing to zero.
+
+   columns: 2 needs a definite height to balance against; inside an
+   indefinite-height container it collapses. Use a grid.
+   -------------------------------------------------------------------------- */
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  gap: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   BUG 4 — aspect-ratio losing to intrinsic size.
+
+   With width/height HTML attributes present, an image can render at its
+   intrinsic height instead of the declared aspect ratio. Where the height
+   must be deterministic, set an explicit clamped height as well.
+   -------------------------------------------------------------------------- */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.band-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: clamp(12rem, 38vw, 26rem);   /* wins over intrinsic size */
+  object-fit: cover;
+}
+
+/* Pre-crop photos to their target aspect at export. object-fit is the safety
+   net for the last few pixels, not the cropping strategy — a portrait photo
+   dropped into a wide band gets cropped somewhere useless. */
+
+/* --------------------------------------------------------------------------
+   BUG 5 — an unbalanced card row.
+
+   A text-only card next to cards with photos puts its text at the top while
+   theirs sits under an image, which reads as MORE lopsided, not less.
+   Centre the text-only card vertically.
+   -------------------------------------------------------------------------- */
+.card--no-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Missing-data note panel.
+
+   Where data genuinely does not exist, say so on the page. Style it as a
+   deliberate note, never as an error or a placeholder.
+   -------------------------------------------------------------------------- */
+.note {
+  border-left: 3px solid currentColor;
+  padding: 0.75em 1em;
+  opacity: 0.85;
+}
