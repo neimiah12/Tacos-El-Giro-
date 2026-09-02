@@ -47,6 +47,7 @@
   --gold: #F9C22E;
   --red: #D8202A;
   --red-text: #E36269;
+  --on-red: #FFFFFF;   /* 5.05:1 on --red; cream is only 4.14:1 there */
 
   --display: 'Anton', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
   --text: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -108,7 +109,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 .vh { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .skip { position: absolute; left: 50%; top: -90px; transform: translateX(-50%); z-index: 90;
-  background: var(--red); color: #FFFFFF; padding: .75rem 1.25rem; font-weight: 700; }
+  background: var(--red); color: var(--on-red); padding: .75rem 1.25rem; font-weight: 700; }
 .skip:focus { top: 0; }
 
 .wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
@@ -145,7 +146,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 }
 .btn svg { width: 17px; height: 17px; flex: none; }
 .btn:hover { transform: translateY(-2px); }
-.btn--fill { background: var(--red); color: #FFFFFF; box-shadow: 0 12px 28px -16px rgba(0,0,0,.9); }
+.btn--fill { background: var(--red); color: var(--on-red); box-shadow: 0 12px 28px -16px rgba(0,0,0,.9); }
 .btn--fill:hover { background: var(--gold); color: var(--ink); box-shadow: 0 18px 36px -16px rgba(0,0,0,.95); }
 .btn--ghost { background: transparent; color: var(--cream); box-shadow: inset 0 0 0 1px rgba(242,231,217,.28); }
 .btn--ghost:hover { background: var(--cream); color: var(--ink); box-shadow: inset 0 0 0 1px var(--cream); }
@@ -280,12 +281,12 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 #k-adobada:checked ~ .chips label[for="k-adobada"] b,
 #k-chorizo:checked ~ .chips label[for="k-chorizo"] b,
 #k-chicken:checked ~ .chips label[for="k-chicken"] b,
-#k-asada:checked ~ .chips label[for="k-asada"] b { color: #FFFFFF; }
+#k-asada:checked ~ .chips label[for="k-asada"] b { color: var(--on-red); }
 #k-birria:checked ~ .chips label[for="k-birria"] small,
 #k-adobada:checked ~ .chips label[for="k-adobada"] small,
 #k-chorizo:checked ~ .chips label[for="k-chorizo"] small,
 #k-chicken:checked ~ .chips label[for="k-chicken"] small,
-#k-asada:checked ~ .chips label[for="k-asada"] small { color: #FFFFFF; }
+#k-asada:checked ~ .chips label[for="k-asada"] small { color: var(--on-red); }
 #k-birria:focus-visible ~ .chips label[for="k-birria"],
 #k-adobada:focus-visible ~ .chips label[for="k-adobada"],
 #k-chorizo:focus-visible ~ .chips label[for="k-chorizo"],
