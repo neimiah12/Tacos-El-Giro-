@@ -1,154 +1,239 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-02T00:00:00Z",
+  "generatedAt": "2026-09-02T00:00:00.000Z",
   "title": "Design System: Tacos El Giro",
   "extensions": {
     "colorMeta": {
-      "ink": { "role": "neutral", "displayName": "Asphalt", "canonical": "#100D0C", "tonalRamp": ["#0A0807", "#100D0C", "#191413", "#241C1A", "#2E2321", "#4A3A36", "#7A625C", "#C4B4AE"] },
-      "surf-1": { "role": "neutral", "displayName": "Lit Surface One", "canonical": "#191413", "tonalRamp": ["#0C0A09", "#191413", "#241C1A", "#332724", "#4A3A36", "#6E5751", "#A08880", "#D8CBC6"] },
-      "surf-2": { "role": "neutral", "displayName": "Lit Surface Two", "canonical": "#241C1A", "tonalRamp": ["#0F0C0B", "#1B1514", "#241C1A", "#332724", "#4C3A36", "#735953", "#A78D85", "#DCD0CB"] },
-      "surf-3": { "role": "neutral", "displayName": "Lit Surface Three", "canonical": "#2E2321", "tonalRamp": ["#120E0D", "#1F1817", "#2E2321", "#3D2E2B", "#5A4441", "#836662", "#B29691", "#E1D6D3"] },
-      "cream": { "role": "neutral", "displayName": "Lit Cream", "canonical": "#F2E7D9", "tonalRamp": ["#2B231A", "#4A3C2C", "#6C583F", "#907956", "#B39D7C", "#CFC2B4", "#F2E7D9", "#FBF6EE"] },
-      "cream-2": { "role": "neutral", "displayName": "Reading Cream", "canonical": "#CFC2B4", "tonalRamp": ["#241E18", "#3F352B", "#5C4E40", "#7C6B58", "#9E8C78", "#B8A99A", "#CFC2B4", "#EDE5DC"] },
-      "mute": { "role": "neutral", "displayName": "Counter Grey", "canonical": "#A2968C", "tonalRamp": ["#1C1815", "#332C27", "#4C423A", "#67594F", "#847367", "#A2968C", "#C2B8B0", "#E4DEDA"] },
-      "gold": { "role": "primary", "displayName": "Aperture Gold", "canonical": "#F9C22E", "tonalRamp": ["#2E2205", "#4E3A08", "#71540C", "#96700F", "#BC8D13", "#DFAA1E", "#F9C22E", "#FDE29C"] },
-      "red": { "role": "secondary", "displayName": "Truck Red", "canonical": "#D8202A", "tonalRamp": ["#2B0508", "#4A090E", "#6C0E15", "#8F131C", "#B21924", "#D8202A", "#E36269", "#F5B6BA"] },
-      "red-text": { "role": "secondary", "displayName": "Lit Red", "canonical": "#E36269", "tonalRamp": ["#2E0C0E", "#4E1519", "#711F24", "#962930", "#BC3D45", "#D8202A", "#E36269", "#F7C4C7"] }
+      "ink": {
+        "role": "neutral",
+        "displayName": "Truck Shadow",
+        "canonical": "#080E28",
+        "source": "img/truck.jpg — truck body in shadow (#001060), darkened to hold type",
+        "tonalRamp": ["#04081A", "#080E28", "#0D1538", "#121D4A", "#1B2B68", "#2A3F8C", "#4863BE", "#93A6E4"]
+      },
+      "surf-1": {
+        "role": "neutral",
+        "displayName": "Slab",
+        "canonical": "#0D1538",
+        "tonalRamp": ["#04081A", "#080E28", "#0D1538", "#121D4A", "#1B2B68", "#2A3F8C", "#4863BE", "#93A6E4"]
+      },
+      "surf-2": {
+        "role": "neutral",
+        "displayName": "Board",
+        "canonical": "#121D4A",
+        "tonalRamp": ["#04081A", "#080E28", "#0D1538", "#121D4A", "#1B2B68", "#2A3F8C", "#4863BE", "#93A6E4"]
+      },
+      "surf-3": {
+        "role": "neutral",
+        "displayName": "Lit Slab",
+        "canonical": "#1B2B68",
+        "note": "The lightest surface any text lands on; every contrast ratio in this system is swept against it.",
+        "tonalRamp": ["#04081A", "#080E28", "#0D1538", "#121D4A", "#1B2B68", "#2A3F8C", "#4863BE", "#93A6E4"]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Fresh Tortilla",
+        "canonical": "#F5EDE0",
+        "contrastMin": "11.35:1 on surf-3",
+        "tonalRamp": ["#2B2418", "#463C2A", "#63563E", "#847455", "#A6956F", "#C4B394", "#D6CABA", "#F5EDE0"]
+      },
+      "cream-2": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#D6CABA",
+        "contrastMin": "8.18:1 on surf-3",
+        "tonalRamp": ["#2B2418", "#463C2A", "#63563E", "#847455", "#A6956F", "#C4B394", "#D6CABA", "#F5EDE0"]
+      },
+      "mute": {
+        "role": "neutral",
+        "displayName": "Comal Ash",
+        "canonical": "#B1A695",
+        "contrastMin": "5.50:1 on surf-3 — the floor of the neutral ramp",
+        "tonalRamp": ["#2B2418", "#463C2A", "#63563E", "#847455", "#A6956F", "#B1A695", "#D6CABA", "#F5EDE0"]
+      },
+      "gold": {
+        "role": "primary",
+        "displayName": "Aperture Gold",
+        "canonical": "#F0B008",
+        "source": "img/promo-nortenos.jpg — logo badge and display type",
+        "contrastMin": "6.86:1 on surf-3",
+        "tonalRamp": ["#2E2101", "#4E3D0A", "#6E5003", "#8F6704", "#B07E05", "#D19606", "#F0B008", "#FBD98A"]
+      },
+      "red": {
+        "role": "secondary",
+        "displayName": "Signage Red",
+        "canonical": "#C81818",
+        "source": "img/promo-nortenos.jpg — logo lettering",
+        "note": "Ground only. Cream on red is 5.02:1; gold on red (3.03:1) and red on ink (3.32:1) never ship.",
+        "tonalRamp": ["#2A0505", "#450808", "#620C0C", "#801010", "#9F1414", "#C81818", "#E14A4A", "#F29A9A"]
+      },
+      "on-red": {
+        "role": "neutral",
+        "displayName": "On Red",
+        "canonical": "#F5EDE0",
+        "contrastMin": "5.02:1 on red — the tightest pairing that ships"
+      },
+      "on-gold": {
+        "role": "neutral",
+        "displayName": "On Gold",
+        "canonical": "#080E28",
+        "contrastMin": "9.89:1 on gold"
+      },
+      "on-gold-2": {
+        "role": "neutral",
+        "displayName": "On Gold, Second Line",
+        "canonical": "#4E3D0A",
+        "contrastMin": "5.47:1 on gold",
+        "note": "Exists solely so a selected chip's sublabel survives the field inversion.",
+        "tonalRamp": ["#2E2101", "#4E3D0A", "#6E5003", "#8F6704", "#B07E05", "#D19606", "#F0B008", "#FBD98A"]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Masthead", "purpose": "The h1 only. Anton caps at 96px/1280, tight negative tracking." },
-      "headline": { "displayName": "Section Head", "purpose": "Section headings and the board title. 44px at 1280." },
-      "stat": { "displayName": "Claim", "purpose": "The three about-block claims, set gold as statements rather than metric cards. 32px at 1280." },
-      "title": { "displayName": "Lead / Name", "purpose": "Ledes and hero paragraph in Archivo; wordmark, dish names and pull-quotes in Anton. 22px at 1280." },
-      "body": { "displayName": "Body", "purpose": "All reading copy at 16px/1.65, measure capped 34-68ch by context." },
-      "label": { "displayName": "Label", "purpose": "Nav, buttons, format labels, legend, captions, footer headings. 12px caps, 0.13-0.18em." },
-      "numeric": { "displayName": "Figure", "purpose": "Every rendered number carries .num for tabular digits." }
+      "display": { "displayName": "Display", "purpose": "The hero headline only. One per page, 96px at 1280." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings and the board title, 44px at 1280." },
+      "stat": { "displayName": "Stat", "purpose": "The three claim figures in About, 32px at 1280." },
+      "title": { "displayName": "Title", "purpose": "Anton at the 22px lead step: dish names, the wordmark, and the meat-chip names." },
+      "lead": { "displayName": "Lead", "purpose": "Archivo at 22px: hero paragraph, section ledes, review quotes, Visit rows." },
+      "body": { "displayName": "Body", "purpose": "All paragraph copy at 16px/1.65, capped 34–68ch." },
+      "label": { "displayName": "Label", "purpose": "12px/700 tracked caps: nav, buttons, meta, chip sublabels, format labels, captions, legends." },
+      "numeric": { "displayName": "Numeric", "purpose": "Body size with tabular numerals; carried by .num on every rendered figure." }
     },
     "shadows": [
-      { "name": "photo-drop", "value": "0 24px 58px -30px rgba(0,0,0,.95)", "purpose": "Neutral lift under every .shot photo panel. Never coloured." },
-      { "name": "action-lift", "value": "0 12px 28px -16px rgba(0,0,0,.9)", "purpose": "Filled button at rest." },
-      { "name": "action-lift-hover", "value": "0 18px 36px -16px rgba(0,0,0,.95)", "purpose": "Filled button on hover, paired with -2px translate." },
-      { "name": "inset-hairline", "value": "inset 0 0 0 1px rgba(242,231,217,.28)", "purpose": "Ghost button and social icons: an edge of light, not a border." },
-      { "name": "caption-shadow", "value": "0 2px 14px rgba(0,0,0,.95)", "purpose": "Text shadow keeping figcaptions legible over photography." }
+      { "name": "photo-drop", "value": "0 24px 58px -30px rgba(0,0,0,.95)", "purpose": "Under every .shot panel; removed on the full-bleed hero shot." },
+      { "name": "action-lift", "value": "0 12px 28px -16px rgba(0,0,0,.9)", "purpose": "The filled button at rest, paired with a -2px translate on hover." },
+      { "name": "action-lift-hover", "value": "0 18px 36px -16px rgba(0,0,0,.95)", "purpose": "The filled button on hover." },
+      { "name": "inset-hairline", "value": "inset 0 0 0 1px rgba(var(--cream-rgb),.28)", "purpose": "The ghost button's edge of light; social icons use .2." },
+      { "name": "caption-shadow", "value": "0 2px 14px rgba(0,0,0,.95)", "purpose": "Behind captions laid over photography." }
     ],
     "motion": [
-      { "name": "ease", "value": "cubic-bezier(0.22, 0.68, 0.32, 1)", "purpose": "Colour and background transitions." },
-      { "name": "out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Movement: transforms, underline scale, image scale." },
-      { "name": "light-up", "value": "lightUp 1900ms var(--out) both", "purpose": "The one authored moment: the hero service light coming up on load. No other entry animation exists." },
-      { "name": "rise-in", "value": "riseIn 700-800ms var(--out) 420-860ms both", "purpose": "Hero text staggering in behind the light. Hero only; never applied per section." }
+      { "name": "ease", "value": "cubic-bezier(0.22, 0.68, 0.32, 1)", "purpose": "Colour and background state transitions." },
+      { "name": "out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Movement — button lift, underline scale, image scale, the load animation." },
+      { "name": "light-up", "value": "lightUp 1900ms var(--out) both", "purpose": "The one authored moment: the service light coming up on the hero photo at load." },
+      { "name": "rise-in", "value": "riseIn 700–800ms var(--out), 420–860ms stagger", "purpose": "Hero text following the light up. Nothing below the hero animates on entry." }
     ],
     "breakpoints": [
       { "name": "xs", "value": "380px" },
       { "name": "sm", "value": "480px" },
-      { "name": "gal-2", "value": "520px" },
+      { "name": "gallery-2", "value": "520px" },
       { "name": "md", "value": "620px" },
       { "name": "lg", "value": "900px" },
-      { "name": "gal-4", "value": "960px" },
-      { "name": "wrap", "value": "1180px" }
+      { "name": "gallery-mosaic", "value": "960px" },
+      { "name": "chips-5", "value": "1020px" }
     ]
   },
   "components": [
     {
-      "name": "Fill Button",
+      "name": "Filled Button",
       "kind": "button",
       "refersTo": "button-fill",
-      "description": "The action. Red ground, white caps, neutral lift; crosses to gold on hover.",
+      "description": "The action. Red ground, cream label, hard rectangle; crosses to gold on hover.",
       "html": "<a class=\"ds-btn ds-btn-fill\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.8.6 2.8.7a2 2 0 0 1 1.7 2.1z\"/></svg> Call to order</a>",
-      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; padding: 1.05rem 2rem; border: 0; border-radius: 0; font-family: Archivo, sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: transform .35s cubic-bezier(0.16,1,0.3,1), background-color .35s cubic-bezier(0.22,0.68,0.32,1), color .35s cubic-bezier(0.22,0.68,0.32,1), box-shadow .35s cubic-bezier(0.22,0.68,0.32,1); } .ds-btn svg { width: 17px; height: 17px; flex: none; } .ds-btn-fill { background: #D8202A; color: #FFFFFF; box-shadow: 0 12px 28px -16px rgba(0,0,0,.9); } .ds-btn-fill:hover { transform: translateY(-2px); background: #F9C22E; color: #100D0C; box-shadow: 0 18px 36px -16px rgba(0,0,0,.95); } .ds-btn-fill:focus-visible { outline: 2px solid #F9C22E; outline-offset: 4px; }"
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; padding: 1.05rem 2rem; border: 0; border-radius: 0; font-family: Archivo, system-ui, sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: transform .35s cubic-bezier(0.16,1,0.3,1), background-color .35s cubic-bezier(0.22,0.68,0.32,1), color .35s cubic-bezier(0.22,0.68,0.32,1), box-shadow .35s cubic-bezier(0.22,0.68,0.32,1); } .ds-btn svg { width: 17px; height: 17px; flex: none; } .ds-btn-fill { background: #C81818; color: #F5EDE0; box-shadow: 0 12px 28px -16px rgba(0,0,0,.9); } .ds-btn-fill:hover { background: #F0B008; color: #080E28; transform: translateY(-2px); box-shadow: 0 18px 36px -16px rgba(0,0,0,.95); } .ds-btn-fill:focus-visible { outline: 2px solid #F0B008; outline-offset: 4px; }"
     },
     {
       "name": "Ghost Button",
       "kind": "button",
       "refersTo": "button-ghost",
-      "description": "The secondary action. Inset cream hairline that inverts to solid cream on hover.",
+      "description": "The secondary action. An inset cream hairline that fills solid on hover.",
       "html": "<a class=\"ds-btn ds-btn-ghost\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg> Get directions</a>",
-      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; padding: 1.05rem 2rem; border: 0; border-radius: 0; font-family: Archivo, sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; cursor: pointer; background: transparent; color: #F2E7D9; box-shadow: inset 0 0 0 1px rgba(242,231,217,.28); transition: transform .35s cubic-bezier(0.16,1,0.3,1), background-color .35s cubic-bezier(0.22,0.68,0.32,1), color .35s cubic-bezier(0.22,0.68,0.32,1), box-shadow .35s cubic-bezier(0.22,0.68,0.32,1); } .ds-btn-ghost svg { width: 17px; height: 17px; flex: none; } .ds-btn-ghost:hover { transform: translateY(-2px); background: #F2E7D9; color: #100D0C; box-shadow: inset 0 0 0 1px #F2E7D9; } .ds-btn-ghost:focus-visible { outline: 2px solid #F9C22E; outline-offset: 4px; }"
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; padding: 1.05rem 2rem; border: 0; border-radius: 0; font-family: Archivo, system-ui, sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; cursor: pointer; background: transparent; color: #F5EDE0; box-shadow: inset 0 0 0 1px rgba(245,237,224,.28); transition: transform .35s cubic-bezier(0.16,1,0.3,1), background-color .35s, color .35s, box-shadow .35s; } .ds-btn-ghost svg { width: 17px; height: 17px; flex: none; } .ds-btn-ghost:hover { background: #F5EDE0; color: #080E28; transform: translateY(-2px); box-shadow: inset 0 0 0 1px #F5EDE0; } .ds-btn-ghost:focus-visible { outline: 2px solid #F0B008; outline-offset: 4px; }"
     },
     {
       "name": "Meat Chip",
       "kind": "chip",
       "refersTo": "chip",
-      "description": "One cell of the selector row. Radio-driven; selected fills red. Shown here in both states.",
-      "html": "<div class=\"ds-chips\"><label class=\"ds-chip ds-chip-selected\"><b>Birria</b><small>Stewed beef</small></label><label class=\"ds-chip\"><b>Adobada</b><small>Marinated pork</small></label><label class=\"ds-chip\"><b>Asada</b><small>Grilled steak</small></label></div>",
-      "css": ".ds-chips { display: grid; gap: 1px; background: rgba(242,231,217,.08); grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); } .ds-chip { min-width: 0; display: block; padding: .95rem 1.05rem; cursor: pointer; background: #191413; transition: background-color .3s cubic-bezier(0.22,0.68,0.32,1); } .ds-chip b { display: block; font-family: Anton, sans-serif; font-size: 1rem; line-height: 1.1; text-transform: uppercase; letter-spacing: .01em; color: #F2E7D9; font-weight: 400; transition: color .3s cubic-bezier(0.22,0.68,0.32,1); } .ds-chip small { display: block; margin-top: 4px; font-family: Archivo, sans-serif; font-size: .75rem; color: #A2968C; } .ds-chip:hover { background: #2E2321; } .ds-chip:hover b { color: #F9C22E; } .ds-chip-selected { background: #D8202A; } .ds-chip-selected b, .ds-chip-selected small { color: #FFFFFF; }"
+      "description": "The pick-a-meat control. Name at the 22px lead step; selection inverts the whole field to gold — no edge stripe.",
+      "html": "<div class=\"ds-chips\"><label class=\"ds-chip\"><b>Birria</b><small>Stewed beef</small></label><label class=\"ds-chip ds-chip-on\"><b>Adobada</b><small>Marinated pork</small></label></div>",
+      "css": ".ds-chips { display: grid; gap: 1px; background: rgba(245,237,224,.12); grid-template-columns: repeat(2, minmax(0, 1fr)); } .ds-chip { min-width: 0; display: block; padding: 1.2rem 1.2rem 1.25rem; cursor: pointer; background: #0D1538; transition: background-color .3s cubic-bezier(0.22,0.68,0.32,1); } .ds-chip b { display: block; font-family: Anton, 'Arial Narrow Bold', sans-serif; font-size: 1.375rem; line-height: 1.05; text-transform: uppercase; letter-spacing: .015em; color: #F5EDE0; transition: color .3s; } .ds-chip small { display: block; margin-top: .5rem; font-family: Archivo, system-ui, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #B1A695; transition: color .3s; } .ds-chip:hover { background: #1B2B68; } .ds-chip:hover b { color: #F0B008; } .ds-chip-on { background: #F0B008; } .ds-chip-on b { color: #080E28; } .ds-chip-on small { color: #4E3D0A; } .ds-chip:focus-visible { outline: 2px solid #F5EDE0; outline-offset: -3px; }"
     },
     {
       "name": "Format Cell",
       "kind": "custom",
       "refersTo": "format-cell",
-      "description": "One answer on the board: muted caps label over a gold Anton answer. The .ask variant is the honest unknown.",
-      "html": "<div class=\"ds-forms\"><div class=\"ds-form\"><span>Taco</span><b>On the menu</b></div><div class=\"ds-form\"><span>Quesabirria</span><b>On the menu</b></div><div class=\"ds-form ds-form-ask\"><span>Torta</span><b>Ask at the counter</b></div></div>",
-      "css": ".ds-forms { display: grid; gap: 1px; background: rgba(242,231,217,.08); grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); } .ds-form { min-width: 0; background: #191413; padding: .9rem 1.05rem; } .ds-form span { display: block; font-family: Archivo, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #A2968C; } .ds-form b { display: block; margin-top: 5px; font-family: Anton, sans-serif; font-weight: 400; font-size: 1rem; line-height: 1.15; text-transform: uppercase; letter-spacing: .02em; color: #F9C22E; } .ds-form-ask { background: #100D0C; } .ds-form-ask b { font-family: Archivo, sans-serif; font-weight: 400; text-transform: none; letter-spacing: 0; color: #A2968C; }"
+      "description": "One cell of the board matrix: a muted tracked-caps label over a gold Anton answer. The .ask variant is how an unconfirmed answer renders.",
+      "html": "<div class=\"ds-forms\"><div class=\"ds-form\"><span>Taco</span><b>On the board</b></div><div class=\"ds-form ds-form-ask\"><span>Sope</span><b>Ask at the window</b></div></div>",
+      "css": ".ds-forms { display: grid; gap: 1px; background: rgba(245,237,224,.08); grid-template-columns: repeat(2, minmax(0, 1fr)); } .ds-form { min-width: 0; background: #0D1538; padding: .9rem 1.05rem; } .ds-form span { display: block; font-family: Archivo, system-ui, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #B1A695; } .ds-form b { display: block; margin-top: 5px; font-family: Anton, 'Arial Narrow Bold', sans-serif; font-size: 1rem; line-height: 1.15; text-transform: uppercase; letter-spacing: .02em; color: #F0B008; } .ds-form-ask { background: #080E28; } .ds-form-ask b { font-family: Archivo, system-ui, sans-serif; font-weight: 400; text-transform: none; letter-spacing: 0; color: #B1A695; }"
     },
     {
-      "name": "Photo Panel",
-      "kind": "card",
-      "refersTo": null,
-      "description": "The universal image container. A lit gradient panel with a neutral drop shadow; degrades to a glow if the image fails.",
-      "html": "<figure class=\"ds-shot\"><figcaption>Off the griddle</figcaption></figure>",
-      "css": ".ds-shot { position: relative; overflow: hidden; min-width: 0; aspect-ratio: 4 / 3; border-radius: 0; background: radial-gradient(120% 100% at 24% 12%, rgba(249,194,46,.20), transparent 62%), radial-gradient(120% 120% at 84% 92%, rgba(216,32,42,.26), transparent 66%), linear-gradient(155deg, #2E2321, #191413 62%, #100D0C); box-shadow: 0 24px 58px -30px rgba(0,0,0,.95); } .ds-shot figcaption { position: absolute; left: 1.1rem; bottom: 1rem; z-index: 2; font-family: Archivo, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F2E7D9; opacity: 0; transform: translateY(6px); text-shadow: 0 2px 14px rgba(0,0,0,.95); transition: opacity .4s cubic-bezier(0.22,0.68,0.32,1), transform .4s cubic-bezier(0.16,1,0.3,1); } .ds-shot:hover figcaption { opacity: 1; transform: translateY(0); }"
-    },
-    {
-      "name": "Primary Nav Link",
+      "name": "Primary Navigation",
       "kind": "nav",
       "refersTo": null,
-      "description": "12px caps with a gold underline that scales in from the left on hover and stays on for the section in view.",
-      "html": "<nav class=\"ds-nav\"><a href=\"#menu\" class=\"ds-nav-on\">Menu</a><a href=\"#gallery\">Gallery</a><a href=\"#visit\">Visit</a></nav>",
-      "css": ".ds-nav { display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 2.1rem); background: #100D0C; padding: 1rem; } .ds-nav a { font-family: Archivo, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #CFC2B4; text-decoration: none; padding-block: .5rem; position: relative; transition: color .25s cubic-bezier(0.22,0.68,0.32,1); } .ds-nav a::after { content: \"\"; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: #F9C22E; transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(0.16,1,0.3,1); } .ds-nav a:hover, .ds-nav a.ds-nav-on { color: #F9C22E; } .ds-nav a:hover::after, .ds-nav a.ds-nav-on::after { transform: scaleX(1); } .ds-nav a:focus-visible { outline: 2px solid #F9C22E; outline-offset: 4px; }"
+      "description": "Sticky bar links: 12px tracked caps in warm paper, with a gold underline that scales in from the left.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Primary\"><a href=\"#\">Menu</a><a href=\"#\" class=\"ds-on\">About</a><a href=\"#\">Gallery</a><a href=\"#\">Visit</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 2.1rem; background: rgba(8,14,40,.96); padding: 1rem 1.5rem; } .ds-nav a { font-family: Archivo, system-ui, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #D6CABA; text-decoration: none; padding-block: .5rem; position: relative; transition: color .25s cubic-bezier(0.22,0.68,0.32,1); } .ds-nav a::after { content: \"\"; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: #F0B008; transform: scaleX(0); transform-origin: left; transition: transform .35s cubic-bezier(0.16,1,0.3,1); } .ds-nav a:hover, .ds-nav a.ds-on { color: #F0B008; } .ds-nav a:hover::after, .ds-nav a.ds-on::after { transform: scaleX(1); } .ds-nav a:focus-visible { outline: 2px solid #F0B008; outline-offset: 4px; }"
     },
     {
-      "name": "Section Head",
+      "name": "Lit Photo Panel",
+      "kind": "card",
+      "refersTo": null,
+      "description": "The only container in the system. A gold radial, a red radial and a cobalt diagonal under every image, so a failed load degrades to a lit panel rather than a broken icon.",
+      "html": "<figure class=\"ds-shot\"><figcaption>Birria tacos</figcaption></figure>",
+      "css": ".ds-shot { position: relative; overflow: hidden; margin: 0; aspect-ratio: 4 / 3; border-radius: 0; background: radial-gradient(120% 100% at 24% 12%, rgba(240,176,8,.20), transparent 62%), radial-gradient(120% 120% at 84% 92%, rgba(200,24,24,.26), transparent 66%), linear-gradient(155deg, #1B2B68, #0D1538 62%, #080E28); box-shadow: 0 24px 58px -30px rgba(0,0,0,.95); } .ds-shot figcaption { position: absolute; left: 1.1rem; bottom: 1rem; font-family: Archivo, system-ui, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #F5EDE0; opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .4s cubic-bezier(0.16,1,0.3,1); text-shadow: 0 2px 14px rgba(0,0,0,.95); } .ds-shot:hover figcaption { opacity: 1; transform: translateY(0); }"
+    },
+    {
+      "name": "Section Heading",
       "kind": "custom",
       "refersTo": null,
-      "description": "Anton caps headline with a gold emphasis phrase, over an Archivo lede capped at 34ch.",
-      "html": "<div class=\"ds-head\"><h2 class=\"ds-h2\">Five meats. <em>Eight formats.</em></h2><p class=\"ds-lede\">Pick a meat and the board resolves to the formats it comes in.</p></div>",
-      "css": ".ds-head { max-width: 46rem; background: #100D0C; padding: 2rem; } .ds-h2 { margin: 0; font-family: Anton, sans-serif; font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.4vw, 2.75rem); line-height: .96; letter-spacing: -0.005em; text-transform: uppercase; color: #F2E7D9; text-wrap: balance; } .ds-h2 em { font-style: normal; color: #F9C22E; } .ds-lede { margin: 1.15rem 0 0; font-family: Archivo, sans-serif; font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem); line-height: 1.55; color: #CFC2B4; max-width: 34ch; }"
+      "description": "Anton caps at the headline step with a gold emphasis clause, over an Archivo lede. No kicker above it.",
+      "html": "<div class=\"ds-head\"><h2 class=\"ds-h2\">Five meats. <em>Eight formats.</em></h2><p class=\"ds-lede\">The board is longer than any listing shows. Pick a meat and see what it comes in.</p></div>",
+      "css": ".ds-head { max-width: 46rem; } .ds-h2 { margin: 0; font-family: Anton, 'Arial Narrow Bold', sans-serif; font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.4vw, 2.75rem); line-height: .96; letter-spacing: -0.005em; text-transform: uppercase; color: #F5EDE0; text-wrap: balance; } .ds-h2 em { font-style: normal; color: #F0B008; } .ds-lede { margin: 1.15rem 0 0; font-family: Archivo, system-ui, sans-serif; font-size: 1.375rem; line-height: 1.55; color: #D6CABA; max-width: 34ch; }"
     }
   ],
   "narrative": {
-    "northStar": "The Service Window After Dark",
-    "overview": "The page is a truck at night lit by its own aperture. The ground is asphalt black and never lightens; everything you can read sits inside a pool of warm light thrown across it. That single idea does all the structural work that a restaurant template would hand to boxes: sections are separated because the light falls off between them, not because a card has a border. There is exactly one accent temperature - brand gold - and one action colour - brand red - and neither is ever used decoratively.\n\nDensity is high inside the lit areas and generous between them. The centrepiece is the menu board: five meats across the top, and the eight formats resolve underneath when you pick one. It is a service board, not a price list, and it is the reason the page exists. Photography is the second light source; images sit on a lit gradient panel so that a failed load degrades to a glow rather than a broken tile.\n\nThe page deliberately refuses the restaurant-template reflexes: no bordered tile grid, no icon-heading-text feature row, no hero metric strip, and no fade-up on every section as you scroll. Motion is spent once, on load, and then the page holds still.",
+    "northStar": "The Truck After Dark",
+    "overview": "The page is the truck itself at night. The ground is not a neutral black chosen from a palette generator: it is the truck's own body colour, sampled from the owner's photographs and darkened until it holds type. Everything on that cobalt is either food, light, or an action. Nothing is boxed. Sections do not end at a rule or a card edge; they end where the light falls off.\n\nThe density is generous and the composition is a single column. There is one accent that behaves like a lamp (gold) and one that behaves like a verb (red), and both come off the owner's own logo rather than a brand kit. The type is signage first — condensed Anton caps at the sizes a hand-painted menu board would use — with Archivo doing all the reading work underneath it.\n\nIts anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of \"features\", a metric strip under the hero, a fade-up on every section. This build refuses all four. Where the direction contract named provisional hex values for gold (#F9C22E) and red (#D8202A), the shipped build supersedes them with values measured off the owner's materials; the contract's intent held, its placeholder numbers did not.",
     "keyCharacteristics": [
-      "Asphalt-black ground (ink) that never inverts to a light section.",
-      "One warm aperture (gold) as the only light; red reserved for action.",
-      "Anton signage caps over Archivo text; six real steps, no in-between sizes.",
-      "Zero radius everywhere. Separation is light, hairlines, and 1px grid gaps.",
-      "One authored motion moment: the hero light coming up on load."
+      "A cobalt ground sampled from the truck body, in four darkened steps, never a neutral grey",
+      "One gold aperture as the only light source, plus red reserved for actions",
+      "Zero radius everywhere; edges are hairline gaps and fading gradients, never boxes",
+      "Signage-scale condensed caps over a small, tightly-tracked label voice",
+      "Exactly one authored motion moment: the service light coming up on load",
+      "No per-item price renders anywhere, because none is sourced"
     ],
     "rules": [
-      { "name": "The One Aperture Rule", "body": "Gold is light, not decoration. It may glow, edge, label, or mark the hover destination - it may not fill a large surface or become a second brand colour.", "section": "colors" },
-      { "name": "The Red Is A Verb Rule", "body": "red fills only things a person can do: call, choose a meat, skip to content. Red as type on dark uses red-text; red at body size on ink is not legible.", "section": "colors" },
-      { "name": "The No Light Section Rule", "body": "No section inverts to a light background. Contrast comes from how far up the ink to surf-3 ladder a surface sits, never from flipping the ground.", "section": "colors" },
-      { "name": "The Six Steps Rule", "body": "The ramp is 12 / 16 / 22 / 32 / 44 / 96 at 1280 and nothing else renders. A previous pass shipped a 20/21/22px cluster 1.05x apart, which reads as a flat ramp; those were mapped onto the 22px step. Never add a seventh step a fraction from an existing one.", "section": "typography" },
-      { "name": "The Anton Is Caps Rule", "body": "Anton is only ever set uppercase, at 0.88-1.34 line-height, with slightly negative tracking at headline scale and up. It is never used for a paragraph.", "section": "typography" },
-      { "name": "The Tabular Numerals Rule", "body": "Any rendered figure - rating, review count, price range, year, phone - carries .num (font-variant-numeric: tabular-nums). Digits do not shift width.", "section": "typography" },
-      { "name": "The Light Pool Rule", "body": "Sections separate by falloff. Each .bay paints a radial gradient (gold at 8.5%, red at 5%, transparent by 68%) positioned per-section with --lx / --ly, so the light source moves down the page. Never reintroduce a section divider rule or a bordered card to do this job.", "section": "layout" },
+      { "name": "The Measured Against The Worst Surface Rule", "body": "Every ratio in this system is swept against the lightest surface the colour can actually land on (surf-3), not against the page ground. The recorded minima are cream 11.35, cream-2 8.18, mute 5.50, gold 6.86, cream-on-red 5.02, ink-on-gold 9.89, on-gold-2-on-gold 5.47. A new colour joins the palette only with its worst-surface number recorded here.", "section": "colors" },
+      { "name": "The Two Forbidden Pairings Rule", "body": "Gold on red is 3.03:1 and red on ink is 3.32:1. Neither ships as text anywhere and neither may be reintroduced. Red's job is to be a ground under cream, never a foreground. A \"red text\" token was carried in an earlier revision and removed unused; it would have failed at 4.45:1 on surf-3.", "section": "colors" },
+      { "name": "The Channel Token Rule", "body": "Any translucent use of a palette colour composes it from the channel tokens — --ink-rgb, --cream-rgb, --gold-rgb, --red-rgb — inside rgba(). Never hand-write the channels. This file has twice shipped an rgba() literal that drifted from the token it was cut from; the channel tokens exist specifically so that cannot happen a third time. The only permitted bare literals are neutral black in shadows.", "section": "colors" },
+      { "name": "The One Aperture Rule", "body": "Gold is light, not decoration. It may glow, edge, label, or mark the selected thing; it never fills a large field except as a deliberate state inversion (the selected chip), and it is never used for body copy.", "section": "colors" },
+      { "name": "The No Light Section Rule", "body": "No section inverts to a light background. Contrast comes from the tonal ramp and from photography, never from flipping the ground.", "section": "colors" },
+      { "name": "The Six Steps Rule", "body": "The ramp is 12 / 16 / 22 / 32 / 44 / 96 at 1280 and nothing else renders. Every size is one of --t-label, --t-body, --t-lead, --t-stat, --t-head, --t-display; new type picks a step rather than adding one.", "section": "typography" },
+      { "name": "The Anton Is Caps Rule", "body": "Anton is only ever set uppercase, at 0.88–1.34 line-height, with letter-spacing between -0.02em and +0.02em. It never sets a paragraph and never appears in sentence case.", "section": "typography" },
+      { "name": "The Readable Control Rule", "body": "The meat names are the entire point of the pick-a-meat control, so they are set at the lead step (22px desktop, 19px mobile), not at body. Condensed caps at 16px were the one thing on this page a person had to lean in to read; a control's primary label does not sit below the lead step.", "section": "typography" },
+      { "name": "The Tabular Numerals Rule", "body": "Any rendered figure — rating, review count, price range — carries .num for font-variant-numeric: tabular-nums.", "section": "typography" },
+      { "name": "The Light Pool Rule", "body": "Sections separate by falloff. Each .bay paints a radial gradient (gold at 10%, red at 7%, transparent by 68%) positioned per-section with --lx / --ly, so the light source moves down the page: 16%/6%, 84%/14%, 50%/2%, 24%/10%, 78%/8%. Never reintroduce a section divider rule or a bordered card to do this job.", "section": "layout" },
       { "name": "The Shared Cell Rule", "body": "All five meat panes occupy the same grid cell (grid-row: 1; grid-column: 1) and cross-fade. Switching meats must never change page height.", "section": "layout" },
-      { "name": "The Neutral Shadow Rule", "body": "Shadows are black and diffuse. A coloured glow under a photo or a card is the tell of a template; the warm light in this system comes from the gradients, never from a tinted shadow.", "section": "elevation" },
-      { "name": "The Hairline-Not-Border Rule", "body": "Where an edge is genuinely needed it is a 1px grid gap or a gradient hairline that fades out - the board's gold top edge, the claim separators, the footer rule. Never a full-perimeter 1px box.", "section": "elevation" },
-      { "name": "The No Price Rule", "body": "No per-item price renders anywhere inside #menu. No per-item price is confirmed in any source, and inventing one is the failure mode this architecture exists to prevent. verify.mjs asserts this on the rendered page.", "section": "components" },
-      { "name": "The Honest Cell Rule", "body": "An unknown answer renders as the .ask cell, visibly different from a confirmed one and keyed to the legend. Unknowns are never blanked, guessed, or dashed out.", "section": "components" }
+      { "name": "The Declared Columns Rule", "body": "A grid with a fixed, known item count declares its columns; auto-fit is for counts that vary. Five chips under auto-fit left a dead cell at every width where the row count did not divide five, so the chips are 2 columns with the fifth spanning the row, and 5 columns from 1020px.", "section": "layout" },
+      { "name": "The Neutral Shadow Rule", "body": "Shadows are black and diffuse, and every shadow offset is soft and vertical. A coloured glow, or a hard offset with no blur, is the tell of a template; the warm light in this system comes from the gradients, never from a tinted or stamped shadow.", "section": "elevation" },
+      { "name": "The Hairline-Not-Border Rule", "body": "Where an edge is genuinely needed it is a 1px grid gap (rgba(var(--cream-rgb),.12) between chips, .08 between format cells) or a gradient hairline that fades out — the board's gold top edge, the claim separators, the footer rule. Never a full-perimeter 1px box.", "section": "elevation" },
+      { "name": "The No Price Rule", "body": "No per-item price renders anywhere inside #menu. No per-item price is confirmed in any source, and inventing one is the failure mode this architecture exists to prevent. verify.mjs asserts this on the rendered page; the hero's $10–20 per person range is a sourced, non-item figure and lives outside the board.", "section": "components" },
+      { "name": "The Honest Cell Rule", "body": "An unknown answer renders as the .ask cell, visibly different from a confirmed one and keyed to the legend. Unknowns are never blanked, guessed, or dashed out.", "section": "components" },
+      { "name": "The Inversion Is The State Rule", "body": "A selected cell states its selection by inverting its whole field, not by growing an edge marker. A 3px gold stripe was built along the selected chip's top edge and removed: a thin coloured rule on one edge of a panel is the side-tab tell, and the field inversion already carries the state unambiguously. Do not rebuild it.", "section": "components" }
     ],
     "dos": [
+      "Do sample any new colour from the owner's own photographs, opaque pixels only, and record its ratio against surf-3 before adding it to the palette.",
+      "Do compose every translucent colour from --ink-rgb / --cream-rgb / --gold-rgb / --red-rgb rather than writing channel numbers by hand.",
       "Do separate sections with a .bay light pool, positioned with its own --lx / --ly.",
       "Do keep every corner square (0 radius) and every edge a hairline gap or a fading gradient.",
-      "Do send every hover to gold - nav underline, chip name, dish link, footer link, social fill.",
-      "Do put photography inside .shot so a failed load degrades to a lit panel.",
+      "Do send every hover to gold — nav underline, chip name, dish link, footer link, social fill.",
+      "Do put photography inside .shot so a failed load degrades to a lit panel, and give any third-party embed a surf-1 backing so its own white never shows through.",
       "Do carry .num on every rendered figure so digits stay tabular.",
-      "Do theme the browser's own surfaces from the palette: gold ::selection on ink, a surf-3-on-ink scrollbar, a 2px gold focus ring at 4px offset, and 0.22em underline offset on non-button links.",
-      "Do hold new type to the six-step ramp (12 / 16 / 22 / 32 / 44 / 96 at 1280).",
+      "Do theme the browser's own surfaces from the palette: gold ::selection on ink, a surf-3-on-ink scrollbar, a 2px gold focus ring at 4px offset, and 0.22em underline offset on non-button links. Keep the favicon and <meta name=\"theme-color\"> on the same three sampled values (ink, gold, red).",
+      "Do hold new type to the six-step ramp (12 / 16 / 22 / 32 / 44 / 96 at 1280), and set a control's primary label at the lead step or above.",
+      "Do declare grid columns whenever the item count is fixed and known.",
       "Do honour prefers-reduced-motion, which flattens every animation and transition to 0.001ms and disables smooth scroll."
     ],
     "donts": [
       "Don't render a per-item price inside #menu. Nothing sources one.",
+      "Don't set gold type on red (3.03:1) or red type on ink (3.32:1). Red is a ground, not a foreground.",
       "Don't wrap a section in a bordered card or lay a divider rule between sections; the light falloff is the separator and re-adding boxes undoes the whole architecture.",
-      "Don't put a coloured glow under a photo or a panel. Shadows are neutral black.",
-      "Don't add a scroll-reveal observer or a per-section fade-up. There is one authored moment - the hero light coming up on load - and its value is that it is the only one.",
+      "Don't mark a selected state with an edge stripe or accent tab. Invert the field.",
+      "Don't put a coloured glow under a photo or a panel, and don't use a hard offset shadow. Shadows are neutral black, blurred, and vertical.",
+      "Don't add a scroll-reveal observer or a per-section fade-up. There is one authored moment — the hero light coming up on load (lightUp, 1900ms) with the hero text rising behind it on a 420–860ms stagger — and its value is that it is the only one.",
       "Don't set Anton in sentence case or use it for a paragraph.",
       "Don't put a tracked-caps kicker or eyebrow above a heading.",
-      "Don't use red as type on a dark surface; that is what red-text is for.",
       "Don't invert a section to a light ground.",
-      "Don't reintroduce Fraunces - it was swapped out of this build as the obvious warm serif and the previous version of this site used it."
+      "Don't reintroduce Fraunces — it was swapped out of this build as the obvious warm serif and the previous version of this site used it.",
+      "Don't reintroduce the placeholder palette (#100D0C ground, #F9C22E gold, #D8202A red) or the red-text token. The shipped palette is measured off the owner's materials and supersedes the direction contract's provisional values."
     ]
   }
 }

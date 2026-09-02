@@ -34,20 +34,36 @@
 }
 
 /* --------------------------------------------------------------- 2. tokens */
+/* The palette is sampled from the owner's own materials, opaque pixels only, per
+   §4 — it is no longer the placeholder this file shipped with. The ground is the
+   truck: img/truck.jpg reads #001060 in shadow and #2060F0 in sun, so the whole
+   surface ramp is that cobalt, darkened to hold type. Gold and red are lifted off
+   the logo and display type in img/promo-nortenos.jpg (#F0B008 badge, #C81818
+   lettering). Every pairing below was swept against the WORST surface it lands
+   on, not against the page ground — see the measured table in DESIGN.md. */
 :root {
-  --ink: #100D0C;
-  --surf-1: #191413;
-  --surf-2: #241C1A;
-  --surf-3: #2E2321;
+  --ink: #080E28;
+  --surf-1: #0D1538;
+  --surf-2: #121D4A;
+  --surf-3: #1B2B68;
 
-  --cream: #F2E7D9;
-  --cream-2: #CFC2B4;
-  --mute: #A2968C;
+  --cream: #F5EDE0;
+  --cream-2: #D6CABA;
+  --mute: #B1A695;
 
-  --gold: #F9C22E;
-  --red: #D8202A;
-  --red-text: #E36269;
-  --on-red: #FFFFFF;   /* 5.05:1 on --red; cream is only 4.14:1 there */
+  --gold: #F0B008;
+  --red: #C81818;
+
+  --on-red: #F5EDE0;     /* 5.02:1 on --red */
+  --on-gold: #080E28;    /* 9.89:1 on --gold */
+  --on-gold-2: #4E3D0A;  /* 5.47:1 on --gold — the second line of a chip only */
+
+  /* Channels, so no rgba() literal can drift from the token it was cut from.
+     This is the bug that has bitten this file twice. */
+  --ink-rgb: 8, 14, 40;
+  --cream-rgb: 245, 237, 224;
+  --gold-rgb: 240, 176, 8;
+  --red-rgb: 200, 24, 24;
 
   --display: 'Anton', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
   --text: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -101,7 +117,7 @@ a { color: inherit; text-decoration: none; }
 ::-webkit-scrollbar { width: 11px; height: 11px; }
 ::-webkit-scrollbar-track { background: var(--ink); }
 ::-webkit-scrollbar-thumb { background: var(--surf-3); border: 3px solid var(--ink); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: #3D2E2B; }
+::-webkit-scrollbar-thumb:hover { background: var(--surf-3); }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 1px; }
 a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
@@ -120,7 +136,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 .bay::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(115% 78% at var(--lx, 50%) var(--ly, 0%),
-    rgba(249, 194, 46, .085), rgba(216, 32, 42, .05) 34%, transparent 68%);
+    rgba(var(--gold-rgb), .10), rgba(var(--red-rgb), .07) 34%, transparent 68%);
 }
 
 .h2 {
@@ -148,7 +164,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 .btn:hover { transform: translateY(-2px); }
 .btn--fill { background: var(--red); color: var(--on-red); box-shadow: 0 12px 28px -16px rgba(0,0,0,.9); }
 .btn--fill:hover { background: var(--gold); color: var(--ink); box-shadow: 0 18px 36px -16px rgba(0,0,0,.95); }
-.btn--ghost { background: transparent; color: var(--cream); box-shadow: inset 0 0 0 1px rgba(242,231,217,.28); }
+.btn--ghost { background: transparent; color: var(--cream); box-shadow: inset 0 0 0 1px rgba(var(--cream-rgb),.28); }
 .btn--ghost:hover { background: var(--cream); color: var(--ink); box-shadow: inset 0 0 0 1px var(--cream); }
 .btn-row { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2.5rem; }
 .btn-row--mid { justify-content: center; }
@@ -158,8 +174,8 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 .shot {
   position: relative; overflow: hidden; min-width: 0;
   background:
-    radial-gradient(120% 100% at 24% 12%, rgba(249,194,46,.20), transparent 62%),
-    radial-gradient(120% 120% at 84% 92%, rgba(216,32,42,.26), transparent 66%),
+    radial-gradient(120% 100% at 24% 12%, rgba(var(--gold-rgb),.20), transparent 62%),
+    radial-gradient(120% 120% at 84% 92%, rgba(var(--red-rgb),.26), transparent 66%),
     linear-gradient(155deg, var(--surf-3), var(--surf-1) 62%, var(--ink));
   box-shadow: 0 24px 58px -30px rgba(0, 0, 0, .95);
 }
@@ -171,10 +187,10 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 /* --------------------------------------------------------------- 6. header */
 .bar {
   position: sticky; top: 0; z-index: 60;
-  background: linear-gradient(to bottom, rgba(16,13,12,.92), rgba(16,13,12,.62) 62%, transparent);
+  background: linear-gradient(to bottom, rgba(var(--ink-rgb),.92), rgba(var(--ink-rgb),.62) 62%, transparent);
   transition: background-color .4s var(--ease);
 }
-.bar.is-stuck { background: rgba(16,13,12,.96); }
+.bar.is-stuck { background: rgba(var(--ink-rgb),.96); }
 .bar__in { min-height: var(--bar-h); display: flex; align-items: center;
   justify-content: space-between; gap: 1.25rem; }
 .brand { display: block; min-width: 0; }
@@ -208,7 +224,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   .burger { display: grid; }
   .nav { position: fixed; inset: var(--bar-h) 0 auto 0; flex-direction: column;
     align-items: stretch; gap: 0; padding: .5rem var(--gutter) 1.75rem;
-    background: rgba(16,13,12,.985); max-height: calc(100dvh - var(--bar-h)); overflow-y: auto;
+    background: rgba(var(--ink-rgb),.985); max-height: calc(100dvh - var(--bar-h)); overflow-y: auto;
     opacity: 0; visibility: hidden; transform: translateY(-10px);
     transition: opacity .35s var(--ease), transform .35s var(--out), visibility .35s; }
   .nav.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
@@ -234,8 +250,8 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   padding-top: calc(var(--bar-h) + 3rem); padding-bottom: clamp(3rem, 7vw, 6rem); }
 .hero__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    linear-gradient(to top, var(--ink) 3%, rgba(16,13,12,.70) 46%, rgba(16,13,12,.34) 74%, rgba(16,13,12,.58)),
-    linear-gradient(100deg, var(--ink) 4%, rgba(16,13,12,.80) 30%, rgba(16,13,12,.10) 66%); }
+    linear-gradient(to top, var(--ink) 3%, rgba(var(--ink-rgb),.70) 46%, rgba(var(--ink-rgb),.34) 74%, rgba(var(--ink-rgb),.58)),
+    linear-gradient(100deg, var(--ink) 4%, rgba(var(--ink-rgb),.80) 30%, rgba(var(--ink-rgb),.10) 66%); }
 .hero__in { position: relative; z-index: 2; width: 100%; }
 .hero__body { max-width: 50rem; }
 .hero h1 { font-family: var(--display); font-size: var(--t-display); line-height: .88;
@@ -253,22 +269,38 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 /* The centrepiece. A lit slab, not a bordered panel. */
 .board { position: relative; margin-top: clamp(2.5rem, 5vw, 4rem);
   padding: clamp(1.75rem, 4vw, 3rem); background:
-    radial-gradient(120% 140% at 50% -10%, rgba(249,194,46,.12), transparent 60%),
+    radial-gradient(120% 140% at 50% -10%, rgba(var(--gold-rgb),.14), transparent 60%),
     linear-gradient(180deg, var(--surf-2), var(--surf-1) 55%, var(--ink)); }
 .board::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(249,194,46,.7) 22%, rgba(249,194,46,.7) 78%, transparent); }
+  background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb),.75) 22%, rgba(var(--gold-rgb),.75) 78%, transparent); }
 .board__t { font-family: var(--display); font-size: var(--t-head); line-height: 1;
   text-transform: uppercase; letter-spacing: -0.005em; color: var(--cream); }
 .board__s { margin-top: .7rem; font-size: var(--t-body); color: var(--mute); max-width: 56ch; }
 
-.chips { display: grid; gap: 1px; margin-top: 1.75rem; background: rgba(242,231,217,.08);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); }
-.chip { min-width: 0; display: block; padding: .95rem 1.05rem; cursor: pointer;
-  background: var(--surf-1); transition: background-color .3s var(--ease); }
-.chip b { display: block; font-family: var(--display); font-size: var(--t-body);
-  line-height: 1.1; text-transform: uppercase; letter-spacing: .01em; color: var(--cream);
+/* The names are the whole point of this control, so they are set at the lead step
+   (22px), not at body. At 16px condensed caps they were the one thing on the page
+   you had to lean in to read — that is what this rebuild is for. The selected chip
+   flips to the whole field to gold — ink on gold is 9.89:1, where cream on red was
+   5.02:1. No accent stripe marks the selection: a thin coloured rule on one edge of
+   a card is the side-tab tell, and the field inversion already carries the state. */
+/* Five is a bad number for auto-fit: it leaves a dead cell whenever the row
+   count does not divide it. The columns are declared instead, and in the
+   two-up tier the fifth chip takes the whole row rather than half of it. */
+.chips { display: grid; gap: 1px; margin-top: 1.75rem; background: rgba(var(--cream-rgb),.12);
+  grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.chip:last-child { grid-column: 1 / -1; }
+@media (min-width: 1020px) {
+  .chips { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .chip:last-child { grid-column: auto; }
+}
+.chip { min-width: 0; display: block; padding: 1.2rem 1.2rem 1.25rem;
+  cursor: pointer; background: var(--surf-1); transition: background-color .3s var(--ease); }
+.chip b { display: block; font-family: var(--display); font-size: var(--t-lead);
+  line-height: 1.05; text-transform: uppercase; letter-spacing: .015em; color: var(--cream);
   transition: color .3s var(--ease); }
-.chip small { display: block; margin-top: 4px; font-size: var(--t-label); color: var(--mute); }
+.chip small { display: block; margin-top: .5rem; font-size: var(--t-label); font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--mute);
+  transition: color .3s var(--ease); }
 .chip:hover { background: var(--surf-3); }
 .chip:hover b { color: var(--gold); }
 
@@ -276,22 +308,22 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 #k-adobada:checked ~ .chips label[for="k-adobada"],
 #k-chorizo:checked ~ .chips label[for="k-chorizo"],
 #k-chicken:checked ~ .chips label[for="k-chicken"],
-#k-asada:checked ~ .chips label[for="k-asada"] { background: var(--red); }
+#k-asada:checked ~ .chips label[for="k-asada"] { background: var(--gold); }
 #k-birria:checked ~ .chips label[for="k-birria"] b,
 #k-adobada:checked ~ .chips label[for="k-adobada"] b,
 #k-chorizo:checked ~ .chips label[for="k-chorizo"] b,
 #k-chicken:checked ~ .chips label[for="k-chicken"] b,
-#k-asada:checked ~ .chips label[for="k-asada"] b { color: var(--on-red); }
+#k-asada:checked ~ .chips label[for="k-asada"] b { color: var(--on-gold); }
 #k-birria:checked ~ .chips label[for="k-birria"] small,
 #k-adobada:checked ~ .chips label[for="k-adobada"] small,
 #k-chorizo:checked ~ .chips label[for="k-chorizo"] small,
 #k-chicken:checked ~ .chips label[for="k-chicken"] small,
-#k-asada:checked ~ .chips label[for="k-asada"] small { color: var(--on-red); }
+#k-asada:checked ~ .chips label[for="k-asada"] small { color: var(--on-gold-2); }
 #k-birria:focus-visible ~ .chips label[for="k-birria"],
 #k-adobada:focus-visible ~ .chips label[for="k-adobada"],
 #k-chorizo:focus-visible ~ .chips label[for="k-chorizo"],
 #k-chicken:focus-visible ~ .chips label[for="k-chicken"],
-#k-asada:focus-visible ~ .chips label[for="k-asada"] { outline: 2px solid var(--gold); outline-offset: -2px; }
+#k-asada:focus-visible ~ .chips label[for="k-asada"] { outline: 2px solid var(--cream); outline-offset: -3px; }
 
 /* Every pane shares one grid cell, so switching meats never moves the page and
    no fr track can resolve to 0px. */
@@ -306,7 +338,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 #k-asada:checked ~ .slab .pane[data-k="asada"] { opacity: 1; visibility: visible; }
 
 .forms { display: grid; gap: 1px; grid-template-columns: minmax(0, 1fr);
-  background: rgba(242,231,217,.08); }
+  background: rgba(var(--cream-rgb),.08); }
 @media (min-width: 620px) { .forms { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 900px) { .forms { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .form { min-width: 0; background: var(--surf-1); padding: .9rem 1.05rem; }
@@ -357,7 +389,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   grid-template-columns: minmax(0, 1fr); }
 .claim { min-width: 0; padding: 1.35rem 0; position: relative; }
 .claim + .claim::before { content: ""; position: absolute; left: 0; top: 0; width: 100%;
-  height: 1px; background: linear-gradient(90deg, rgba(249,194,46,.42), transparent 72%); }
+  height: 1px; background: linear-gradient(90deg, rgba(var(--gold-rgb),.42), transparent 72%); }
 .claim b { display: block; font-family: var(--display); font-size: var(--t-stat);
   line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; color: var(--gold); }
 .claim span { display: block; margin-top: .5rem; font-size: var(--t-body); color: var(--mute);
@@ -416,8 +448,10 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 .visit__r figcaption { position: absolute; left: 1.1rem; bottom: 1rem; z-index: 2;
   font-size: var(--t-label); font-weight: 700; letter-spacing: .14em;
   text-transform: uppercase; color: var(--cream); text-shadow: 0 2px 14px rgba(0,0,0,.95); }
+/* The embed paints its own white tile, and until it loads — or wherever it is
+   blocked — that white is the ground. Give the frame the surface underneath it. */
 .map { flex: 0 0 clamp(200px, 22vw, 280px); width: 100%; border: 0;
-  filter: saturate(.8) contrast(1.06); }
+  background: var(--surf-1); filter: saturate(.8) contrast(1.06); }
 
 .note { margin-top: clamp(2.5rem, 5vw, 3.5rem); padding-top: 1.5rem; position: relative;
   max-width: 68ch; }
@@ -428,7 +462,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 /* -------------------------------------------------------------- 14. footer */
 .foot { padding-top: clamp(3.5rem, 7vw, 5.5rem); position: relative; }
 .foot::before { content: ""; position: absolute; left: var(--gutter); right: var(--gutter);
-  top: 0; height: 1px; background: linear-gradient(90deg, rgba(242,231,217,.16), transparent 60%); }
+  top: 0; height: 1px; background: linear-gradient(90deg, rgba(var(--cream-rgb),.16), transparent 60%); }
 .foot__g { display: grid; gap: clamp(2rem, 4vw, 3rem);
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
   padding-bottom: clamp(2.5rem, 5vw, 3.5rem); }
@@ -441,7 +475,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 .foot__l address { font-style: normal; line-height: 1.6; }
 .social { display: flex; gap: .75rem; margin-top: 1.4rem; }
 .social a { width: 42px; height: 42px; display: grid; place-items: center; color: var(--cream-2);
-  box-shadow: inset 0 0 0 1px rgba(242,231,217,.2);
+  box-shadow: inset 0 0 0 1px rgba(var(--cream-rgb),.2);
   transition: color .3s var(--ease), background-color .3s var(--ease),
               transform .3s var(--out), box-shadow .3s var(--ease); }
 .social a:hover { color: var(--ink); background: var(--gold); transform: translateY(-3px);
@@ -451,7 +485,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   gap: .6rem 1.5rem; padding-block: 1.75rem; font-size: var(--t-label); color: var(--mute);
   position: relative; }
 .foot__b::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
-  background: rgba(242,231,217,.1); }
+  background: rgba(var(--cream-rgb),.1); }
 
 /* ------------------------------------------------- 15. the one authored moment */
 /* The service light comes up on load. Nothing else animates on entry — no

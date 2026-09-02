@@ -13,8 +13,9 @@ the accumulated corrections from real builds; the rules in it each cost a real m
   recorded in `PRODUCT.md`. Where a fact does not exist, the page says so.
 - `PRODUCT.md`, `work/` and `photos_raw/` **never ship** and are gitignored.
 - The architecture is **the order counter** — pick a meat, formats resolve. It comes from the
-  menu being a matrix. Read the direction contract at the top of `styles.css` before changing
-  the layout; it records what not to change back, and why.
+  menu being a matrix. Read the direction contract in `.impeccable/surfaces/index-html.md`
+  before changing the layout; it records what not to change back, and why. It never ships in a
+  browser-delivered file — `styles.css` carries a pointer to it, not a copy.
 - **No prices render in the matrix.** No per-item price has been confirmed. This is asserted
   as the architecture's invariant in verification.
 - Deploy only with an **explicit go-ahead**, and only with `noindex, nofollow` in place.

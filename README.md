@@ -1,7 +1,7 @@
 # Tacos El Giro
 
-A one-page site for **Tacos El Giro**, a Mexican food counter at Summer's Hub of Kennewick,
-Washington. Static: no framework, no CMS, no build step.
+A one-page site for **Tacos El Giro**, a Mexican food truck in Kennewick, Washington.
+Static: no framework, no CMS, no build step.
 
 **Tier: Verified Launch ($799)** — assigned on record, not derived. See `CLAUDE.md`.
 
@@ -17,14 +17,20 @@ Keep the port stable for a whole working session so a refresh always works.
 
 ## Verify it
 
-The verification gate implements §7 of the tier process. It walks **every** leaf element
-that has text (296 of them, across all five meat states), composites translucent ancestors
-rather than reading one background-colour, checks `:hover` separately, emulates a real
-mobile viewport, and asserts the architecture's invariant.
+Two gates, and both have to pass.
+
+`verify.mjs` implements §7 of the tier process. It walks **every** leaf element that has text
+(609 of them, across all five meat states), composites translucent ancestors rather than
+reading one background-colour, checks `:hover` separately, emulates a real mobile viewport,
+and asserts the architecture's invariant.
+
+`verify:design` is the vendored **impeccable** detector. If it prints `DEGRADED`, stop and
+install its dependencies — degraded mode returns `[]` and reads exactly like a clean pass.
 
 ```bash
 npm install
-node verify.mjs http://localhost:8000
+cd .claude/skills/impeccable && npm install && cd -   # once per machine
+npm run verify:all
 ```
 
 ## Package it
@@ -33,8 +39,10 @@ node verify.mjs http://localhost:8000
 ./package.sh
 ```
 
-Writes `deploy/`, which **excludes** `PRODUCT.md`, `DESIGN.md`, `CLAUDE.md`, `verify.mjs`
-and `package.json`. Then re-verify against the package, not the source:
+Writes `deploy/`, which **excludes** every internal file — `PRODUCT.md`, `DESIGN.md`,
+`CLAUDE.md`, `verify.mjs`, `preview.mjs`, `package.json`, `package.sh`, `scripts/` and
+`.claude/` — and ships only the `.webp` web copies from `img/`, never the originals. Then
+re-verify against the package, not the source:
 
 ```bash
 (cd deploy && python3 -m http.server 8001 &) && node verify.mjs http://localhost:8001
@@ -47,38 +55,49 @@ and `package.json`. Then re-verify against the package, not the source:
 ```
 index.html  styles.css  script.js  favicon.svg   the site
 fonts/                                           Anton + Archivo, self-hosted woff2, 124 KB
-verify.mjs  package.sh                           the gate and the packager
+img/                                             the owner's photographs, .jpg source + .webp
+verify.mjs  package.sh  preview.mjs              the gate, the packager, the flattener
 DESIGN.md                                        architecture, palette, type — regenerate on change
 CLAUDE.md                                        the non-negotiables for this repo
+scripts/                                         the image manifest and the palette sampler
 .claude/skills/client-site-build/                the build process, vendored so it travels
+.claude/skills/impeccable/                       the design detector, vendored (Apache-2.0)
 PRODUCT.md                                       INTERNAL, gitignored — sources and open questions
 ```
 
-The direction contract lives in two places, as the process requires: a comment block at the
-top of `styles.css`, and an HTML comment at the top of `<body>`. **Read it before changing
-the layout** — it records what not to change back, and why.
+The direction contract lives in `.impeccable/surfaces/index-html.md` and **never** ships in a
+browser-delivered file. **Read it before changing the layout** — it records what not to change
+back, and why. `styles.css` carries a pointer to it, not a copy.
 
 ---
 
 ## The architecture
 
 The menu is a matrix: **five meats crossed with eight formats.** So the page *is* the order
-counter — pick a meat, the formats resolve. It runs on radio inputs and `:checked`, so it
+window — pick a meat, the formats resolve. It runs on radio inputs and `:checked`, so it
 works with JavaScript off.
 
-**No prices render in the counter.** No per-item price exists in any source; the range is
+**No prices render in the board.** No per-item price exists in any source; the range is
 stated once in prose instead. `verify.mjs` fails the build if a price appears.
+
+## The palette
+
+Sampled from the owner's own materials, opaque pixels only, per §4 — it is no longer the
+placeholder this repo started with. The ground is the truck body from `img/truck.jpg`; the
+gold and red are lifted off the logo in `img/promo-nortenos.jpg`. `scripts/sample-palette.py`
+records the exact crops and `scripts/contrast.py` is the sweep. Every pairing is measured
+against the **worst surface it lands on**, not against the page ground; the table is in
+`DESIGN.md`.
 
 ## Before this goes live
 
 `PRODUCT.md` carries the full list. The short version:
 
 1. **Hours** — nothing is published on the page, and nothing was verified. Highest priority.
-2. **The phone number is not wired.** It is single-sourced, and §1 needs two independent
-   confirmations before click-to-call. The one-line change is marked in `index.html`.
-3. **`noindex, nofollow` is set** in `index.html` with a comment saying when to remove it.
-   Leave it until the owner confirms hours, the phone and delivery.
-4. **No photography.** No photo of this counter was obtainable; AI-generated and stock food
-   images were both rejected as unsourceable. A photo of the counter is the highest-value
-   asset to collect.
-5. **The palette is a flagged placeholder** — no logo or signage was available to sample.
+2. **A second source for the phone number.** It is wired at the client's request on a single
+   source; §1 wants two independent confirmations.
+3. **The second address.** The owner's own Tacos Norteños graphic advertises two locations.
+   Only one is on record, so only one is on the page.
+4. **`noindex, nofollow` is set** in `index.html` with a comment saying when to remove it.
+   Leave it until the owner confirms hours, the phone and delivery. Deploy only on an
+   explicit go-ahead.
