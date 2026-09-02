@@ -1,32 +1,30 @@
-/* Tacos El Giro — script.js
+/* Tacos El Giro
  *
- * The menu matrix runs on radio inputs and :checked, so the architecture needs
- * no JavaScript. This file adds the sticky-bar state, the mobile menu, scroll
- * reveals, and one thing that matters more than any of them:
+ * The menu board runs on radio inputs and :checked, so the architecture needs no
+ * JavaScript. This file does four small things:
+ *   - hides a photograph that fails to load, so the lit panel behind it becomes
+ *     the picture rather than a broken-image icon
+ *   - the sticky bar's solid state
+ *   - the mobile menu
+ *   - which nav link is current
  *
- *   A photograph that fails to load must never render as a broken-image icon.
- *   Every photo sits on a painted .shot panel; if the image errors we hide it
- *   and the panel becomes the picture. That keeps the page whole when it is
- *   opened somewhere the image host is unreachable.
+ * There is deliberately no scroll-reveal observer. The page has one authored
+ * moment, the service light coming up on load, and it is done in CSS.
  */
 (function () {
   'use strict';
 
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ------------------------------------------------ photography, failing safe */
+  /* ------------------------------------------- photography, failing safe */
   function markMissing(img) {
     var shot = img.closest('.shot');
     if (shot) shot.classList.add('is-missing');
   }
   Array.prototype.forEach.call(document.querySelectorAll('.shot img'), function (img) {
-    // A deferred script can run after an image has already failed, so check the
-    // settled state as well as listening for future errors.
     if (img.complete && img.naturalWidth === 0) markMissing(img);
     img.addEventListener('error', function () { markMissing(img); });
   });
 
-  /* ------------------------------------------------------------------- header */
+  /* ------------------------------------------------------------- header */
   var bar = document.getElementById('bar');
   function syncBarHeight() {
     if (bar) document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px');
@@ -45,7 +43,7 @@
   syncBarHeight();
   onScroll();
 
-  /* -------------------------------------------------------------- mobile menu */
+  /* -------------------------------------------------------- mobile menu */
   var burger = document.getElementById('burger');
   var nav = document.getElementById('nav');
   function setMenu(open) {
@@ -67,22 +65,7 @@
     });
   }
 
-  /* ------------------------------------------------------------ scroll reveal */
-  var reveals = document.querySelectorAll('[data-r]');
-  if (reduce || !('IntersectionObserver' in window)) {
-    Array.prototype.forEach.call(reveals, function (el) { el.classList.add('seen'); });
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        en.target.classList.add('seen');
-        io.unobserve(en.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
-    Array.prototype.forEach.call(reveals, function (el) { io.observe(el); });
-  }
-
-  /* --------------------------------------------------------------- active nav */
+  /* --------------------------------------------------------- active nav */
   var links = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
   var sections = links
     .map(function (a) { return document.querySelector(a.getAttribute('href')); })
