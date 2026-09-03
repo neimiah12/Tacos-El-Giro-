@@ -1,6 +1,6 @@
 ---
 name: Tacos El Giro
-description: A night-lit food truck page — the truck's own cobalt as the ground, one gold aperture, and a service board that resolves as you pick a meat.
+description: A night-lit food truck page — the truck's own cobalt as the ground, one gold aperture, and an order window that answers when you pick a meat.
 colors:
   ink: "#080E28"
   surf-1: "#0D1538"
@@ -40,18 +40,30 @@ typography:
     fontWeight: 400
     lineHeight: 1.05
     letterSpacing: "0.01em"
-  control:
-    fontFamily: "Anton, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
-    fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
-    fontWeight: 400
-    lineHeight: 1.1
-    letterSpacing: "-0.005em"
   quote:
     fontFamily: "Anton, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
     fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
     fontWeight: 400
     lineHeight: 1.34
     letterSpacing: "0.005em"
+  board-title:
+    fontFamily: "'Archivo Black', 'Archivo', 'Arial Black', 'Helvetica Neue', sans-serif"
+    fontSize: "clamp(2rem, 1.3rem + 2.4vw, 2.75rem)"
+    fontWeight: 400
+    lineHeight: 1.05
+    letterSpacing: "-0.02em"
+  control:
+    fontFamily: "'Archivo Black', 'Archivo', 'Arial Black', 'Helvetica Neue', sans-serif"
+    fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
+    fontWeight: 400
+    lineHeight: 1.15
+    letterSpacing: "-0.015em"
+  answer:
+    fontFamily: "'Archivo Black', 'Archivo', 'Arial Black', 'Helvetica Neue', sans-serif"
+    fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "-0.015em"
   lead:
     fontFamily: "Archivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
     fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
@@ -64,6 +76,12 @@ typography:
     fontWeight: 400
     lineHeight: 1.65
     letterSpacing: "normal"
+  action:
+    fontFamily: "Archivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 700
+    lineHeight: 1.65
+    letterSpacing: "0.08em"
   label:
     fontFamily: "Archivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
     fontSize: "0.75rem"
@@ -80,8 +98,8 @@ rounded:
   none: "0px"
 spacing:
   hairline: "1px"
-  cell: "0.9rem 1.05rem"
-  chip: "1.2rem 1.2rem 1.25rem"
+  control-gap: "3px"
+  chip: "1.15rem 1.2rem 1.25rem"
   gutter: "clamp(1.25rem, 5vw, 3.5rem)"
   board: "clamp(1.75rem, 4vw, 3rem)"
   bay: "clamp(4.5rem, 10vw, 9rem)"
@@ -89,7 +107,7 @@ components:
   button-fill:
     backgroundColor: "{colors.red}"
     textColor: "{colors.on-red}"
-    typography: "{typography.label}"
+    typography: "{typography.action}"
     rounded: "{rounded.none}"
     padding: "1.05rem 2rem"
   button-fill-hover:
@@ -98,7 +116,7 @@ components:
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.cream}"
-    typography: "{typography.label}"
+    typography: "{typography.action}"
     rounded: "{rounded.none}"
     padding: "1.05rem 2rem"
   button-ghost-hover:
@@ -125,16 +143,20 @@ components:
   chip-selected-sublabel:
     textColor: "{colors.on-gold-2}"
     typography: "{typography.label}"
-  format-cell:
-    backgroundColor: "{colors.surf-1}"
+  named-item:
+    backgroundColor: "transparent"
     textColor: "{colors.white}"
+    typography: "{typography.answer}"
     rounded: "{rounded.none}"
-    padding: "{spacing.cell}"
-  format-cell-ask:
-    backgroundColor: "{colors.ink}"
+    width: "min(100%, 200px)"
+  named-item-label:
     textColor: "{colors.mute}"
+    typography: "{typography.label}"
+  ask-line:
+    backgroundColor: "transparent"
+    textColor: "{colors.cream-2}"
+    typography: "{typography.body}"
     rounded: "{rounded.none}"
-    padding: "{spacing.cell}"
 ---
 
 # Design System: Tacos El Giro
@@ -151,22 +173,25 @@ light falls off.
 
 The density is generous and the composition is a single column. There is one accent that
 behaves like a lamp (gold) and one that behaves like a verb (red), and both come off the
-owner's own logo rather than a brand kit. The type is signage first — condensed Anton at the
-sizes a hand-painted menu board would use, caps everywhere it is writing and sentence case
-inside the board where it is a control — with Archivo doing all the reading work underneath
-it.
+owner's own logo rather than a brand kit. Type is signage first: condensed Anton in caps at
+the sizes a hand-painted sign uses, Archivo doing all the reading work underneath it, and —
+inside the order window only — a third face, wide and flat-sided, that makes the board read
+as a painted object rather than as more page.
 
 Its anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of
 "features", a metric strip under the hero, a fade-up on every section. This build refuses
-all four. Where the direction contract named provisional hex values for gold (`#F9C22E`)
-and red (`#D8202A`), the shipped build supersedes them with values measured off the owner's
-materials; the contract's *intent* held, its placeholder numbers did not.
+all four. It also refuses the spreadsheet: the menu was once a 5×8 matrix of forty identical
+cells, thirty-one of which said the same thing, and that is now an exchange — pick a meat,
+the window answers. Where the direction contract named provisional hex values for gold
+(`#F9C22E`) and red (`#D8202A`), the shipped build supersedes them with values measured off
+the owner's materials; the contract's *intent* held, its placeholder numbers did not.
 
 **Key Characteristics:**
 - A cobalt ground sampled from the truck body, in four darkened steps, never a neutral grey
 - One gold aperture as the only light source, plus red reserved for actions
 - Zero radius everywhere; edges are hairline gaps and fading gradients, never boxes
 - Signage-scale condensed caps over a small, tightly-tracked label voice
+- One extra face, confined to the order window, because the board is an object and not prose
 - Exactly one authored motion moment: the service light coming up on load
 - No per-item price renders anywhere, because none is sourced
 
@@ -177,16 +202,17 @@ owner's logo — the palette is photographic in origin, not chosen.
 
 ### Primary
 - **Aperture Gold** (`gold`): the light, and only the light. It is a surface, an edge or a
-  glow — never a letterform. The board's top hairline, the claim dividers, the note rule, the
-  nav underline, the `.bay` light pools, `::selection`, the focus ring, the fill button and
-  social button on hover, and the field a meat chip floods to when it is selected. It carried
-  type in an earlier revision — the hero's second line, heading emphasis, the format answers,
-  the Visit and footer labels — and all of that is white now. Ink on gold measures 9.89:1. Its
-  one surviving foreground use is the five review stars, which are filled SVG shapes, not
-  letterforms; a gold star is a convention worth keeping and it is the recorded exception.
+  glow — never a letterform. The board's top hairline, the hairline over every named format,
+  the claim dividers, the note rule, the nav underline, the `.bay` light pools, `::selection`,
+  the focus ring, the fill button and social button on hover, and the field a meat chip floods
+  to when it is selected. It carried type in an earlier revision — the hero's second line,
+  heading emphasis, the board's answers, the Visit and footer labels — and all of that is
+  white now. Ink on gold measures 9.89:1. Its one surviving foreground use is the five review
+  stars, which are filled SVG shapes, not letterforms; a gold star is a convention worth
+  keeping and it is the recorded exception.
 - **Signage White** (`white`): the emphasis voice, and the only thing that outranks cream.
   The hero's second line, the `em` inside every section heading, the wordmark's second word,
-  every named format answer on the board, the claim figures, the section labels in Visit and
+  every named product name on the board, the claim figures, the section labels in Visit and
   the footer, the dish links, and hover for every link and chip name. 13.19:1 at its worst
   surface (`surf-3`), 19.03:1 on the ground. It is not an invention: the display type and the
   logo outline in `img/promo-nortenos.jpg` are white, the same file gold and red came off.
@@ -197,19 +223,20 @@ owner's logo — the palette is photographic in origin, not chosen.
   5.02:1 — the tightest pairing that ships.
 
 ### Neutral
-- **Truck Shadow** (`ink`): the page ground, the `.ask` format cell, the scrollbar track, and
-  the text colour that sits on gold. This is the truck body read in shadow.
-- **Slab** (`surf-1`): the resting chip, the format cell, the map's own backing, and the
-  bottom of the board gradient's upper reach.
+- **Truck Shadow** (`ink`): the page ground, the bottom of the board gradient, the scrollbar
+  track, and the text colour that sits on gold. This is the truck body read in shadow.
+- **Slab** (`surf-1`): the resting meat chip, the map's own backing, and the middle of the
+  board gradient.
 - **Board** (`surf-2`): the top of the board gradient — the only place it appears alone.
 - **Lit Slab** (`surf-3`): the chip on hover, the scrollbar thumb, and the top of the `.shot`
   panel gradient. The lightest surface any text lands on, so it is the surface every ratio
   below was swept against.
-- **Fresh Tortilla** (`cream`): headings, the hero paragraph's emphasis, chip names, dish
-  names, quotes, gallery captions, and the address block. 11.35:1.
-- **Warm Paper** (`cream-2`): body copy, ledes, nav links at rest, footer links. 8.18:1.
-- **Comal Ash** (`mute`): subordinate text — descriptors, captions, legends, the disclaimer,
-  and the `.ask` answer. 5.50:1, the floor of the neutral ramp.
+- **Fresh Tortilla** (`cream`): headings, the board's title, the hero paragraph's emphasis,
+  chip names at rest, dish names, quotes, gallery captions, and the address block. 11.35:1.
+- **Warm Paper** (`cream-2`): body copy, ledes, the board's "ask at the window" line, nav
+  links at rest, footer links. 8.18:1.
+- **Comal Ash** (`mute`): subordinate text — descriptors, captions, the board's 12px field
+  labels, the disclaimer. 5.50:1, the floor of the neutral ramp.
 - **On-Gold Second Line** (`on-gold-2`): the only colour that exists solely to survive an
   inversion — a chip's sublabel once its field has flipped to gold. 5.47:1 on gold.
 
@@ -222,8 +249,9 @@ highlighter through it. Never rely on that step to carry meaning a screen reader
 **The Measured Against The Worst Surface Rule.** Every ratio in this system is swept against
 the lightest surface the colour can actually land on (`surf-3`), not against the page ground.
 The recorded minima are white 13.19, cream 11.35, cream-2 8.18, mute 5.50, gold 6.86 (as a
-surface only), cream-on-red 5.02, ink-on-gold 9.89, on-gold-2-on-gold 5.47. A new colour joins the palette only with its worst-
-surface number recorded here.
+surface only), cream-on-red 5.02, ink-on-gold 9.89, on-gold-2-on-gold 5.47. White also
+measures 19.03:1 on `ink`; where a stylesheet comment and this file disagree, this file is
+the authority. A new colour joins the palette only with its worst-surface number recorded here.
 
 **The Two Forbidden Pairings Rule.** Gold on red is 3.03:1 and red on ink is 3.32:1. Neither
 ships as text anywhere and neither may be reintroduced. Red's job is to be a ground under
@@ -237,7 +265,8 @@ from the token it was cut from; the channel tokens exist specifically so that ca
 a third time. The only permitted bare literals are neutral black in shadows.
 
 **The Gold Is Light, Never Type Rule.** Gold may glow, edge, underline, highlight or flood a
-field — the selected chip is the one large fill it is allowed. It sets no type at all, not a
+field — the selected chip is the one large fill it is allowed, and the hairline over each
+named format is the one edge it draws inside the board. It sets no type at all, not a
 heading, not a label, not a link, not a hover. Anywhere emphasis used to be gold it is now
 `white`. The only gold foreground that ships is the review stars, which are icons rather than
 letters. This is the tightening of the older One Aperture Rule, which allowed gold to label:
@@ -250,55 +279,75 @@ the tonal ramp and from photography, never from flipping the ground.
 
 **Display Font:** Anton (with Haettenschweiler, Arial Narrow Bold, sans-serif)
 **Body Font:** Archivo (with the system UI stack)
+**Board Font:** Archivo Black (with Archivo, Arial Black, Helvetica Neue, sans-serif)
 
 **Character:** A hand-painted menu board over a clean utilitarian sign shop. Anton is
-condensed and heavy — shouting in caps as the page's voice, dropping to sentence case the
-moment it is labelling something the visitor has to choose between; Archivo is neutral,
-legible at small sizes, and does every job that involves reading a sentence.
+condensed and heavy and always in caps — it is the page talking. Archivo is neutral, legible
+at small sizes, and does every job that involves reading a sentence. Archivo Black is the
+board's own voice: wide, flat-sided, sentence case, the shape of paint on a panel, and the
+same superfamily as the body copy, so the order window reads as a distinct object rather than
+as a bolted-on display font.
+
+All three faces are self-hosted woff2 with `font-display: swap`, split latin / latin-ext by
+`unicode-range`. Anton and Archivo are preloaded; Archivo Black (18.6 KB + 14.3 KB) is
+deliberately **not**, because the board sits below the fold and its own first fallback,
+Archivo, is already loaded — the swap is nearly invisible.
 
 ### Hierarchy
 - **Display** (Anton 400, `clamp(2.75rem, 0.9rem + 7.4vw, 6rem)` → 96px, 0.88, -0.02em caps):
   the hero headline only. One per page.
-- **Headline** (Anton 400, `clamp(2rem, 1.3rem + 2.4vw, 2.75rem)` → 44px, -0.005em): section
-  headings in caps at 0.96; the board's own title in sentence case at 1.02.
+- **Headline** (Anton 400, `clamp(2rem, 1.3rem + 2.4vw, 2.75rem)` → 44px, 0.96, -0.005em
+  caps): section headings.
+- **Board Title** (Archivo Black 400, same 44px head step, 1.05, -0.02em, sentence case, in
+  cream): the order window's own heading. The only 44px type on the page that is not Anton.
 - **Stat** (Anton 400, `clamp(1.75rem, 1.2rem + 1.7vw, 2rem)` → 32px, 1.0, -0.01em caps): the
   three claim figures in About.
-- **Title** (Anton 400, 22px step, caps): dish names at 1.05/0.01em and the wordmark at
+- **Title** (Anton 400, 22px lead step, 1.05, 0.01em caps): dish names; the wordmark at
   1/0.005em.
-- **Control** (Anton 400, 22px step, 1.1, -0.005em, sentence case): the meat names on the chips.
-  Same size as Title, minus the caps and the caps tracking.
-- **Quote** (Anton 400, 22px step, 1.34, 0.005em, sentence case): the three review pull-quotes.
-  Anton at reading rhythm — quoted speech is not set in caps.
-- **Lead** (Archivo 400, 22px step, 1.55): the hero paragraph, section ledes, review quotes'
-  scale, and the Visit rows.
-- **Body** (Archivo 400, 16px, 1.65): all paragraph copy, capped at 34–68ch depending on
-  context.
-- **Label** (Archivo 700, 12px, 0.12–0.18em caps): nav links, button labels, hero meta, chip
-  sublabels, format-cell labels, gallery captions, footer headings, legends.
+- **Control** (Archivo Black 400, 22px lead step, 1.15, -0.015em, sentence case): the five
+  meat names on the chips.
+- **Answer** (Archivo Black 400, 22px lead step, 1.2, -0.015em, sentence case, in white): the
+  product names the truck can put on the board.
+- **Quote** (Anton 400, 22px lead step, 1.34, 0.005em, sentence case): the three review
+  pull-quotes. Anton at reading rhythm — quoted speech is not set in caps.
+- **Lead** (Archivo 400, 22px lead step, 1.55): the hero paragraph, section ledes, the board's
+  answer headline (in cream, capped at 44ch), and the Visit rows.
+- **Body** (Archivo 400, 16px, 1.65): all paragraph copy and the board's "ask at the window"
+  line at 1.8, capped at 34–68ch depending on context.
+- **Action** (Archivo 700, 16px, 0.08em caps): button labels. A button's label is body-sized,
+  not label-sized.
+- **Label** (Archivo 700, 12px, 0.10–0.18em caps): nav links, hero meta, chip sublabels, the
+  board's format labels, gallery captions, Visit row labels, footer headings.
 
 ### Named Rules
 **The Six Steps Rule.** The ramp is 12 / 16 / 22 / 32 / 44 / 96 at 1280 and nothing else
 renders. Every size is one of `--t-label`, `--t-body`, `--t-lead`, `--t-stat`, `--t-head`,
-`--t-display`; new type picks a step rather than adding one.
+`--t-display`; new type picks a step rather than adding one. A third typeface did not add a
+step — Archivo Black entered at 44 and 22, both already on the ramp.
 
-**The Anton Is Caps Except In The Board Rule.** Anton is set uppercase everywhere it carries
-the page's editorial voice — hero, section headings, claim figures, dish names, the wordmark —
-at 0.88–1.05 line-height with letter-spacing between -0.02em and +0.01em. Inside the board it is
-set in **sentence case**: the title, the five meat names, and the format answers. That is the
-deliberate exception — the board is a control, not writing, and sentence case returns the word
-shapes that make a control scan faster than the prose around it. Caps tracking does not travel
-with it: the chips went +0.015em → -0.005em and the answers +0.02em → 0, with line-height opened
-(title 1 → 1.02, chips 1.05 → 1.1, answers 1.15 → 1.2). The review pull-quotes are the one other
-place Anton is not caps — they are transcribed speech at 1.34, and caps would shout them. Anton
-never sets a paragraph.
+**The Board Has Its Own Face Rule.** `--board` (Archivo Black) is allowed inside the order
+window and nowhere else on the page. It sets exactly three things: the board title at the
+44px head step, the meat names on the chips, and the named product answers — both at the 22px
+lead step. It is not a fourth voice, it is the board's material: Anton is condensed and
+editorial and is the page talking, where a painted board is wide and flat-sided. Introducing
+`--board` on a heading, a paragraph, a button or a nav link would turn a material into a
+decoration, and is not permitted.
 
-**The Readable Control Rule.** The meat names are the entire point of the pick-a-meat control,
-so they are set at the lead step (22px desktop, 19px mobile), not at body. Condensed caps at
-16px were the one thing on this page a person had to lean in to read; a control's primary
-label does not sit below the lead step.
+**The Anton Is The Page's Caps Voice Rule.** Anton is set uppercase everywhere it carries the
+page's editorial voice — hero, section headings, claim figures, dish names, the wordmark — at
+0.88–1.05 line-height with letter-spacing between -0.02em and +0.01em. The one place it is not
+caps is the review pull-quotes, which are transcribed speech at 1.34; caps would shout them.
+Anton never sets a paragraph, and Anton no longer appears anywhere inside the board. The
+sentence-case decision the board won still holds under its new face: nothing in the board is
+uppercase except the 12px Archivo 700 field labels. A control is not writing, and sentence
+case returns the word shapes that make it scan faster than the prose around it.
 
-**The Tabular Numerals Rule.** Any rendered figure — rating, review count, price range — carries
-`.num` for `font-variant-numeric: tabular-nums`.
+**The Readable Control Rule.** The meat names and the named answers are the entire point of
+the order window, so both sit at the lead step (22px desktop, 19px mobile), never at body.
+A control's primary label does not sit below the lead step.
+
+**The Tabular Numerals Rule.** Any rendered figure — rating, review count, price range —
+carries `.num` for `font-variant-numeric: tabular-nums`.
 
 ## Layout
 
@@ -308,9 +357,9 @@ A single centred column: `--wrap` 1180px max, inline padding `--gutter`
 boxed.
 
 Breakpoints in use: 380px (hide the phone-button label), 480px (buttons go full width), 520px
-(gallery to 2 columns), 620px (format cells to 2 columns; dish photos switch from 3:2 to 4:5),
-900px (the burger/desktop-nav switch, the about and visit splits, format cells to 4 columns),
-960px (gallery to the 4-column mosaic), 1020px (the meat chips go from 2 columns to 5).
+(gallery to 2 columns), 620px (dish photos switch from 3:2 to 4:5), 900px (the burger/desktop-nav
+switch, the about and visit splits), 960px (gallery to the 4-column mosaic), 1020px (the meat
+chips go from 2 columns to 5).
 
 Grids are `auto-fit, minmax(min(100%, Npx), 1fr)` wherever the count can genuinely vary
 (dishes 230px, reviews 260px, footer 190px). Where the count is fixed the columns are
@@ -327,17 +376,24 @@ the light source moves down the page: 16%/6%, 84%/14%, 50%/2%, 24%/10%, 78%/8%. 
 reintroduce a section divider rule or a bordered card to do this job.
 
 **The Shared Cell Rule.** All five meat panes occupy the same grid cell (`grid-row: 1;
-grid-column: 1`) and cross-fade. Switching meats must never change page height.
+grid-column: 1`) and cross-fade on opacity plus visibility. Switching meats must never change
+page height.
 
 **The Declared Columns Rule.** A grid with a fixed, known item count declares its columns;
 `auto-fit` is for counts that vary. Five chips under `auto-fit` left a dead cell at every
-width where the row count did not divide five, so the chips are 2 columns with the fifth
-spanning the row, and 5 columns from 1020px.
+width where the row count did not divide five, so `.chips` is 2 columns with the fifth
+spanning the row, and 5 columns from 1020px. The named-answer list is the one recorded
+exception and is not a grid at all: its count changes per meat (4 / 1 / 1 / 1 / 2), and any
+fixed column count orphans one of them — four items in three tracks leaves a widow, four
+tracks cut "Carne Asada Tacos" (234px, the widest name) in half. It is a wrapping flex row
+whose items are sized to their own words at `min-width: min(100%, 200px)`, so the rule
+lengths come out ragged and read as tags rather than as a table. Content sizing is licensed
+here by a measured failure, not by preference; anywhere the count is known, declare.
 
 ## Elevation & Depth
 
 There is no elevation ladder. Depth is tonal: `ink` → `surf-1` → `surf-2` → `surf-3`, plus
-gradients and 1px hairline gaps. The only shadows in the system are cast by photography and by
+gradients and 1px hairlines. The only shadows in the system are cast by photography and by
 the filled button, and both are neutral black — never a coloured glow.
 
 ### Shadow Vocabulary
@@ -353,18 +409,19 @@ the filled button, and both are neutral black — never a coloured glow.
 and vertical. A coloured glow, or a hard offset with no blur, is the tell of a template; the
 warm light in this system comes from the gradients, never from a tinted or stamped shadow.
 
-**The Hairline-Not-Border Rule.** Where an edge is genuinely needed it is a 1px grid gap
-(`rgba(var(--cream-rgb),.12)` between chips, `.08` between format cells) or a gradient
-hairline that fades out — the board's gold top edge, the claim separators, the footer rule.
-Never a full-perimeter 1px box.
+**The Hairline-Not-Border Rule.** Where an edge is genuinely needed it is a single 1px line
+that means something: gold at 75% across the board's top edge, gold at 50% over each named
+format, cream at 14% above the "ask at the window" line, plus the claim separators and the
+footer rule. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing
+in for a table — the board shed forty cells' worth of those and separates by space instead.
 
 ## Shapes
 
-Zero radius, everywhere. Buttons, chips, cells, photos, panels and the map are all hard
-rectangles; the only rounded things in the build are the scrollbar thumb, the 1px softening on
-the focus ring, and the favicon's 10px plate. The recurring silhouette is the rectangular cell
-in a 1px-gapped grid — the chips row and the format grid are the same object at two scales,
-which is what makes the board read as a service board.
+Zero radius, everywhere. Buttons, chips, photos, panels and the map are all hard rectangles;
+the only rounded things in the build are the scrollbar thumb, the 1px softening on the focus
+ring, and the favicon's 10px plate. The recurring silhouette is a block of type with a
+hairline above it, left-aligned and flush: that is the named answer, the ask line, the claim
+figure and the footer column, all the same object at different scales.
 
 Photo aspect ratios are fixed and few: 4:5 for portrait dishes and the about shot, 3:2 for
 dishes on narrow screens, 4:3 for gallery and visit tiles.
@@ -373,8 +430,8 @@ dishes on narrow screens, 4:3 for gallery and visit tiles.
 
 ### Buttons
 - **Shape:** hard rectangle (0 radius), inline-flex with a 0.6rem gap for its inline SVG icon
-  (17×17, `currentColor`, 2px stroke).
-- **Primary (fill):** red ground, cream label (5.02:1), 12px/700 caps at 0.08em, padding
+  (17×17, `currentColor`, 2.4px stroke).
+- **Primary (fill):** red ground, cream label (5.02:1), 16px/700 caps at 0.08em, padding
   1.05rem 2rem, with the action-lift shadow.
 - **Ghost:** transparent with an inset cream hairline; inverts to solid cream on `ink` on hover.
 - **Hover / Focus:** every button rises 2px over 0.35s on `cubic-bezier(0.16, 1, 0.3, 1)` and
@@ -384,18 +441,20 @@ dishes on narrow screens, 4:3 for gallery and visit tiles.
   bar below 900px so the highest-value action is never hidden behind the burger.
 
 ### Chips (meat selector)
-- **Style:** `surf-1` cells in a 1px-gapped grid, padding 1.2rem, Anton name at the 22px lead
-  step in cream, sentence case, over a 12px/700 tracked-caps sublabel in `mute`.
-- **State:** hover steps to `surf-3` with a white name; selected floods the whole cell to gold
+- **Style:** five `surf-1` fields separated by real 3px gaps — buttons, not a table row —
+  padding 1.15rem 1.2rem 1.25rem, an Archivo Black name at the 22px lead step in cream,
+  sentence case, over a 12px/700 tracked-caps sublabel in `mute`.
+- **State:** hover steps to `surf-3` with a white name; selected floods the whole field to gold
   with ink type (9.89:1) and the sublabel in `on-gold-2` (5.47:1). Selection is driven by radio
   inputs and `:checked` — no JavaScript.
-- **Focus:** cream ring inset by 3px so it stays inside the cell grid.
-- **Grid:** 2 columns with the fifth chip spanning the row; 5 columns from 1020px.
+- **Focus:** cream ring inset by 3px so it stays inside the field.
+- **Grid:** 2 declared columns with the fifth chip spanning the row; 5 columns from 1020px.
 
 ### Cards / Containers
 There are no cards. The board (`.board`) is the only panel: a lit slab with a gold gradient
-hairline along its top edge, `surf-2 → surf-1 → ink` gradient body, `clamp(1.75rem, 4vw, 3rem)`
-padding, and no border or radius. Everything else sits directly on the ground.
+hairline along its top edge, a `surf-2 → surf-1 → ink` gradient body under a gold radial from
+above, `clamp(1.75rem, 4vw, 3rem)` padding, and no border or radius. Everything else sits
+directly on the ground.
 
 ### Navigation
 Sticky bar over an ink-to-transparent gradient that goes solid (`rgba(var(--ink-rgb),.96)`)
@@ -416,13 +475,22 @@ The map iframe carries `background: var(--surf-1)` and `filter: saturate(.8) con
 The embed paints its own white tile, and until it loads — or wherever it is blocked — that
 white would otherwise be the ground.
 
-### The Board (signature)
-The centrepiece. Five meat chips across the top; below them one shared grid cell holding five
-panes of eight format cells each. A format cell is a 12px muted caps label over the availability
-answer set in white sentence-case Anton, keyed by a white swatch in the legend; cells whose answer is unconfirmed use the `.ask` variant
-— `ink` ground, Archivo sentence case in `mute` — and a legend keys the two states. Only the
-12px Archivo labels (`.form span`, `.chip small`) are caps inside the board; everything set in
-Anton, which is everything a person reads to make the choice, is sentence case.
+### The Order Window (signature)
+The centrepiece, and the thing the whole page is built around. Five meat chips across the top;
+below them one shared cell holding five panes, each pane the truck's answer to one meat:
+
+1. **The answer headline** (`.pane__n`) — lead-step Archivo in cream, 1.5, capped at 44ch,
+   at the top of the pane, saying in a sentence how far this meat goes ("Birria goes four ways
+   we can name.").
+2. **What can be named** (`.named`) — a wrapping row of content-sized items, each a gold
+   hairline over a 12px tracked-caps format label in `mute` over the product name in white
+   Archivo Black at the lead step. Counts run 4 / 1 / 1 / 1 / 2 across the five meats.
+3. **What to ask about** (`.pane__a`) — said once, not repeated: a cream hairline, a 12px
+   tracked-caps "Ask at the window" label, and the remaining formats on a single middot-
+   separated line in `cream-2`.
+
+All eight formats are accounted for on every pane; they are grouped by answer rather than
+laid out as a spreadsheet. Only the 12px Archivo labels are uppercase inside the board.
 
 ### Named Rules
 **The No Price Rule.** No per-item price renders anywhere inside `#menu`. No per-item price is
@@ -430,12 +498,20 @@ confirmed in any source, and inventing one is the failure mode this architecture
 prevent. `verify.mjs` asserts this on the rendered page; the hero's `$10–20 per person` range
 is a sourced, non-item figure and lives outside the board.
 
-**The Honest Cell Rule.** An unknown answer renders as the `.ask` cell, visibly different from a
-confirmed one and keyed to the legend. Unknowns are never blanked, guessed, or dashed out.
+**The Say The Unknown Once Rule.** What the truck cannot confirm is stated plainly, exactly
+once per meat, under its own "Ask at the window" label — never blanked, never guessed, never
+dashed out, and never repeated cell by cell. The previous board said "Ask at the window"
+thirty-one times in forty cells; repeating an unknown does not make it more honest, it makes
+the honest part of the page look like the whole page. Any future unknown joins that one line.
 
-**The Inversion Is The State Rule.** A selected cell states its selection by inverting its whole
-field, not by growing an edge marker. A 3px gold stripe was built along the selected chip's top
-edge and removed: a thin coloured rule on one edge of a panel is the side-tab tell, and the
+**The Grouped By Answer Rule.** The board's job is to model the exchange at the window: one
+question (which meat), then what can be named and what to ask about. New information joins one
+of those two groups. Do not re-render the meat × format matrix as a grid of cells; the matrix
+is the data model, not the layout.
+
+**The Inversion Is The State Rule.** A selected field states its selection by inverting
+entirely, not by growing an edge marker. A 3px gold stripe was built along the selected chip's
+top edge and removed: a thin coloured rule on one edge of a panel is the side-tab tell, and the
 field inversion already carries the state unambiguously. Do not rebuild it.
 
 ## Do's and Don'ts
@@ -446,7 +522,8 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 - **Do** compose every translucent colour from `--ink-rgb` / `--cream-rgb` / `--gold-rgb` /
   `--red-rgb` rather than writing channel numbers by hand.
 - **Do** separate sections with a `.bay` light pool, positioned with its own `--lx` / `--ly`.
-- **Do** keep every corner square (0 radius) and every edge a hairline gap or a fading gradient.
+- **Do** keep every corner square (0 radius) and every edge a single meaningful hairline or a
+  fading gradient.
 - **Do** send every type hover to white — nav link, chip name, footer link, Visit link — and
   keep gold for the hovers that are a surface: the nav underline, the fill button, the social
   button.
@@ -459,6 +536,8 @@ field inversion already carries the state unambiguously. Do not rebuild it.
   sampled values (`ink`, `gold`, `red`).
 - **Do** hold new type to the six-step ramp (12 / 16 / 22 / 32 / 44 / 96 at 1280), and set a
   control's primary label at the lead step or above.
+- **Do** keep `--board` inside the order window, on the three things it already sets, and
+  self-host any new face as woff2 with `font-display: swap` and a `unicode-range` split.
 - **Do** declare grid columns whenever the item count is fixed and known.
 - **Do** honour `prefers-reduced-motion`, which flattens every animation and transition to
   0.001ms and disables smooth scroll.
@@ -470,16 +549,22 @@ field inversion already carries the state unambiguously. Do not rebuild it.
   Red is a ground, not a foreground.
 - **Don't** wrap a section in a bordered card or lay a divider rule between sections; the light
   falloff is the separator and re-adding boxes undoes the whole architecture.
+- **Don't** rebuild the board as a cell grid, and don't let 1px gridlines stand in for gaps
+  anywhere. Space separates; a hairline only appears where it labels something.
 - **Don't** mark a selected state with an edge stripe or accent tab. Invert the field.
 - **Don't** put a coloured glow under a photo or a panel, and don't use a hard offset shadow.
   Shadows are neutral black, blurred, and vertical.
 - **Don't** add a scroll-reveal observer or a per-section fade-up. There is one authored moment
   — the hero light coming up on load (`lightUp`, 1900ms) with the hero text rising behind it on
   a 420–860ms stagger — and its value is that it is the only one.
-- **Don't** set Anton in sentence case for an editorial heading, and never use it for a
-  paragraph. It goes sentence case in exactly two places: the board, because it is a control,
-  and the review pull-quotes, because they are transcribed speech.
-- **Don't** put a tracked-caps kicker or eyebrow above a heading.
+- **Don't** set Anton in sentence case for an editorial heading, never use it for a paragraph,
+  and don't put it back inside the board. Its one sentence-case use is the review pull-quotes,
+  because they are transcribed speech.
+- **Don't** use `--board` outside the order window, and don't preload it — it is below the
+  fold and swaps to its own superfamily.
+- **Don't** put a tracked-caps kicker or eyebrow above a heading. The 12px tracked-caps label
+  is permitted only as the key half of a key/value pair inside a control or a data row (the
+  board's format labels, the Visit rows, chip sublabels), where it names the value beneath it.
 - **Don't** invert a section to a light ground.
 - **Don't** reintroduce Fraunces — it was swapped out of this build as the obvious warm serif
   and the previous version of this site used it.
@@ -489,7 +574,7 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 
 <!--
 Gate state, this pass. Both gates green, verified after this file and the sidecar were brought
-back in sync with the shipped board (sentence-case Anton) and the --white emphasis token:
+back in sync with the rebuilt order window and its third face:
 
   npm run verify:design                                                 -> 0 findings (not degraded)
   CHROME_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
@@ -497,12 +582,18 @@ back in sync with the shipped board (sentence-case Anton) and the --white emphas
                                                                           contrast pair 5.02:1,
                                                                           ramp 12/16/22/32/44/96
 
-Two facts worth carrying forward. (1) The seven design-system-color advisories that preceded the
-previous rewrite were all the same class of finding: the palette had been replaced in styles.css
-and this file still documented the retired warm-charcoal values. They were cleared by documenting
-the shipped colours, not by dismissing them; `--white` was added to the table here for the same
-reason. (2) The measured white-on-ink ratio is 19.03:1. The token comment in styles.css line 57
-still reads 17.75:1, which is stale — this file, not that comment, carries the swept numbers.
+What this pass changed and why. The pick-a-meat board was rebuilt from a 5×8 grid of forty
+identical cells into the exchange it was modelling, so `.forms`, `.form`, `.form.ask` and
+`.legend` no longer exist and their component entries are retired here. The single
+`design-system-font` finding that preceded this rewrite ("Pick a meat" uses Archivo Black, not
+declared in DESIGN.md typography) was cleared by documenting the face — three typography roles,
+a named rule confining it to the board, and the fallback stack — not by dismissing it. That is
+the same discipline that cleared the seven `design-system-color` advisories two passes ago: the
+build was right and this file was stale.
+
+Contrast numbers are swept against `surf-3`, the worst surface. The `--white` comment in
+styles.css now reads 19.03:1 on ink and 13.19:1 on `surf-3`, matching this file; where a
+stylesheet comment and this file ever disagree again, this file is the authority.
 
 The verify.mjs command needs CHROME_PATH pointing at the chromium that ships in this
 environment; without it Playwright looks for a headless shell that is not installed and the
