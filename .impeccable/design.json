@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-03T00:00:00.000Z",
+  "generatedAt": "2026-09-03T18:22:20Z",
   "title": "Design System: Tacos El Giro",
   "extensions": {
     "colorMeta": {
@@ -204,7 +204,7 @@
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section headings and the board title, 44px at 1280."
+        "purpose": "Anton caps for section headings, 44px at 1280."
       },
       "stat": {
         "displayName": "Stat",
@@ -216,7 +216,7 @@
       },
       "control": {
         "displayName": "Control",
-        "purpose": "Anton sentence case at the 22px step (1.1/-0.005em): the five meat-chip names. Same size as Title, minus the caps and the caps tracking."
+        "purpose": "Archivo Black sentence case at the 22px lead step (1.15/-0.015em): the five meat-chip names."
       },
       "quote": {
         "displayName": "Quote",
@@ -224,7 +224,7 @@
       },
       "lead": {
         "displayName": "Lead",
-        "purpose": "Archivo at 22px: hero paragraph, section ledes, review quotes, Visit rows."
+        "purpose": "Archivo at 22px: hero paragraph, section ledes, the board's answer headline, Visit rows."
       },
       "body": {
         "displayName": "Body",
@@ -232,11 +232,23 @@
       },
       "label": {
         "displayName": "Label",
-        "purpose": "12px/700 tracked caps: nav, buttons, meta, chip sublabels, format labels, captions, legends."
+        "purpose": "12px/700 tracked caps (0.10–0.18em): nav, meta, chip sublabels, the board’s format labels, Visit row labels, captions, footer headings. Only ever the key half of a key/value pair — never a kicker above a heading."
       },
       "numeric": {
         "displayName": "Numeric",
         "purpose": "Body size with tabular numerals; carried by .num on every rendered figure."
+      },
+      "board-title": {
+        "displayName": "Board Title",
+        "purpose": "Archivo Black sentence case at the 44px head step (1.05/-0.02em): the order window's own heading. The only 44px type on the page that is not Anton."
+      },
+      "answer": {
+        "displayName": "Answer",
+        "purpose": "Archivo Black sentence case at the 22px lead step (1.2/-0.015em) in white: the product names the truck can put on the board."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Archivo 700 caps at 16px/0.08em: button labels. A button label is body-sized, not label-sized."
       }
     },
     "shadows": [
@@ -317,6 +329,38 @@
         "name": "chips-5",
         "value": "1020px"
       }
+    ],
+    "fonts": [
+      {
+        "name": "--display",
+        "stack": "Anton, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+        "files": [
+          "fonts/anton-400-latin.woff2",
+          "fonts/anton-400-latin-ext.woff2"
+        ],
+        "preloaded": true,
+        "purpose": "The page's editorial voice. Always caps except the review pull-quotes. Never inside the board."
+      },
+      {
+        "name": "--text",
+        "stack": "Archivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif",
+        "files": [
+          "fonts/archivo-400_700-latin.woff2",
+          "fonts/archivo-400_700-latin-ext.woff2"
+        ],
+        "preloaded": true,
+        "purpose": "Everything that is read as a sentence, plus every 12px tracked-caps label and every button."
+      },
+      {
+        "name": "--board",
+        "stack": "'Archivo Black', 'Archivo', 'Arial Black', 'Helvetica Neue', sans-serif",
+        "files": [
+          "fonts/archivo-black-400-latin.woff2 (18.6 KB)",
+          "fonts/archivo-black-400-latin-ext.woff2 (14.3 KB)"
+        ],
+        "preloaded": false,
+        "purpose": "The order window only, on exactly three things: .board__t at 44px, .chip b at 22px, .named b at 22px. Wide and flat-sided where Anton is condensed — the board is a painted object, not page voice. Not preloaded: it is below the fold and its own fallback, Archivo, is already loaded, so the swap is nearly invisible."
+      }
     ]
   },
   "components": [
@@ -340,17 +384,25 @@
       "name": "Meat Chip",
       "kind": "chip",
       "refersTo": "chip",
-      "description": "The pick-a-meat control. Sentence-case Anton at the 22px lead step; selection inverts the whole field to gold — no edge stripe.",
+      "description": "The pick-a-meat control. Five fields separated by real 3px gaps — buttons, not a table row — with sentence-case Archivo Black at the 22px lead step; selection inverts the whole field to gold, no edge stripe.",
       "html": "<div class=\"ds-chips\"><label class=\"ds-chip\"><b>Birria</b><small>Stewed beef</small></label><label class=\"ds-chip ds-chip-on\"><b>Adobada</b><small>Marinated pork</small></label></div>",
-      "css": ".ds-chips { display: grid; gap: 1px; background: rgba(245,237,224,.12); grid-template-columns: repeat(2, minmax(0, 1fr)); } .ds-chip { min-width: 0; display: block; padding: 1.2rem 1.2rem 1.25rem; cursor: pointer; background: #0D1538; transition: background-color .3s cubic-bezier(0.22,0.68,0.32,1); } .ds-chip b { display: block; font-family: Anton, 'Arial Narrow Bold', sans-serif; font-weight: 400; font-size: 1.375rem; line-height: 1.1; letter-spacing: -0.005em; color: #F5EDE0; transition: color .3s; } .ds-chip small { display: block; margin-top: .5rem; font-family: Archivo, system-ui, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #B1A695; transition: color .3s; } .ds-chip:hover { background: #1B2B68; } .ds-chip:hover b { color: #FFFFFF; } .ds-chip-on { background: #F0B008; } .ds-chip-on b { color: #080E28; } .ds-chip-on small { color: #4E3D0A; } .ds-chip:focus-visible { outline: 2px solid #F5EDE0; outline-offset: -3px; }"
+      "css": ".ds-chips { display: grid; gap: 3px; grid-template-columns: repeat(2, minmax(0, 1fr)); } .ds-chip { min-width: 0; display: block; padding: 1.15rem 1.2rem 1.25rem; cursor: pointer; background: #0D1538; transition: background-color .3s cubic-bezier(0.22,0.68,0.32,1); } .ds-chip b { display: block; font-family: 'Archivo Black', 'Archivo', 'Arial Black', sans-serif; font-weight: 400; font-size: 1.375rem; line-height: 1.15; letter-spacing: -0.015em; color: #F5EDE0; transition: color .3s; } .ds-chip small { display: block; margin-top: .5rem; font-family: Archivo, system-ui, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #B1A695; transition: color .3s; } .ds-chip:hover { background: #1B2B68; } .ds-chip:hover b { color: #FFFFFF; } .ds-chip-on { background: #F0B008; } .ds-chip-on b { color: #080E28; } .ds-chip-on small { color: #4E3D0A; } .ds-chip:focus-visible { outline: 2px solid #F5EDE0; outline-offset: -3px; }"
     },
     {
-      "name": "Format Cell",
+      "name": "Named Answer",
       "kind": "custom",
-      "refersTo": "format-cell",
-      "description": "One cell of the board matrix: a muted tracked-caps Archivo label over a white sentence-case Anton answer. The .ask variant is how an unconfirmed answer renders.",
-      "html": "<div class=\"ds-forms\"><div class=\"ds-form\"><span>Taco</span><b>On the board</b></div><div class=\"ds-form ds-form-ask\"><span>Sope</span><b>Ask at the window</b></div></div>",
-      "css": ".ds-forms { display: grid; gap: 1px; background: rgba(245,237,224,.08); grid-template-columns: repeat(2, minmax(0, 1fr)); } .ds-form { min-width: 0; background: #0D1538; padding: .9rem 1.05rem; } .ds-form span { display: block; font-family: Archivo, system-ui, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #B1A695; } .ds-form b { display: block; margin-top: 5px; font-family: Anton, 'Arial Narrow Bold', sans-serif; font-weight: 400; font-size: 1rem; line-height: 1.2; letter-spacing: 0; color: #FFFFFF; } .ds-form-ask { background: #080E28; } .ds-form-ask b { font-family: Archivo, system-ui, sans-serif; font-weight: 400; letter-spacing: 0; color: #B1A695; }"
+      "refersTo": "named-item",
+      "description": "What the truck can name for the selected meat: a gold hairline over a muted tracked-caps format label over the product name in white Archivo Black. Content-sized and wrapping, never a grid.",
+      "html": "<ul class=\"ds-named\"><li><span>Tacos</span><b>Birria Tacos</b></li><li><span>Quesadilla</span><b>Birria Quesadilla</b></li></ul>",
+      "css": ".ds-named { display: flex; flex-wrap: wrap; gap: 2rem 2.75rem; margin: 0; padding: 0; list-style: none; } .ds-named li { position: relative; flex: 0 1 auto; min-width: min(100%, 200px); padding-top: 1.15rem; } .ds-named li::before { content: \"\"; position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: rgba(240,176,8,.5); } .ds-named span { display: block; font-family: Archivo, system-ui, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #B1A695; } .ds-named b { display: block; margin-top: .5rem; font-family: 'Archivo Black', 'Archivo', 'Arial Black', sans-serif; font-weight: 400; font-size: 1.375rem; line-height: 1.2; letter-spacing: -0.015em; color: #FFFFFF; }"
+    },
+    {
+      "name": "Ask Line",
+      "kind": "custom",
+      "refersTo": "ask-line",
+      "description": "Every unconfirmed format for the selected meat, said once under a cream hairline instead of repeated cell by cell.",
+      "html": "<p class=\"ds-ask\"><span>Ask at the window</span>Burrito &middot; Torta &middot; Sopes &middot; Plate</p>",
+      "css": ".ds-ask { position: relative; margin: 2.75rem 0 0; padding-top: 1.3rem; font-family: Archivo, system-ui, sans-serif; font-size: 1rem; line-height: 1.8; color: #D6CABA; } .ds-ask::before { content: \"\"; position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: rgba(245,237,224,.14); } .ds-ask span { display: block; margin-bottom: .3rem; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #B1A695; }"
     },
     {
       "name": "Primary Navigation",
@@ -379,34 +431,35 @@
   ],
   "narrative": {
     "northStar": "The Truck After Dark",
-    "overview": "The page is the truck itself at night. The ground is not a neutral black chosen from a palette generator: it is the truck's own body colour, sampled from the owner's photographs and darkened until it holds type. Everything on that cobalt is either food, light, or an action. Nothing is boxed. Sections do not end at a rule or a card edge; they end where the light falls off.\n\nThe density is generous and the composition is a single column. There is one accent that behaves like a lamp (gold) and one that behaves like a verb (red), and both come off the owner's own logo rather than a brand kit. The type is signage first — condensed Anton at the sizes a hand-painted menu board would use, caps everywhere it is writing and sentence case inside the board where it is a control — with Archivo doing all the reading work underneath it.\n\nIts anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of \"features\", a metric strip under the hero, a fade-up on every section. This build refuses all four. Where the direction contract named provisional hex values for gold (#F9C22E) and red (#D8202A), the shipped build supersedes them with values measured off the owner's materials; the contract's *intent* held, its placeholder numbers did not.",
+    "overview": "The page is the truck itself at night. The ground is not a neutral black chosen from a\npalette generator: it is the truck's own body colour, sampled from the owner's photographs\nand darkened until it holds type. Everything on that cobalt is either food, light, or an\naction. Nothing is boxed. Sections do not end at a rule or a card edge; they end where the\nlight falls off.\n\nThe density is generous and the composition is a single column. There is one accent that\nbehaves like a lamp (gold) and one that behaves like a verb (red), and both come off the\nowner's own logo rather than a brand kit. Type is signage first: condensed Anton in caps at\nthe sizes a hand-painted sign uses, Archivo doing all the reading work underneath it, and —\ninside the order window only — a third face, wide and flat-sided, that makes the board read\nas a painted object rather than as more page.\n\nIts anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of\n\"features\", a metric strip under the hero, a fade-up on every section. This build refuses\nall four. It also refuses the spreadsheet: the menu was once a 5×8 matrix of forty identical\ncells, thirty-one of which said the same thing, and that is now an exchange — pick a meat,\nthe window answers. Where the direction contract named provisional hex values for gold\n(`#F9C22E`) and red (`#D8202A`), the shipped build supersedes them with values measured off\nthe owner's materials; the contract's *intent* held, its placeholder numbers did not.",
     "keyCharacteristics": [
       "A cobalt ground sampled from the truck body, in four darkened steps, never a neutral grey",
       "One gold aperture as the only light source, plus red reserved for actions",
       "Zero radius everywhere; edges are hairline gaps and fading gradients, never boxes",
       "Signage-scale condensed caps over a small, tightly-tracked label voice",
+      "One extra face, confined to the order window, because the board is an object and not prose",
       "Exactly one authored motion moment: the service light coming up on load",
       "No per-item price renders anywhere, because none is sourced"
     ],
     "rules": [
       {
         "name": "The Measured Against The Worst Surface Rule",
-        "body": "Every ratio in this system is swept against the lightest surface the colour can actually land on (surf-3), not against the page ground. The recorded minima are white 13.19, cream 11.35, cream-2 8.18, mute 5.50, gold 6.86 (as a surface only), cream-on-red 5.02, ink-on-gold 9.89, on-gold-2-on-gold 5.47. A new colour joins the palette only with its worst- surface number recorded here.",
+        "body": "Every ratio in this system is swept against the lightest surface the colour can actually land on (`surf-3`), not against the page ground. The recorded minima are white 13.19, cream 11.35, cream-2 8.18, mute 5.50, gold 6.86 (as a surface only), cream-on-red 5.02, ink-on-gold 9.89, on-gold-2-on-gold 5.47. White also measures 19.03:1 on `ink`; where a stylesheet comment and this file disagree, this file is the authority. A new colour joins the palette only with its worst-surface number recorded here.",
         "section": "colors"
       },
       {
         "name": "The Two Forbidden Pairings Rule",
-        "body": "Gold on red is 3.03:1 and red on ink is 3.32:1. Neither ships as text anywhere and neither may be reintroduced. Red's job is to be a ground under cream, never a foreground. A \"red text\" token was carried in an earlier revision and removed unused; it would have failed at 4.45:1 on surf-3.",
+        "body": "Gold on red is 3.03:1 and red on ink is 3.32:1. Neither ships as text anywhere and neither may be reintroduced. Red's job is to be a ground under cream, never a foreground. A \"red text\" token was carried in an earlier revision and removed unused; it would have failed at 4.45:1 on `surf-3`.",
         "section": "colors"
       },
       {
         "name": "The Channel Token Rule",
-        "body": "Any translucent use of a palette colour composes it from the channel tokens — --ink-rgb, --cream-rgb, --gold-rgb, --red-rgb — inside rgba(). Never hand-write the channels. This file has twice shipped an rgba() literal that drifted from the token it was cut from; the channel tokens exist specifically so that cannot happen a third time. The only permitted bare literals are neutral black in shadows.",
+        "body": "Any translucent use of a palette colour composes it from the channel tokens — `--ink-rgb`, `--cream-rgb`, `--gold-rgb`, `--red-rgb` — inside `rgba()`. Never hand-write the channels. This file has twice shipped an `rgba()` literal that drifted from the token it was cut from; the channel tokens exist specifically so that cannot happen a third time. The only permitted bare literals are neutral black in shadows.",
         "section": "colors"
       },
       {
         "name": "The Gold Is Light, Never Type Rule",
-        "body": "Gold may glow, edge, underline, highlight or flood a field — the selected chip is the one large fill it is allowed. It sets no type at all, not a heading, not a label, not a link, not a hover. Anywhere emphasis used to be gold it is now white. The only gold foreground that ships is the review stars, which are icons rather than letters. This is the tightening of the older One Aperture Rule, which allowed gold to label: that allowance is withdrawn, and gold type is not to be reintroduced.",
+        "body": "Gold may glow, edge, underline, highlight or flood a field — the selected chip is the one large fill it is allowed, and the hairline over each named format is the one edge it draws inside the board. It sets no type at all, not a heading, not a label, not a link, not a hover. Anywhere emphasis used to be gold it is now `white`. The only gold foreground that ships is the review stars, which are icons rather than letters. This is the tightening of the older One Aperture Rule, which allowed gold to label: that allowance is withdrawn, and gold type is not to be reintroduced.",
         "section": "colors"
       },
       {
@@ -416,37 +469,42 @@
       },
       {
         "name": "The Six Steps Rule",
-        "body": "The ramp is 12 / 16 / 22 / 32 / 44 / 96 at 1280 and nothing else renders. Every size is one of --t-label, --t-body, --t-lead, --t-stat, --t-head, --t-display; new type picks a step rather than adding one.",
+        "body": "The ramp is 12 / 16 / 22 / 32 / 44 / 96 at 1280 and nothing else renders. Every size is one of `--t-label`, `--t-body`, `--t-lead`, `--t-stat`, `--t-head`, `--t-display`; new type picks a step rather than adding one. A third typeface did not add a step — Archivo Black entered at 44 and 22, both already on the ramp.",
         "section": "typography"
       },
       {
-        "name": "The Anton Is Caps Except In The Board Rule",
-        "body": "Anton is set uppercase everywhere it carries the page's editorial voice — hero, section headings, claim figures, dish names, the wordmark — at 0.88–1.05 line-height with letter-spacing between -0.02em and +0.01em. Inside the board it is set in sentence case: the title, the five meat names, and the format answers. That is the deliberate exception — the board is a control, not writing, and sentence case returns the word shapes that make a control scan faster than the prose around it. Caps tracking does not travel with it: the chips went +0.015em → -0.005em and the answers +0.02em → 0, with line-height opened (title 1 → 1.02, chips 1.05 → 1.1, answers 1.15 → 1.2). The review pull-quotes are the one other place Anton is not caps — they are transcribed speech at 1.34, and caps would shout them. Anton never sets a paragraph.",
+        "name": "The Board Has Its Own Face Rule",
+        "body": "`--board` (Archivo Black) is allowed inside the order window and nowhere else on the page. It sets exactly three things: the board title at the 44px head step, the meat names on the chips, and the named product answers — both at the 22px lead step. It is not a fourth voice, it is the board's material: Anton is condensed and editorial and is the page talking, where a painted board is wide and flat-sided. Introducing `--board` on a heading, a paragraph, a button or a nav link would turn a material into a decoration, and is not permitted.",
+        "section": "typography"
+      },
+      {
+        "name": "The Anton Is The Page's Caps Voice Rule",
+        "body": "Anton is set uppercase everywhere it carries the page's editorial voice — hero, section headings, claim figures, dish names, the wordmark — at 0.88–1.05 line-height with letter-spacing between -0.02em and +0.01em. The one place it is not caps is the review pull-quotes, which are transcribed speech at 1.34; caps would shout them. Anton never sets a paragraph, and Anton no longer appears anywhere inside the board. The sentence-case decision the board won still holds under its new face: nothing in the board is uppercase except the 12px Archivo 700 field labels. A control is not writing, and sentence case returns the word shapes that make it scan faster than the prose around it.",
         "section": "typography"
       },
       {
         "name": "The Readable Control Rule",
-        "body": "The meat names are the entire point of the pick-a-meat control, so they are set at the lead step (22px desktop, 19px mobile), not at body. Condensed caps at 16px were the one thing on this page a person had to lean in to read; a control's primary label does not sit below the lead step.",
+        "body": "The meat names and the named answers are the entire point of the order window, so both sit at the lead step (22px desktop, 19px mobile), never at body. A control's primary label does not sit below the lead step.",
         "section": "typography"
       },
       {
         "name": "The Tabular Numerals Rule",
-        "body": "Any rendered figure — rating, review count, price range — carries .num for font-variant-numeric: tabular-nums.",
+        "body": "Any rendered figure — rating, review count, price range — carries `.num` for `font-variant-numeric: tabular-nums`.",
         "section": "typography"
       },
       {
         "name": "The Light Pool Rule",
-        "body": "Sections separate by falloff. Each .bay paints a radial gradient (gold at 10%, red at 7%, transparent by 68%) positioned per-section with --lx / --ly, so the light source moves down the page: 16%/6%, 84%/14%, 50%/2%, 24%/10%, 78%/8%. Never reintroduce a section divider rule or a bordered card to do this job.",
+        "body": "Sections separate by falloff. Each `.bay` paints a radial gradient (gold at 10%, red at 7%, transparent by 68%) positioned per-section with `--lx` / `--ly`, so the light source moves down the page: 16%/6%, 84%/14%, 50%/2%, 24%/10%, 78%/8%. Never reintroduce a section divider rule or a bordered card to do this job.",
         "section": "layout"
       },
       {
         "name": "The Shared Cell Rule",
-        "body": "All five meat panes occupy the same grid cell (grid-row: 1; grid-column: 1) and cross-fade. Switching meats must never change page height.",
+        "body": "All five meat panes occupy the same grid cell (`grid-row: 1; grid-column: 1`) and cross-fade on opacity plus visibility. Switching meats must never change page height.",
         "section": "layout"
       },
       {
         "name": "The Declared Columns Rule",
-        "body": "A grid with a fixed, known item count declares its columns; auto-fit is for counts that vary. Five chips under auto-fit left a dead cell at every width where the row count did not divide five, so the chips are 2 columns with the fifth spanning the row, and 5 columns from 1020px.",
+        "body": "A grid with a fixed, known item count declares its columns; `auto-fit` is for counts that vary. Five chips under `auto-fit` left a dead cell at every width where the row count did not divide five, so `.chips` is 2 columns with the fifth spanning the row, and 5 columns from 1020px. The named-answer list is the one recorded exception and is not a grid at all: its count changes per meat (4 / 1 / 1 / 1 / 2), and any fixed column count orphans one of them — four items in three tracks leaves a widow, four tracks cut \"Carne Asada Tacos\" (234px, the widest name) in half. It is a wrapping flex row whose items are sized to their own words at `min-width: min(100%, 200px)`, so the rule lengths come out ragged and read as tags rather than as a table. Content sizing is licensed here by a measured failure, not by preference; anywhere the count is known, declare.",
         "section": "layout"
       },
       {
@@ -456,50 +514,59 @@
       },
       {
         "name": "The Hairline-Not-Border Rule",
-        "body": "Where an edge is genuinely needed it is a 1px grid gap (rgba(var(--cream-rgb),.12) between chips, .08 between format cells) or a gradient hairline that fades out — the board's gold top edge, the claim separators, the footer rule. Never a full-perimeter 1px box.",
+        "body": "Where an edge is genuinely needed it is a single 1px line that means something: gold at 75% across the board's top edge, gold at 50% over each named format, cream at 14% above the \"ask at the window\" line, plus the claim separators and the footer rule. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing in for a table — the board shed forty cells' worth of those and separates by space instead.",
         "section": "elevation"
       },
       {
         "name": "The No Price Rule",
-        "body": "No per-item price renders anywhere inside #menu. No per-item price is confirmed in any source, and inventing one is the failure mode this architecture exists to prevent. verify.mjs asserts this on the rendered page; the hero's $10–20 per person range is a sourced, non-item figure and lives outside the board.",
+        "body": "No per-item price renders anywhere inside `#menu`. No per-item price is confirmed in any source, and inventing one is the failure mode this architecture exists to prevent. `verify.mjs` asserts this on the rendered page; the hero's `$10–20 per person` range is a sourced, non-item figure and lives outside the board.",
         "section": "components"
       },
       {
-        "name": "The Honest Cell Rule",
-        "body": "An unknown answer renders as the .ask cell, visibly different from a confirmed one and keyed to the legend. Unknowns are never blanked, guessed, or dashed out.",
+        "name": "The Say The Unknown Once Rule",
+        "body": "What the truck cannot confirm is stated plainly, exactly once per meat, under its own \"Ask at the window\" label — never blanked, never guessed, never dashed out, and never repeated cell by cell. The previous board said \"Ask at the window\" thirty-one times in forty cells; repeating an unknown does not make it more honest, it makes the honest part of the page look like the whole page. Any future unknown joins that one line.",
+        "section": "components"
+      },
+      {
+        "name": "The Grouped By Answer Rule",
+        "body": "The board's job is to model the exchange at the window: one question (which meat), then what can be named and what to ask about. New information joins one of those two groups. Do not re-render the meat × format matrix as a grid of cells; the matrix is the data model, not the layout.",
         "section": "components"
       },
       {
         "name": "The Inversion Is The State Rule",
-        "body": "A selected cell states its selection by inverting its whole field, not by growing an edge marker. A 3px gold stripe was built along the selected chip's top edge and removed: a thin coloured rule on one edge of a panel is the side-tab tell, and the field inversion already carries the state unambiguously. Do not rebuild it.",
+        "body": "A selected field states its selection by inverting entirely, not by growing an edge marker. A 3px gold stripe was built along the selected chip's top edge and removed: a thin coloured rule on one edge of a panel is the side-tab tell, and the field inversion already carries the state unambiguously. Do not rebuild it.",
         "section": "components"
       }
     ],
     "dos": [
-      "Do sample any new colour from the owner's own photographs, opaque pixels only, and record its ratio against surf-3 before adding it to the palette.",
-      "Do compose every translucent colour from --ink-rgb / --cream-rgb / --gold-rgb / --red-rgb rather than writing channel numbers by hand.",
-      "Do separate sections with a .bay light pool, positioned with its own --lx / --ly.",
-      "Do keep every corner square (0 radius) and every edge a hairline gap or a fading gradient.",
+      "Do sample any new colour from the owner's own photographs, opaque pixels only, and record its ratio against `surf-3` before adding it to the palette.",
+      "Do compose every translucent colour from `--ink-rgb` / `--cream-rgb` / `--gold-rgb` / `--red-rgb` rather than writing channel numbers by hand.",
+      "Do separate sections with a `.bay` light pool, positioned with its own `--lx` / `--ly`.",
+      "Do keep every corner square (0 radius) and every edge a single meaningful hairline or a fading gradient.",
       "Do send every type hover to white — nav link, chip name, footer link, Visit link — and keep gold for the hovers that are a surface: the nav underline, the fill button, the social button.",
-      "Do put photography inside .shot so a failed load degrades to a lit panel, and give any third-party embed a surf-1 backing so its own white never shows through.",
-      "Do carry .num on every rendered figure so digits stay tabular.",
-      "Do theme the browser's own surfaces from the palette: gold ::selection on ink, a surf-3-on-ink scrollbar, a 2px gold focus ring at 4px offset, and 0.22em underline offset on non-button links. Keep the favicon and <meta name=\"theme-color\"> on the same three sampled values (ink, gold, red).",
+      "Do put photography inside `.shot` so a failed load degrades to a lit panel, and give any third-party embed a `surf-1` backing so its own white never shows through.",
+      "Do carry `.num` on every rendered figure so digits stay tabular.",
+      "Do theme the browser's own surfaces from the palette: gold `::selection` on `ink`, a `surf-3`-on-`ink` scrollbar, a 2px gold focus ring at 4px offset, and 0.22em underline offset on non-button links. Keep the favicon and `<meta name=\"theme-color\">` on the same three sampled values (`ink`, `gold`, `red`).",
       "Do hold new type to the six-step ramp (12 / 16 / 22 / 32 / 44 / 96 at 1280), and set a control's primary label at the lead step or above.",
+      "Do keep `--board` inside the order window, on the three things it already sets, and self-host any new face as woff2 with `font-display: swap` and a `unicode-range` split.",
       "Do declare grid columns whenever the item count is fixed and known.",
-      "Do honour prefers-reduced-motion, which flattens every animation and transition to 0.001ms and disables smooth scroll."
+      "Do honour `prefers-reduced-motion`, which flattens every animation and transition to 0.001ms and disables smooth scroll."
     ],
     "donts": [
-      "Don't render a per-item price inside #menu. Nothing sources one.",
+      "Don't render a per-item price inside `#menu`. Nothing sources one.",
       "Don't set gold type anywhere at all — it is light and surface only, and the pairing that used to tempt this, gold on red, is 3.03:1. Don't set red type on ink either (3.32:1). Red is a ground, not a foreground.",
       "Don't wrap a section in a bordered card or lay a divider rule between sections; the light falloff is the separator and re-adding boxes undoes the whole architecture.",
+      "Don't rebuild the board as a cell grid, and don't let 1px gridlines stand in for gaps anywhere. Space separates; a hairline only appears where it labels something.",
       "Don't mark a selected state with an edge stripe or accent tab. Invert the field.",
       "Don't put a coloured glow under a photo or a panel, and don't use a hard offset shadow. Shadows are neutral black, blurred, and vertical.",
-      "Don't add a scroll-reveal observer or a per-section fade-up. There is one authored moment — the hero light coming up on load (lightUp, 1900ms) with the hero text rising behind it on a 420–860ms stagger — and its value is that it is the only one.",
-      "Don't set Anton in sentence case for an editorial heading, and never use it for a paragraph. It goes sentence case in exactly two places: the board, because it is a control, and the review pull-quotes, because they are transcribed speech.",
-      "Don't put a tracked-caps kicker or eyebrow above a heading.",
+      "Don't add a scroll-reveal observer or a per-section fade-up. There is one authored moment — the hero light coming up on load (`lightUp`, 1900ms) with the hero text rising behind it on a 420–860ms stagger — and its value is that it is the only one.",
+      "Don't set Anton in sentence case for an editorial heading, never use it for a paragraph, and don't put it back inside the board. Its one sentence-case use is the review pull-quotes, because they are transcribed speech.",
+      "Don't use `--board` outside the order window, and don't preload it — it is below the fold and swaps to its own superfamily.",
+      "Don't put a tracked-caps kicker or eyebrow above a heading. The 12px tracked-caps label is permitted only as the key half of a key/value pair inside a control or a data row (the board's format labels, the Visit rows, chip sublabels), where it names the value beneath it.",
       "Don't invert a section to a light ground.",
       "Don't reintroduce Fraunces — it was swapped out of this build as the obvious warm serif and the previous version of this site used it.",
-      "Don't reintroduce the placeholder palette (#100D0C ground, #F9C22E gold, #D8202A red) or the red-text token. The shipped palette is measured off the owner's materials and supersedes the direction contract's provisional values."
+      "Don't reintroduce the placeholder palette (`#100D0C` ground, `#F9C22E` gold, `#D8202A` red) or the `red-text` token. The shipped palette is measured off the owner's materials and supersedes the direction contract's provisional values."
     ]
-  }
+  },
+  "description": "A night-lit food truck page — the truck's own cobalt as the ground, one gold aperture, and an order window that answers when you pick a meat."
 }
