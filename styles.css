@@ -166,6 +166,23 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   text-wrap: balance;
 }
 .h2 em { font-style: normal; color: var(--white); }
+/* The truck's own graphics are bilingual: an English line with the Spanish set
+   under it, every time. This is that line. It is not a translation bolted on —
+   it is how this business already talks, so it reads as voice, not as a locale
+   switch. Italic marks it as the second language without another face. */
+/* Inside a tracked-caps label the Spanish half drops out of caps into the same
+   italic the .es line uses. Two languages in tracked caps is a 40-character
+   all-caps run, which is a readability problem before it is a style one. */
+.row > span i { font-style: italic; font-weight: 400;
+  text-transform: none; letter-spacing: .01em; opacity: .85; }
+/* The Spanish sits outside the uppercase label, not inside it: two languages in
+   one tracked-caps run is forty characters of caps, which is a readability
+   problem before it is a style one. Here it leads the list instead. */
+.pane__a > i { font-style: italic; color: var(--mute); margin-right: .15rem; }
+
+.es { margin-top: .9rem; font-size: var(--t-body); line-height: 1.6; font-style: italic;
+  color: var(--cream-2); max-width: 44ch; }
+.head--mid .es { margin-inline: auto; }
 .lede { margin-top: 1.15rem; font-size: var(--t-lead); line-height: 1.55;
   color: var(--cream-2); max-width: 34ch; }
 .head { margin-bottom: clamp(2.5rem, 5vw, 4rem); max-width: 46rem; }
@@ -302,11 +319,19 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   padding: clamp(1.75rem, 4vw, 3rem); background:
     radial-gradient(120% 140% at 50% -10%, rgba(var(--gold-rgb),.14), transparent 60%),
     linear-gradient(180deg, var(--surf-2), var(--surf-1) 55%, var(--ink)); }
-.board::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb),.75) 22%, rgba(var(--gold-rgb),.75) 78%, transparent); }
-.board__t { font-family: var(--board); font-size: var(--t-head); line-height: 1.05;
+ /* Papel picado, once, where a taqueria would actually string it — across the top of
+   the board. It is a mask, not a picture: the shape is the SVG, the colour is still
+   the gold token, so it cannot drift out of the palette. One ornament, hung on the
+   one structural edge the board already had, is the whole of the decoration here. */
+.board::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 30px;
+  background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb),.8) 12%, rgba(var(--gold-rgb),.8) 88%, transparent);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='30' viewBox='0 0 96 30'%3E%3Crect width='96' height='1.5' fill='black'/%3E%3Cpath fill='black' fill-rule='evenodd' d='M6 1.5H90V20l-7 6L76 20l-7 6L62 20l-7 6L48 20l-7 6L34 20l-7 6L20 20l-7 6L6 20ZM44 10a4 4 0 1 0 8 0a4 4 0 1 0-8 0ZM22 6.5h9v7h-9ZM65 6.5h9v7h-9ZM46.5 4h3v-2.5h-3Z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='30' viewBox='0 0 96 30'%3E%3Crect width='96' height='1.5' fill='black'/%3E%3Cpath fill='black' fill-rule='evenodd' d='M6 1.5H90V20l-7 6L76 20l-7 6L62 20l-7 6L48 20l-7 6L34 20l-7 6L20 20l-7 6L6 20ZM44 10a4 4 0 1 0 8 0a4 4 0 1 0-8 0ZM22 6.5h9v7h-9ZM65 6.5h9v7h-9ZM46.5 4h3v-2.5h-3Z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: repeat-x; mask-repeat: repeat-x;
+  -webkit-mask-size: 96px 30px; mask-size: 96px 30px; }
+.board__t { margin-top: .75rem; font-family: var(--board); font-size: var(--t-head); line-height: 1.05;
   letter-spacing: -0.02em; color: var(--cream); }
-.board__s { margin-top: .85rem; font-size: var(--t-body); line-height: 1.7;
+.board__t + .es { margin-top: .6rem; max-width: none; }
+.board__s { margin-top: .55rem; font-size: var(--t-body); line-height: 1.7;
   color: var(--mute); max-width: 58ch; }
 
 /* The control. Real gaps, not hairline gridlines — five buttons, not a table row.
@@ -384,7 +409,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   font-size: var(--t-body); line-height: 1.8; color: var(--cream-2); }
 .pane__a::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 1px;
   background: rgba(var(--cream-rgb),.14); }
-.pane__a span { display: block; margin-bottom: .3rem; font-size: var(--t-label);
+.pane__a > span { display: block; margin-bottom: .3rem; font-size: var(--t-label);
   font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
 
 
@@ -468,7 +493,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 .visit__c { min-width: 0; }
 .rows { display: grid; gap: 1.6rem; margin-top: 2rem; }
 .row { min-width: 0; }
-.row span { display: block; font-size: var(--t-label); font-weight: 700; letter-spacing: .16em;
+.row > span { display: block; font-size: var(--t-label); font-weight: 700; letter-spacing: .16em;
   text-transform: uppercase; color: var(--white); margin-bottom: .35rem; }
 .row p, .row address { font-style: normal; color: var(--cream); line-height: 1.55;
   font-size: var(--t-lead); }
@@ -501,6 +526,10 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 .foot__t { font-size: var(--t-label); font-weight: 700; letter-spacing: .18em;
   text-transform: uppercase; color: var(--white); margin-bottom: 1.15rem; }
 .foot__l { display: grid; gap: .75rem; font-size: var(--t-body); color: var(--cream-2); }
+/* The tagline is prose, not a link list. It used to borrow .foot__l, which is a grid —
+   the moment it held an element rather than bare text, that grid broke it into rows. */
+.foot__p { margin-top: 1rem; font-size: var(--t-body); color: var(--cream-2); }
+.foot__p i { font-style: italic; }
 .foot__l a { transition: color .25s var(--ease); }
 .foot__l a:hover { color: var(--white); }
 .foot__l address { font-style: normal; line-height: 1.6; }
