@@ -76,6 +76,12 @@ typography:
     fontWeight: 400
     lineHeight: 1.65
     letterSpacing: "normal"
+  spanish:
+    fontFamily: "Archivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.6
+    letterSpacing: "normal"
   action:
     fontFamily: "Archivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
     fontSize: "1rem"
@@ -157,6 +163,12 @@ components:
     textColor: "{colors.cream-2}"
     typography: "{typography.body}"
     rounded: "{rounded.none}"
+  spanish-line:
+    backgroundColor: "transparent"
+    textColor: "{colors.cream-2}"
+    typography: "{typography.spanish}"
+    rounded: "{rounded.none}"
+    width: "44ch"
 ---
 
 # Design System: Tacos El Giro
@@ -178,6 +190,12 @@ the sizes a hand-painted sign uses, Archivo doing all the reading work underneat
 inside the order window only — a third face, wide and flat-sided, that makes the board read
 as a painted object rather than as more page.
 
+The page is bilingual in the owner's own shape, not localised: an English line with the Spanish
+set in italic underneath it. Every marketing graphic the truck has made talks this way — COME
+HUNGRY. LEAVE HAPPY. over VEN CON HAMBRE. VETE FELIZ. — so the page does too. There is no
+language switcher and no second page; the second language is a voice, and italic is what marks
+it.
+
 Its anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of
 "features", a metric strip under the hero, a fade-up on every section. This build refuses
 all four. It also refuses the spreadsheet: the menu was once a 5×8 matrix of forty identical
@@ -193,6 +211,8 @@ the owner's materials; the contract's *intent* held, its placeholder numbers did
 - Signage-scale condensed caps over a small, tightly-tracked label voice
 - One extra face, confined to the order window, because the board is an object and not prose
 - Exactly one authored motion moment: the service light coming up on load
+- An English line with its Spanish set in italic underneath it, everywhere a heading lands
+- One ornament on the whole page — papel picado masked in gold across the board's top edge
 - No per-item price renders anywhere, because none is sourced
 
 ## Colors
@@ -314,6 +334,9 @@ Archivo, is already loaded — the swap is nearly invisible.
   answer headline (in cream, capped at 44ch), and the Visit rows.
 - **Body** (Archivo 400, 16px, 1.65): all paragraph copy and the board's "ask at the window"
   line at 1.8, capped at 34–68ch depending on context.
+- **Spanish** (Archivo 400 italic, 16px, 1.6, in `cream-2`, capped at 44ch): the Spanish line
+  that sits under a heading. Under a section `h2` it takes a 0.9rem top margin; under the
+  board's title it tightens to 0.6rem and drops its measure cap so it stays with the control.
 - **Action** (Archivo 700, 16px, 0.08em caps): button labels. A button's label is body-sized,
   not label-sized.
 - **Label** (Archivo 700, 12px, 0.10–0.18em caps): nav links, hero meta, chip sublabels, the
@@ -345,6 +368,18 @@ case returns the word shapes that make it scan faster than the prose around it.
 **The Readable Control Rule.** The meat names and the named answers are the entire point of
 the order window, so both sit at the lead step (22px desktop, 19px mobile), never at body.
 A control's primary label does not sit below the lead step.
+
+**The Bilingual Voice Rule.** English leads, Spanish follows, and Spanish is always italic.
+Under a heading it is the `.es` line — body size, `cream-2`, 44ch, sitting *under* the heading
+it belongs to, never above it, because a line above a heading is a kicker and this system does
+not ship kickers. Inside a 12px tracked-caps label the Spanish half drops out of caps into the
+same italic at weight 400 and 85% opacity, so a Visit row reads "ADDRESS · dirección" rather
+than as one long shout. And where the Spanish would push a tracked-caps label past readable
+length it moves outside the label entirely: the board's ask line sets "Ask at the window" in
+caps and lets an italic `mute` "Pregunta en la ventana:" lead the format list beneath it,
+because "ASK AT THE WINDOW · PREGUNTA EN LA VENTANA" is a 42-character all-caps run — a
+detector finding, and a readability problem before it is a style one. Two languages never both
+sit inside one tracked-caps label. Every Spanish fragment carries `lang="es"`.
 
 **The Tabular Numerals Rule.** Any rendered figure — rating, review count, price range —
 carries `.num` for `font-variant-numeric: tabular-nums`.
@@ -405,12 +440,22 @@ the filled button, and both are neutral black — never a coloured glow.
   social icons at `.2`. A one-pixel edge of light, not a border.
 
 ### Named Rules
+**The Masked Ornament Rule.** The page carries exactly one ornament: a 30px papel picado band
+across the top edge of the board (`.board::before`), a strung row of cut-paper panels repeating
+every 96px. It is a mask, not a picture — the shape is an inline SVG `mask-image` at
+`repeat-x`, and the paint underneath is the same
+`linear-gradient(90deg, transparent, rgba(var(--gold-rgb),.78/.8) …)` that faded the 1px gold
+hairline it replaced. Because the colour is still the gold token, the ornament cannot drift out
+of the palette; that is the pattern any future ornament follows. It is hung on a structural
+edge the design already had, not added as a garland, and `.board__t` carries a 0.75rem top
+margin only to clear the hanging pennants.
+
 **The Neutral Shadow Rule.** Shadows are black and diffuse, and every shadow offset is soft
 and vertical. A coloured glow, or a hard offset with no blur, is the tell of a template; the
 warm light in this system comes from the gradients, never from a tinted or stamped shadow.
 
 **The Hairline-Not-Border Rule.** Where an edge is genuinely needed it is a single 1px line
-that means something: gold at 75% across the board's top edge, gold at 50% over each named
+that means something: the gold papel picado band across the board's top edge, gold at 50% over each named
 format, cream at 14% above the "ask at the window" line, plus the claim separators and the
 footer rule. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing
 in for a table — the board shed forty cells' worth of those and separates by space instead.
@@ -451,8 +496,8 @@ dishes on narrow screens, 4:3 for gallery and visit tiles.
 - **Grid:** 2 declared columns with the fifth chip spanning the row; 5 columns from 1020px.
 
 ### Cards / Containers
-There are no cards. The board (`.board`) is the only panel: a lit slab with a gold gradient
-hairline along its top edge, a `surf-2 → surf-1 → ink` gradient body under a gold radial from
+There are no cards. The board (`.board`) is the only panel: a lit slab with the gold papel
+picado band along its top edge (see The Masked Ornament Rule), a `surf-2 → surf-1 → ink` gradient body under a gold radial from
 above, `clamp(1.75rem, 4vw, 3rem)` padding, and no border or radius. Everything else sits
 directly on the ground.
 
@@ -486,8 +531,8 @@ below them one shared cell holding five panes, each pane the truck's answer to o
    hairline over a 12px tracked-caps format label in `mute` over the product name in white
    Archivo Black at the lead step. Counts run 4 / 1 / 1 / 1 / 2 across the five meats.
 3. **What to ask about** (`.pane__a`) — said once, not repeated: a cream hairline, a 12px
-   tracked-caps "Ask at the window" label, and the remaining formats on a single middot-
-   separated line in `cream-2`.
+   tracked-caps "Ask at the window" label, an italic `mute` "Pregunta en la ventana:" outside
+   that label, and the remaining formats on a single middot-separated line in `cream-2`.
 
 All eight formats are accounted for on every pane; they are grouped by answer rather than
 laid out as a spreadsheet. Only the 12px Archivo labels are uppercase inside the board.
@@ -539,6 +584,14 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 - **Do** keep `--board` inside the order window, on the three things it already sets, and
   self-host any new face as woff2 with `font-display: swap` and a `unicode-range` split.
 - **Do** declare grid columns whenever the item count is fixed and known.
+- **Do** set every Spanish line in italic and place it under the English it follows — `.es`
+  under a heading, an italic non-caps `<i>` inside a tracked-caps label, and outside the label
+  where the pair would otherwise run past ~40 characters of caps. Mark it `lang="es"`.
+- **Do** write food words in Mexican Spanish as the truck says them: "consomé", not the French
+  "consommé"; "Pollo" as the chip name with "Chicken" as its 12px gloss, matching the four meat
+  names that were already Spanish.
+- **Do** scope a label's `display: block` with the child combinator (`.row > span`,
+  `.pane__a > span`) so it cannot reach a nested element inside the label.
 - **Do** honour `prefers-reduced-motion`, which flattens every animation and transition to
   0.001ms and disables smooth scroll.
 
@@ -565,6 +618,18 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 - **Don't** put a tracked-caps kicker or eyebrow above a heading. The 12px tracked-caps label
   is permitted only as the key half of a key/value pair inside a control or a data row (the
   board's format labels, the Visit rows, chip sublabels), where it names the value beneath it.
+- **Don't** add a second ornament. The papel picado band is the whole of the decoration, and
+  its value is that it is the only one. A new ornament, if one is ever justified, is a mask
+  painted from a palette token on an edge the layout already has — never a picture, never a
+  garland, and never alongside this one.
+- **Don't** put the Spanish half inside a tracked-caps label when the pair would exceed roughly
+  forty characters of caps; move it outside the label as the board's ask line does.
+- **Don't** style a label with a descendant selector. `.row span` and `.pane__a span` each hit
+  the nested Spanish `<i>`/`<span>` and broke every label onto two lines the moment the label
+  gained a child.
+- **Don't** borrow a layout class for prose. The footer tagline used `.foot__l`, which is
+  `display: grid`; the moment it held an element rather than bare text the grid split it into
+  rows. It has its own `.foot__p` now. A label or prose class earns its own selector.
 - **Don't** invert a section to a light ground.
 - **Don't** reintroduce Fraunces — it was swapped out of this build as the obvious warm serif
   and the previous version of this site used it.
@@ -582,14 +647,17 @@ back in sync with the rebuilt order window and its third face:
                                                                           contrast pair 5.02:1,
                                                                           ramp 12/16/22/32/44/96
 
-What this pass changed and why. The pick-a-meat board was rebuilt from a 5×8 grid of forty
-identical cells into the exchange it was modelling, so `.forms`, `.form`, `.form.ask` and
-`.legend` no longer exist and their component entries are retired here. The single
-`design-system-font` finding that preceded this rewrite ("Pick a meat" uses Archivo Black, not
-declared in DESIGN.md typography) was cleared by documenting the face — three typography roles,
-a named rule confining it to the board, and the fallback stack — not by dismissing it. That is
-the same discipline that cleared the seven `design-system-color` advisories two passes ago: the
-build was right and this file was stale.
+What this pass changed and why. The page gained a bilingual layer and one ornament; nothing
+structural moved. The Spanish voice is recorded as house voice, not localisation — a `spanish`
+type role, a `spanish-line` component, and The Bilingual Voice Rule covering all three of its
+shapes (the `.es` line under a heading, the non-caps italic half inside a tracked-caps label,
+and the ask line's Spanish moved outside the label because the caps pair ran 42 characters, a
+real detector finding cleared by changing the build rather than by dismissing it). The board's
+1px gold hairline became a 30px papel picado band; it is recorded as The Masked Ornament Rule,
+which fixes both the technique (a mask painted from a palette token, so the colour cannot drift)
+and the restraint (one ornament, on an edge the layout already had). Two selector bugs are
+recorded as don'ts in their general form: a descendant selector on a label reaches into a nested
+child, and a grid class borrowed for prose splits it into rows.
 
 Contrast numbers are swept against `surf-3`, the worst surface. The `--white` comment in
 styles.css now reads 19.03:1 on ink and 13.19:1 on `surf-3`, matching this file; where a

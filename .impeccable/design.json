@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-03T18:22:20Z",
+  "generatedAt": "2026-09-03T18:39:23Z",
   "title": "Design System: Tacos El Giro",
   "extensions": {
     "colorMeta": {
@@ -230,6 +230,10 @@
         "displayName": "Body",
         "purpose": "All paragraph copy at 16px/1.65, capped 34–68ch."
       },
+      "spanish": {
+        "displayName": "Spanish",
+        "purpose": "Archivo 400 italic at 16px/1.6 in cream-2, capped at 44ch: the Spanish line under a heading (.es). Under .board__t it tightens to a 0.6rem top margin and drops the measure cap. Italic is what marks the second language; no second face is introduced."
+      },
       "label": {
         "displayName": "Label",
         "purpose": "12px/700 tracked caps (0.10–0.18em): nav, meta, chip sublabels, the board’s format labels, Visit row labels, captions, footer headings. Only ever the key half of a key/value pair — never a kicker above a heading."
@@ -400,9 +404,9 @@
       "name": "Ask Line",
       "kind": "custom",
       "refersTo": "ask-line",
-      "description": "Every unconfirmed format for the selected meat, said once under a cream hairline instead of repeated cell by cell.",
-      "html": "<p class=\"ds-ask\"><span>Ask at the window</span>Burrito &middot; Torta &middot; Sopes &middot; Plate</p>",
-      "css": ".ds-ask { position: relative; margin: 2.75rem 0 0; padding-top: 1.3rem; font-family: Archivo, system-ui, sans-serif; font-size: 1rem; line-height: 1.8; color: #D6CABA; } .ds-ask::before { content: \"\"; position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: rgba(245,237,224,.14); } .ds-ask span { display: block; margin-bottom: .3rem; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #B1A695; }"
+      "description": "The board's one 'what to ask about' line: a cream hairline, a 12px tracked-caps English label, an italic Spanish lead outside that label, then the remaining formats. Two languages never both sit inside one tracked-caps label.",
+      "html": "<p class=\"ds-ask\"><span>Ask at the window</span><i lang=\"es\">Pregunta en la ventana:</i> Burrito &middot; Torta &middot; Sopes &middot; Plate</p>",
+      "css": ".ds-ask { position: relative; margin: 0; padding-top: 1.3rem; font-family: 'Archivo', Arial, sans-serif; font-size: 1rem; line-height: 1.8; color: var(--cream-2, #D6CABA); } .ds-ask::before { content: \"\"; position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: rgba(245,237,224,.14); } .ds-ask > span { display: block; margin-bottom: .3rem; font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mute, #B1A695); } .ds-ask > i { font-style: italic; color: var(--mute, #B1A695); margin-right: .15rem; }"
     },
     {
       "name": "Primary Navigation",
@@ -427,11 +431,19 @@
       "description": "Anton caps at the headline step with a white emphasis clause, over an Archivo lede. No kicker above it.",
       "html": "<div class=\"ds-head\"><h2 class=\"ds-h2\">Five meats. <em>Eight formats.</em></h2><p class=\"ds-lede\">The board is longer than any listing shows. Pick a meat and see what it comes in.</p></div>",
       "css": ".ds-head { max-width: 46rem; } .ds-h2 { margin: 0; font-family: Anton, 'Arial Narrow Bold', sans-serif; font-weight: 400; font-size: clamp(2rem, 1.3rem + 2.4vw, 2.75rem); line-height: .96; letter-spacing: -0.005em; text-transform: uppercase; color: #F5EDE0; text-wrap: balance; } .ds-h2 em { font-style: normal; color: #FFFFFF; } .ds-lede { margin: 1.15rem 0 0; font-family: Archivo, system-ui, sans-serif; font-size: 1.375rem; line-height: 1.55; color: #D6CABA; max-width: 34ch; }"
+    },
+    {
+      "name": "Bilingual Heading",
+      "kind": "custom",
+      "refersTo": "spanish-line",
+      "description": "A section heading with its Spanish line set in italic underneath it. The Spanish never sits above the heading.",
+      "html": "<div class=\"ds-head\"><h2 class=\"ds-h2\">Five meats. <em>Eight formats.</em></h2><p class=\"ds-es\" lang=\"es\">Cinco carnes, ocho maneras de pedirlas.</p></div>",
+      "css": ".ds-h2 { font-family: 'Anton', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif; font-size: clamp(2rem, 1.3rem + 2.4vw, 2.75rem); line-height: .96; letter-spacing: -0.005em; text-transform: uppercase; color: var(--cream, #F5EDE0); margin: 0; text-wrap: balance; } .ds-h2 em { font-style: normal; color: var(--white, #FFFFFF); } .ds-es { margin: .9rem 0 0; font-family: 'Archivo', Arial, sans-serif; font-size: 1rem; line-height: 1.6; font-style: italic; color: var(--cream-2, #D6CABA); max-width: 44ch; }"
     }
   ],
   "narrative": {
     "northStar": "The Truck After Dark",
-    "overview": "The page is the truck itself at night. The ground is not a neutral black chosen from a\npalette generator: it is the truck's own body colour, sampled from the owner's photographs\nand darkened until it holds type. Everything on that cobalt is either food, light, or an\naction. Nothing is boxed. Sections do not end at a rule or a card edge; they end where the\nlight falls off.\n\nThe density is generous and the composition is a single column. There is one accent that\nbehaves like a lamp (gold) and one that behaves like a verb (red), and both come off the\nowner's own logo rather than a brand kit. Type is signage first: condensed Anton in caps at\nthe sizes a hand-painted sign uses, Archivo doing all the reading work underneath it, and —\ninside the order window only — a third face, wide and flat-sided, that makes the board read\nas a painted object rather than as more page.\n\nIts anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of\n\"features\", a metric strip under the hero, a fade-up on every section. This build refuses\nall four. It also refuses the spreadsheet: the menu was once a 5×8 matrix of forty identical\ncells, thirty-one of which said the same thing, and that is now an exchange — pick a meat,\nthe window answers. Where the direction contract named provisional hex values for gold\n(`#F9C22E`) and red (`#D8202A`), the shipped build supersedes them with values measured off\nthe owner's materials; the contract's *intent* held, its placeholder numbers did not.",
+    "overview": "The page is the truck itself at night. The ground is not a neutral black chosen from a palette generator: it is the truck's own body colour, sampled from the owner's photographs and darkened until it holds type. Everything on that cobalt is either food, light, or an action. Nothing is boxed. Sections do not end at a rule or a card edge; they end where the light falls off.\n\nThe density is generous and the composition is a single column. There is one accent that behaves like a lamp (gold) and one that behaves like a verb (red), and both come off the owner's own logo rather than a brand kit. Type is signage first: condensed Anton in caps at the sizes a hand-painted sign uses, Archivo doing all the reading work underneath it, and — inside the order window only — a third face, wide and flat-sided, that makes the board read as a painted object rather than as more page.\n\nThe page is bilingual in the owner's own shape, not localised: an English line with the Spanish set in italic underneath it. Every marketing graphic the truck has made talks this way — COME HUNGRY. LEAVE HAPPY. over VEN CON HAMBRE. VETE FELIZ. — so the page does too. There is no language switcher and no second page; the second language is a voice, and italic is what marks it.\n\nIts anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of \"features\", a metric strip under the hero, a fade-up on every section. This build refuses all four. It also refuses the spreadsheet: the menu was once a 5×8 matrix of forty identical cells, thirty-one of which said the same thing, and that is now an exchange — pick a meat, the window answers. Where the direction contract named provisional hex values for gold (`#F9C22E`) and red (`#D8202A`), the shipped build supersedes them with values measured off the owner's materials; the contract's *intent* held, its placeholder numbers did not.",
     "keyCharacteristics": [
       "A cobalt ground sampled from the truck body, in four darkened steps, never a neutral grey",
       "One gold aperture as the only light source, plus red reserved for actions",
@@ -439,6 +451,8 @@
       "Signage-scale condensed caps over a small, tightly-tracked label voice",
       "One extra face, confined to the order window, because the board is an object and not prose",
       "Exactly one authored motion moment: the service light coming up on load",
+      "An English line with its Spanish set in italic underneath it, everywhere a heading lands",
+      "One ornament on the whole page — papel picado masked in gold across the board's top edge",
       "No per-item price renders anywhere, because none is sourced"
     ],
     "rules": [
@@ -488,6 +502,11 @@
         "section": "typography"
       },
       {
+        "name": "The Bilingual Voice Rule",
+        "body": "English leads, Spanish follows, and Spanish is always italic. Under a heading it is the `.es` line — body size, `cream-2`, 44ch, sitting *under* the heading it belongs to, never above it, because a line above a heading is a kicker and this system does not ship kickers. Inside a 12px tracked-caps label the Spanish half drops out of caps into the same italic at weight 400 and 85% opacity, so a Visit row reads \"ADDRESS · dirección\" rather than as one long shout. And where the Spanish would push a tracked-caps label past readable length it moves outside the label entirely: the board's ask line sets \"Ask at the window\" in caps and lets an italic `mute` \"Pregunta en la ventana:\" lead the format list beneath it, because \"ASK AT THE WINDOW · PREGUNTA EN LA VENTANA\" is a 42-character all-caps run — a detector finding, and a readability problem before it is a style one. Two languages never both sit inside one tracked-caps label. Every Spanish fragment carries `lang=\"es\"`.",
+        "section": "typography"
+      },
+      {
         "name": "The Tabular Numerals Rule",
         "body": "Any rendered figure — rating, review count, price range — carries `.num` for `font-variant-numeric: tabular-nums`.",
         "section": "typography"
@@ -508,13 +527,18 @@
         "section": "layout"
       },
       {
+        "name": "The Masked Ornament Rule",
+        "body": "The page carries exactly one ornament: a 30px papel picado band across the top edge of the board (`.board::before`), a strung row of cut-paper panels repeating every 96px. It is a mask, not a picture — the shape is an inline SVG `mask-image` at `repeat-x`, and the paint underneath is the same `linear-gradient(90deg, transparent, rgba(var(--gold-rgb),.78/.8) …)` that faded the 1px gold hairline it replaced. Because the colour is still the gold token, the ornament cannot drift out of the palette; that is the pattern any future ornament follows. It is hung on a structural edge the design already had, not added as a garland, and `.board__t` carries a 0.75rem top margin only to clear the hanging pennants.",
+        "section": "elevation"
+      },
+      {
         "name": "The Neutral Shadow Rule",
         "body": "Shadows are black and diffuse, and every shadow offset is soft and vertical. A coloured glow, or a hard offset with no blur, is the tell of a template; the warm light in this system comes from the gradients, never from a tinted or stamped shadow.",
         "section": "elevation"
       },
       {
         "name": "The Hairline-Not-Border Rule",
-        "body": "Where an edge is genuinely needed it is a single 1px line that means something: gold at 75% across the board's top edge, gold at 50% over each named format, cream at 14% above the \"ask at the window\" line, plus the claim separators and the footer rule. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing in for a table — the board shed forty cells' worth of those and separates by space instead.",
+        "body": "Where an edge is genuinely needed it is a single 1px line that means something: the gold papel picado band across the board's top edge, gold at 50% over each named format, cream at 14% above the \"ask at the window\" line, plus the claim separators and the footer rule. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing in for a table — the board shed forty cells' worth of those and separates by space instead.",
         "section": "elevation"
       },
       {
@@ -550,6 +574,9 @@
       "Do hold new type to the six-step ramp (12 / 16 / 22 / 32 / 44 / 96 at 1280), and set a control's primary label at the lead step or above.",
       "Do keep `--board` inside the order window, on the three things it already sets, and self-host any new face as woff2 with `font-display: swap` and a `unicode-range` split.",
       "Do declare grid columns whenever the item count is fixed and known.",
+      "Do set every Spanish line in italic and place it under the English it follows — `.es` under a heading, an italic non-caps `<i>` inside a tracked-caps label, and outside the label where the pair would otherwise run past ~40 characters of caps. Mark it `lang=\"es\"`.",
+      "Do write food words in Mexican Spanish as the truck says them: \"consomé\", not the French \"consommé\"; \"Pollo\" as the chip name with \"Chicken\" as its 12px gloss, matching the four meat names that were already Spanish.",
+      "Do scope a label's `display: block` with the child combinator (`.row > span`, `.pane__a > span`) so it cannot reach a nested element inside the label.",
       "Do honour `prefers-reduced-motion`, which flattens every animation and transition to 0.001ms and disables smooth scroll."
     ],
     "donts": [
@@ -563,6 +590,10 @@
       "Don't set Anton in sentence case for an editorial heading, never use it for a paragraph, and don't put it back inside the board. Its one sentence-case use is the review pull-quotes, because they are transcribed speech.",
       "Don't use `--board` outside the order window, and don't preload it — it is below the fold and swaps to its own superfamily.",
       "Don't put a tracked-caps kicker or eyebrow above a heading. The 12px tracked-caps label is permitted only as the key half of a key/value pair inside a control or a data row (the board's format labels, the Visit rows, chip sublabels), where it names the value beneath it.",
+      "Don't add a second ornament. The papel picado band is the whole of the decoration, and its value is that it is the only one. A new ornament, if one is ever justified, is a mask painted from a palette token on an edge the layout already has — never a picture, never a garland, and never alongside this one.",
+      "Don't put the Spanish half inside a tracked-caps label when the pair would exceed roughly forty characters of caps; move it outside the label as the board's ask line does.",
+      "Don't style a label with a descendant selector. `.row span` and `.pane__a span` each hit the nested Spanish `<i>`/`<span>` and broke every label onto two lines the moment the label gained a child.",
+      "Don't borrow a layout class for prose. The footer tagline used `.foot__l`, which is `display: grid`; the moment it held an element rather than bare text the grid split it into rows. It has its own `.foot__p` now. A label or prose class earns its own selector.",
       "Don't invert a section to a light ground.",
       "Don't reintroduce Fraunces — it was swapped out of this build as the obvious warm serif and the previous version of this site used it.",
       "Don't reintroduce the placeholder palette (`#100D0C` ground, `#F9C22E` gold, `#D8202A` red) or the `red-text` token. The shipped palette is measured off the owner's materials and supersedes the direction contract's provisional values."
