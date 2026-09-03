@@ -181,7 +181,9 @@ owner's logo — the palette is photographic in origin, not chosen.
   nav underline, the `.bay` light pools, `::selection`, the focus ring, the fill button and
   social button on hover, and the field a meat chip floods to when it is selected. It carried
   type in an earlier revision — the hero's second line, heading emphasis, the format answers,
-  the Visit and footer labels — and all of that is white now. Ink on gold measures 9.89:1.
+  the Visit and footer labels — and all of that is white now. Ink on gold measures 9.89:1. Its
+  one surviving foreground use is the five review stars, which are filled SVG shapes, not
+  letterforms; a gold star is a convention worth keeping and it is the recorded exception.
 - **Signage White** (`white`): the emphasis voice, and the only thing that outranks cream.
   The hero's second line, the `em` inside every section heading, the wordmark's second word,
   every named format answer on the board, the claim figures, the section labels in Visit and
@@ -237,7 +239,8 @@ a third time. The only permitted bare literals are neutral black in shadows.
 **The Gold Is Light, Never Type Rule.** Gold may glow, edge, underline, highlight or flood a
 field — the selected chip is the one large fill it is allowed. It sets no type at all, not a
 heading, not a label, not a link, not a hover. Anywhere emphasis used to be gold it is now
-`white`. This is the tightening of the older One Aperture Rule, which allowed gold to label:
+`white`. The only gold foreground that ships is the review stars, which are icons rather than
+letters. This is the tightening of the older One Aperture Rule, which allowed gold to label:
 that allowance is withdrawn, and gold type is not to be reintroduced.
 
 **The No Light Section Rule.** No section inverts to a light background. Contrast comes from
@@ -260,8 +263,12 @@ legible at small sizes, and does every job that involves reading a sentence.
   headings in caps at 0.96; the board's own title in sentence case at 1.02.
 - **Stat** (Anton 400, `clamp(1.75rem, 1.2rem + 1.7vw, 2rem)` → 32px, 1.0, -0.01em caps): the
   three claim figures in About.
-- **Title** (Anton 400, 22px step): dish names and the wordmark in caps at 1.05/0.015em; the
-  meat names on the chips in sentence case at 1.1/-0.005em.
+- **Title** (Anton 400, 22px step, caps): dish names at 1.05/0.01em and the wordmark at
+  1/0.005em.
+- **Control** (Anton 400, 22px step, 1.1, -0.005em, sentence case): the meat names on the chips.
+  Same size as Title, minus the caps and the caps tracking.
+- **Quote** (Anton 400, 22px step, 1.34, 0.005em, sentence case): the three review pull-quotes.
+  Anton at reading rhythm — quoted speech is not set in caps.
 - **Lead** (Archivo 400, 22px step, 1.55): the hero paragraph, section ledes, review quotes'
   scale, and the Visit rows.
 - **Body** (Archivo 400, 16px, 1.65): all paragraph copy, capped at 34–68ch depending on
@@ -276,12 +283,14 @@ renders. Every size is one of `--t-label`, `--t-body`, `--t-lead`, `--t-stat`, `
 
 **The Anton Is Caps Except In The Board Rule.** Anton is set uppercase everywhere it carries
 the page's editorial voice — hero, section headings, claim figures, dish names, the wordmark —
-at 0.88–1.34 line-height with letter-spacing between -0.02em and 0. Inside the board it is set
-in **sentence case**: the title, the five meat names, and the format answers. That is the one
-exception and it is deliberate — the board is a control, not writing, and sentence case returns
-the word shapes that make a control scan faster than the prose around it. Caps tracking
-(+0.015em) does not travel with it; sentence-case Anton sits at -0.005em to 0. Anton never sets
-a paragraph.
+at 0.88–1.05 line-height with letter-spacing between -0.02em and +0.01em. Inside the board it is
+set in **sentence case**: the title, the five meat names, and the format answers. That is the
+deliberate exception — the board is a control, not writing, and sentence case returns the word
+shapes that make a control scan faster than the prose around it. Caps tracking does not travel
+with it: the chips went +0.015em → -0.005em and the answers +0.02em → 0, with line-height opened
+(title 1 → 1.02, chips 1.05 → 1.1, answers 1.15 → 1.2). The review pull-quotes are the one other
+place Anton is not caps — they are transcribed speech at 1.34, and caps would shout them. Anton
+never sets a paragraph.
 
 **The Readable Control Rule.** The meat names are the entire point of the pick-a-meat control,
 so they are set at the lead step (22px desktop, 19px mobile), not at body. Condensed caps at
@@ -412,8 +421,8 @@ The centrepiece. Five meat chips across the top; below them one shared grid cell
 panes of eight format cells each. A format cell is a 12px muted caps label over the availability
 answer set in white sentence-case Anton, keyed by a white swatch in the legend; cells whose answer is unconfirmed use the `.ask` variant
 — `ink` ground, Archivo sentence case in `mute` — and a legend keys the two states. Only the
-12px labels are caps inside the board; everything a person reads to make the choice is sentence
-case.
+12px Archivo labels (`.form span`, `.chip small`) are caps inside the board; everything set in
+Anton, which is everything a person reads to make the choice, is sentence case.
 
 ### Named Rules
 **The No Price Rule.** No per-item price renders anywhere inside `#menu`. No per-item price is
@@ -467,8 +476,9 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 - **Don't** add a scroll-reveal observer or a per-section fade-up. There is one authored moment
   — the hero light coming up on load (`lightUp`, 1900ms) with the hero text rising behind it on
   a 420–860ms stagger — and its value is that it is the only one.
-- **Don't** set Anton in sentence case outside the board, and never use it for a paragraph.
-  The board is the one place it goes sentence case, because it is a control.
+- **Don't** set Anton in sentence case for an editorial heading, and never use it for a
+  paragraph. It goes sentence case in exactly two places: the board, because it is a control,
+  and the review pull-quotes, because they are transcribed speech.
 - **Don't** put a tracked-caps kicker or eyebrow above a heading.
 - **Don't** invert a section to a light ground.
 - **Don't** reintroduce Fraunces — it was swapped out of this build as the obvious warm serif
@@ -478,20 +488,23 @@ field inversion already carries the state unambiguously. Do not rebuild it.
   supersedes the direction contract's provisional values.
 
 <!--
-Gate state, this pass. Both gates green, verified after this file was rewritten against the
-shipped palette:
+Gate state, this pass. Both gates green, verified after this file and the sidecar were brought
+back in sync with the shipped board (sentence-case Anton) and the --white emphasis token:
 
-  node .claude/skills/impeccable/scripts/detect.mjs --json index.html   -> [] (not degraded)
+  npm run verify:design                                                 -> 0 findings (not degraded)
   CHROME_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
     node verify.mjs http://localhost:8000                              -> PASSED, tightest
-                                                                          contrast pair 5.02:1
+                                                                          contrast pair 5.02:1,
+                                                                          ramp 12/16/22/32/44/96
 
-The seven design-system-color advisories that preceded this rewrite were all the same class
-of finding: the palette had been replaced in styles.css and this file still documented the
-retired warm-charcoal values. They were cleared by documenting the shipped colours, not by
-dismissing them.
+Two facts worth carrying forward. (1) The seven design-system-color advisories that preceded the
+previous rewrite were all the same class of finding: the palette had been replaced in styles.css
+and this file still documented the retired warm-charcoal values. They were cleared by documenting
+the shipped colours, not by dismissing them; `--white` was added to the table here for the same
+reason. (2) The measured white-on-ink ratio is 19.03:1. The token comment in styles.css line 57
+still reads 17.75:1, which is stale — this file, not that comment, carries the swept numbers.
 
-The second command needs CHROME_PATH pointing at the chromium that ships in this
+The verify.mjs command needs CHROME_PATH pointing at the chromium that ships in this
 environment; without it Playwright looks for a headless shell that is not installed and the
 run aborts. verify.mjs reads CHROME_PATH and passes it as executablePath. The same gate
 passes against the packaged folder on port 8001.
