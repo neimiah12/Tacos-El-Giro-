@@ -11,6 +11,7 @@ colors:
   mute: "#B1A695"
   gold: "#F0B008"
   red: "#C81818"
+  white: "#FFFFFF"
   on-red: "#F5EDE0"
   on-gold: "#080E28"
   on-gold-2: "#4E3D0A"
@@ -38,7 +39,19 @@ typography:
     fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
     fontWeight: 400
     lineHeight: 1.05
-    letterSpacing: "0.015em"
+    letterSpacing: "0.01em"
+  control:
+    fontFamily: "Anton, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+    fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
+    fontWeight: 400
+    lineHeight: 1.1
+    letterSpacing: "-0.005em"
+  quote:
+    fontFamily: "Anton, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+    fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
+    fontWeight: 400
+    lineHeight: 1.34
+    letterSpacing: "0.005em"
   lead:
     fontFamily: "Archivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
     fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
@@ -94,16 +107,16 @@ components:
   chip:
     backgroundColor: "{colors.surf-1}"
     textColor: "{colors.cream}"
-    typography: "{typography.title}"
+    typography: "{typography.control}"
     rounded: "{rounded.none}"
     padding: "{spacing.chip}"
   chip-hover:
     backgroundColor: "{colors.surf-3}"
-    textColor: "{colors.gold}"
+    textColor: "{colors.white}"
   chip-selected:
     backgroundColor: "{colors.gold}"
     textColor: "{colors.on-gold}"
-    typography: "{typography.title}"
+    typography: "{typography.control}"
     rounded: "{rounded.none}"
     padding: "{spacing.chip}"
   chip-sublabel:
@@ -114,7 +127,7 @@ components:
     typography: "{typography.label}"
   format-cell:
     backgroundColor: "{colors.surf-1}"
-    textColor: "{colors.gold}"
+    textColor: "{colors.white}"
     rounded: "{rounded.none}"
     padding: "{spacing.cell}"
   format-cell-ask:
@@ -163,11 +176,18 @@ A single cobalt family lifted off the truck's own paint, lit by two accents lift
 owner's logo — the palette is photographic in origin, not chosen.
 
 ### Primary
-- **Aperture Gold** (`gold`): the light. It is the hero's second line, the `em` inside every
-  section heading, the board's top hairline, every format answer, the claim figures, the
-  section-label voice in Visit and the footer, the nav underline, hover for every link and
-  the social buttons, `::selection`, and the focus ring. When a meat chip is selected the
-  whole cell floods to it. Measures 6.86:1 at its worst surface (`surf-3`).
+- **Aperture Gold** (`gold`): the light, and only the light. It is a surface, an edge or a
+  glow — never a letterform. The board's top hairline, the claim dividers, the note rule, the
+  nav underline, the `.bay` light pools, `::selection`, the focus ring, the fill button and
+  social button on hover, and the field a meat chip floods to when it is selected. It carried
+  type in an earlier revision — the hero's second line, heading emphasis, the format answers,
+  the Visit and footer labels — and all of that is white now. Ink on gold measures 9.89:1.
+- **Signage White** (`white`): the emphasis voice, and the only thing that outranks cream.
+  The hero's second line, the `em` inside every section heading, the wordmark's second word,
+  every named format answer on the board, the claim figures, the section labels in Visit and
+  the footer, the dish links, and hover for every link and chip name. 13.19:1 at its worst
+  surface (`surf-3`), 19.03:1 on the ground. It is not an invention: the display type and the
+  logo outline in `img/promo-nortenos.jpg` are white, the same file gold and red came off.
 
 ### Secondary
 - **Signage Red** (`red`): the verb. Filled buttons (Call, the skip link), and nothing else.
@@ -191,11 +211,16 @@ owner's logo — the palette is photographic in origin, not chosen.
 - **On-Gold Second Line** (`on-gold-2`): the only colour that exists solely to survive an
   inversion — a chip's sublabel once its field has flipped to gold. 5.47:1 on gold.
 
+Cream and white measure only 1.16:1 against each other, so the step between them is a shift
+in warmth, not a jump in contrast. That is the intended reading: a heading is one continuous
+statement in which the emphasised words are cooler and brighter, not a heading with a
+highlighter through it. Never rely on that step to carry meaning a screen reader would need.
+
 ### Named Rules
 **The Measured Against The Worst Surface Rule.** Every ratio in this system is swept against
 the lightest surface the colour can actually land on (`surf-3`), not against the page ground.
-The recorded minima are cream 11.35, cream-2 8.18, mute 5.50, gold 6.86, cream-on-red 5.02,
-ink-on-gold 9.89, on-gold-2-on-gold 5.47. A new colour joins the palette only with its worst-
+The recorded minima are white 13.19, cream 11.35, cream-2 8.18, mute 5.50, gold 6.86 (as a
+surface only), cream-on-red 5.02, ink-on-gold 9.89, on-gold-2-on-gold 5.47. A new colour joins the palette only with its worst-
 surface number recorded here.
 
 **The Two Forbidden Pairings Rule.** Gold on red is 3.03:1 and red on ink is 3.32:1. Neither
@@ -209,9 +234,11 @@ Never hand-write the channels. This file has twice shipped an `rgba()` literal t
 from the token it was cut from; the channel tokens exist specifically so that cannot happen
 a third time. The only permitted bare literals are neutral black in shadows.
 
-**The One Aperture Rule.** Gold is light, not decoration. It may glow, edge, label, or mark
-the selected thing; it never fills a large field except as a deliberate state inversion (the
-selected chip), and it is never used for body copy.
+**The Gold Is Light, Never Type Rule.** Gold may glow, edge, underline, highlight or flood a
+field — the selected chip is the one large fill it is allowed. It sets no type at all, not a
+heading, not a label, not a link, not a hover. Anywhere emphasis used to be gold it is now
+`white`. This is the tightening of the older One Aperture Rule, which allowed gold to label:
+that allowance is withdrawn, and gold type is not to be reintroduced.
 
 **The No Light Section Rule.** No section inverts to a light background. Contrast comes from
 the tonal ramp and from photography, never from flipping the ground.
@@ -350,7 +377,7 @@ dishes on narrow screens, 4:3 for gallery and visit tiles.
 ### Chips (meat selector)
 - **Style:** `surf-1` cells in a 1px-gapped grid, padding 1.2rem, Anton name at the 22px lead
   step in cream, sentence case, over a 12px/700 tracked-caps sublabel in `mute`.
-- **State:** hover steps to `surf-3` with a gold name; selected floods the whole cell to gold
+- **State:** hover steps to `surf-3` with a white name; selected floods the whole cell to gold
   with ink type (9.89:1) and the sublabel in `on-gold-2` (5.47:1). Selection is driven by radio
   inputs and `:checked` — no JavaScript.
 - **Focus:** cream ring inset by 3px so it stays inside the cell grid.
@@ -383,7 +410,7 @@ white would otherwise be the ground.
 ### The Board (signature)
 The centrepiece. Five meat chips across the top; below them one shared grid cell holding five
 panes of eight format cells each. A format cell is a 12px muted caps label over the availability
-answer set in gold sentence-case Anton; cells whose answer is unconfirmed use the `.ask` variant
+answer set in white sentence-case Anton, keyed by a white swatch in the legend; cells whose answer is unconfirmed use the `.ask` variant
 — `ink` ground, Archivo sentence case in `mute` — and a legend keys the two states. Only the
 12px labels are caps inside the board; everything a person reads to make the choice is sentence
 case.
@@ -411,7 +438,9 @@ field inversion already carries the state unambiguously. Do not rebuild it.
   `--red-rgb` rather than writing channel numbers by hand.
 - **Do** separate sections with a `.bay` light pool, positioned with its own `--lx` / `--ly`.
 - **Do** keep every corner square (0 radius) and every edge a hairline gap or a fading gradient.
-- **Do** send every hover to gold — nav underline, chip name, dish link, footer link, social fill.
+- **Do** send every type hover to white — nav link, chip name, footer link, Visit link — and
+  keep gold for the hovers that are a surface: the nav underline, the fill button, the social
+  button.
 - **Do** put photography inside `.shot` so a failed load degrades to a lit panel, and give any
   third-party embed a `surf-1` backing so its own white never shows through.
 - **Do** carry `.num` on every rendered figure so digits stay tabular.
@@ -427,8 +456,9 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 
 ### Don't:
 - **Don't** render a per-item price inside `#menu`. Nothing sources one.
-- **Don't** set gold type on red (3.03:1) or red type on ink (3.32:1). Red is a ground, not a
-  foreground.
+- **Don't** set gold type anywhere at all — it is light and surface only, and the pairing
+  that used to tempt this, gold on red, is 3.03:1. Don't set red type on ink either (3.32:1).
+  Red is a ground, not a foreground.
 - **Don't** wrap a section in a bordered card or lay a divider rule between sections; the light
   falloff is the separator and re-adding boxes undoes the whole architecture.
 - **Don't** mark a selected state with an edge stripe or accent tab. Invert the field.
