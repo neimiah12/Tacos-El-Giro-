@@ -46,7 +46,7 @@ if (!bodyMatch) throw new Error('could not find <body>');
 const body = embed(bodyMatch[1]).replace(/\s*<script src="script\.js"[^>]*><\/script>\s*/, '\n');
 
 const out = `<title>Tacos El Giro</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400..700&family=Archivo+Black&display=swap">
 <style>
 ${cssNoFaces}
 /* Preview build only: the shipped site self-hosts these two families as woff2. */

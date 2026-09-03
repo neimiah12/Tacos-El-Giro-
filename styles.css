@@ -32,6 +32,20 @@
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+@font-face {
+  font-family: 'Archivo Black'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('fonts/archivo-black-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo Black'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('fonts/archivo-black-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 /* --------------------------------------------------------------- 2. tokens */
 /* The palette is sampled from the owner's own materials, opaque pixels only, per
@@ -55,8 +69,8 @@
   --red: #C81818;
 
   --white: #FFFFFF;      /* the promo type and the logo outline are white, not cream.
-                            It is the emphasis voice: 17.75:1 on ink, and a visible step
-                            above --cream wherever the two sit side by side. */
+                            It is the emphasis voice: 19.03:1 on ink, 13.19:1 on --surf-3,
+                            the worst surface it lands on. */
 
   --on-red: #F5EDE0;     /* 5.02:1 on --red */
   --on-gold: #080E28;    /* 9.89:1 on --gold */
@@ -71,6 +85,9 @@
 
   --display: 'Anton', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
   --text: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  /* The board's own voice. Wide and flat-sided where Anton is condensed, and the same
+     superfamily as --text, so it reads as a different object, not a third typeface. */
+  --board: 'Archivo Black', 'Archivo', 'Arial Black', 'Helvetica Neue', sans-serif;
 
   /* 12 / 16 / 22 / 32 / 44 / 96 at 1280 */
   --t-label: 0.75rem;
@@ -269,42 +286,43 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   font-size: var(--t-label); font-weight: 700; letter-spacing: .14em;
   text-transform: uppercase; color: var(--mute); }
 
-/* --------------------------------------------------- 8. the board (matrix) */
-/* The centrepiece. A lit slab, not a bordered panel. */
+/* ----------------------------------------------- 8. the board (order window) */
+/* Rebuilt from a grid of forty identical cells — thirty-one of which said "Ask at
+   the window" — into the exchange it is actually modelling: you pick a meat, and
+   the window answers with what it can name today and what to ask about. Every one
+   of the eight formats is still accounted for per meat; they are grouped by answer
+   instead of laid out as a spreadsheet. The 1px gridlines are gone with them: what
+   separates things here is space and one hairline, the same as everywhere else on
+   the page.
+   The board also has its own face. Anton is the page's voice — condensed, editorial,
+   shouting. Archivo Black is wide and flat-sided, which is what a painted board is,
+   and it is the same superfamily as the body copy, so the board reads as a distinct
+   object rather than as a third typeface. */
 .board { position: relative; margin-top: clamp(2.5rem, 5vw, 4rem);
   padding: clamp(1.75rem, 4vw, 3rem); background:
     radial-gradient(120% 140% at 50% -10%, rgba(var(--gold-rgb),.14), transparent 60%),
     linear-gradient(180deg, var(--surf-2), var(--surf-1) 55%, var(--ink)); }
 .board::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(var(--gold-rgb),.75) 22%, rgba(var(--gold-rgb),.75) 78%, transparent); }
-/* The board speaks in sentence case while every editorial heading on the page
-   stays in caps. That is the point: word shapes come back, and the control reads
-   faster than the writing around it. Anton keeps its voice, it just stops
-   shouting here. */
-.board__t { font-family: var(--display); font-size: var(--t-head); line-height: 1.02;
-  letter-spacing: -0.005em; color: var(--cream); }
-.board__s { margin-top: .7rem; font-size: var(--t-body); color: var(--mute); max-width: 56ch; }
+.board__t { font-family: var(--board); font-size: var(--t-head); line-height: 1.05;
+  letter-spacing: -0.02em; color: var(--cream); }
+.board__s { margin-top: .85rem; font-size: var(--t-body); line-height: 1.7;
+  color: var(--mute); max-width: 58ch; }
 
-/* The names are the whole point of this control, so they are set at the lead step
-   (22px), not at body. At 16px condensed caps they were the one thing on the page
-   you had to lean in to read — that is what this rebuild is for. The selected chip
-   flips to the whole field to gold — ink on gold is 9.89:1, where cream on red was
-   5.02:1. No accent stripe marks the selection: a thin coloured rule on one edge of
-   a card is the side-tab tell, and the field inversion already carries the state. */
-/* Five is a bad number for auto-fit: it leaves a dead cell whenever the row
-   count does not divide it. The columns are declared instead, and in the
-   two-up tier the fifth chip takes the whole row rather than half of it. */
-.chips { display: grid; gap: 1px; margin-top: 1.75rem; background: rgba(var(--cream-rgb),.12);
+/* The control. Real gaps, not hairline gridlines — five buttons, not a table row.
+   Five is a bad number for auto-fit, so the columns are declared and the fifth chip
+   takes the whole row in the two-up tier rather than half of it. */
+.chips { display: grid; gap: 3px; margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
   grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .chip:last-child { grid-column: 1 / -1; }
 @media (min-width: 1020px) {
   .chips { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .chip:last-child { grid-column: auto; }
 }
-.chip { min-width: 0; display: block; padding: 1.2rem 1.2rem 1.25rem;
-  cursor: pointer; background: var(--surf-1); transition: background-color .3s var(--ease); }
-.chip b { display: block; font-family: var(--display); font-size: var(--t-lead);
-  line-height: 1.1; letter-spacing: -0.005em; color: var(--cream);
+.chip { min-width: 0; display: block; padding: 1.15rem 1.2rem 1.25rem; cursor: pointer;
+  background: var(--surf-1); transition: background-color .3s var(--ease); }
+.chip b { display: block; font-family: var(--board); font-size: var(--t-lead);
+  line-height: 1.15; letter-spacing: -0.015em; color: var(--cream);
   transition: color .3s var(--ease); }
 .chip small { display: block; margin-top: .5rem; font-size: var(--t-label); font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase; color: var(--mute);
@@ -333,10 +351,10 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 #k-chicken:focus-visible ~ .chips label[for="k-chicken"],
 #k-asada:focus-visible ~ .chips label[for="k-asada"] { outline: 2px solid var(--cream); outline-offset: -3px; }
 
-/* Every pane shares one grid cell, so switching meats never moves the page and
-   no fr track can resolve to 0px. */
-.slab { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto;
-  margin-top: 1px; }
+/* Every pane shares one grid cell, so switching meats never moves the page and no
+   fr track can resolve to 0px. */
+.slab { display: grid; grid-template-columns: minmax(0, 1fr);
+  margin-top: clamp(2.25rem, 4.5vw, 3.25rem); }
 .pane { grid-row: 1; grid-column: 1; min-width: 0; opacity: 0; visibility: hidden;
   transition: opacity .3s var(--ease); }
 #k-birria:checked ~ .slab .pane[data-k="birria"],
@@ -345,24 +363,30 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 #k-chicken:checked ~ .slab .pane[data-k="chicken"],
 #k-asada:checked ~ .slab .pane[data-k="asada"] { opacity: 1; visibility: visible; }
 
-.forms { display: grid; gap: 1px; grid-template-columns: minmax(0, 1fr);
-  background: rgba(var(--cream-rgb),.08); }
-@media (min-width: 620px) { .forms { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 900px) { .forms { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.form { min-width: 0; background: var(--surf-1); padding: .9rem 1.05rem; }
-.form span { display: block; font-size: var(--t-label); font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
-.form b { display: block; margin-top: 5px; font-family: var(--display);
-  font-size: var(--t-body); line-height: 1.2; letter-spacing: 0; color: var(--white); }
-.form.ask { background: var(--ink); }
-.form.ask b { font-family: var(--text); font-weight: 400; text-transform: none;
-  letter-spacing: 0; color: var(--mute); }
-.pane__n { margin-top: 1.1rem; font-size: var(--t-body); color: var(--cream-2); max-width: 64ch; }
-.legend { grid-row: 2; grid-column: 1; display: flex; flex-wrap: wrap; gap: .5rem 1.6rem;
-  margin-top: 1.25rem; font-size: var(--t-label); color: var(--mute); }
-.legend li { display: flex; align-items: center; gap: .5rem; min-width: 0; }
-.legend i { width: 10px; height: 10px; flex: none; }
-.legend .on { background: var(--white); } .legend .ask { background: var(--mute); }
+.pane__n { font-size: var(--t-lead); line-height: 1.5; color: var(--cream); max-width: 44ch; }
+
+/* Content-sized, not a grid. The counts differ per meat — four, two, one — and any
+   fixed column count orphans one of them: four items in three tracks leaves a widow,
+   four tracks cuts the longest name in half. Items sized to their own words wrap
+   naturally instead, and the ragged rule lengths read as tags rather than a table. */
+.named { display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 3vw, 2rem) clamp(1.75rem, 3.5vw, 2.75rem);
+  margin-top: clamp(1.5rem, 3vw, 2.25rem); }
+.named li { position: relative; flex: 0 1 auto; min-width: min(100%, 200px); padding-top: 1.15rem; }
+.named li::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 1px;
+  background: rgba(var(--gold-rgb),.5); }
+.named span { display: block; font-size: var(--t-label); font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+.named b { display: block; margin-top: .5rem; font-family: var(--board);
+  font-size: var(--t-lead); line-height: 1.2; letter-spacing: -0.015em; color: var(--white); }
+
+/* The other formats, said once instead of repeated in seven identical cells. */
+.pane__a { position: relative; margin-top: clamp(2rem, 4vw, 2.75rem); padding-top: 1.3rem;
+  font-size: var(--t-body); line-height: 1.8; color: var(--cream-2); }
+.pane__a::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 1px;
+  background: rgba(var(--cream-rgb),.14); }
+.pane__a span { display: block; margin-bottom: .3rem; font-size: var(--t-label);
+  font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+
 
 /* ------------------------------------------------------------- 9. the plates */
 .dishes { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem);
