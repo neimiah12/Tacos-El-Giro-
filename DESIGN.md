@@ -138,9 +138,10 @@ light falls off.
 
 The density is generous and the composition is a single column. There is one accent that
 behaves like a lamp (gold) and one that behaves like a verb (red), and both come off the
-owner's own logo rather than a brand kit. The type is signage first — condensed Anton caps
-at the sizes a hand-painted menu board would use — with Archivo doing all the reading work
-underneath it.
+owner's own logo rather than a brand kit. The type is signage first — condensed Anton at the
+sizes a hand-painted menu board would use, caps everywhere it is writing and sentence case
+inside the board where it is a control — with Archivo doing all the reading work underneath
+it.
 
 Its anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of
 "features", a metric strip under the hero, a fade-up on every section. This build refuses
@@ -221,18 +222,19 @@ the tonal ramp and from photography, never from flipping the ground.
 **Body Font:** Archivo (with the system UI stack)
 
 **Character:** A hand-painted menu board over a clean utilitarian sign shop. Anton is
-condensed, heavy and always shouting in caps; Archivo is neutral, legible at small sizes, and
-does every job that involves reading a sentence.
+condensed and heavy — shouting in caps as the page's voice, dropping to sentence case the
+moment it is labelling something the visitor has to choose between; Archivo is neutral,
+legible at small sizes, and does every job that involves reading a sentence.
 
 ### Hierarchy
 - **Display** (Anton 400, `clamp(2.75rem, 0.9rem + 7.4vw, 6rem)` → 96px, 0.88, -0.02em caps):
   the hero headline only. One per page.
-- **Headline** (Anton 400, `clamp(2rem, 1.3rem + 2.4vw, 2.75rem)` → 44px, 0.96, -0.005em caps):
-  section headings and the board's own title.
+- **Headline** (Anton 400, `clamp(2rem, 1.3rem + 2.4vw, 2.75rem)` → 44px, -0.005em): section
+  headings in caps at 0.96; the board's own title in sentence case at 1.02.
 - **Stat** (Anton 400, `clamp(1.75rem, 1.2rem + 1.7vw, 2rem)` → 32px, 1.0, -0.01em caps): the
   three claim figures in About.
-- **Title** (Anton 400, 22px step, 1.05, 0.015em caps): dish names, the wordmark, and — since
-  the rebuild — the meat names on the chips.
+- **Title** (Anton 400, 22px step): dish names and the wordmark in caps at 1.05/0.015em; the
+  meat names on the chips in sentence case at 1.1/-0.005em.
 - **Lead** (Archivo 400, 22px step, 1.55): the hero paragraph, section ledes, review quotes'
   scale, and the Visit rows.
 - **Body** (Archivo 400, 16px, 1.65): all paragraph copy, capped at 34–68ch depending on
@@ -245,9 +247,14 @@ does every job that involves reading a sentence.
 renders. Every size is one of `--t-label`, `--t-body`, `--t-lead`, `--t-stat`, `--t-head`,
 `--t-display`; new type picks a step rather than adding one.
 
-**The Anton Is Caps Rule.** Anton is only ever set uppercase, at 0.88–1.34 line-height, with
-letter-spacing between -0.02em and +0.02em. It never sets a paragraph and never appears in
-sentence case.
+**The Anton Is Caps Except In The Board Rule.** Anton is set uppercase everywhere it carries
+the page's editorial voice — hero, section headings, claim figures, dish names, the wordmark —
+at 0.88–1.34 line-height with letter-spacing between -0.02em and 0. Inside the board it is set
+in **sentence case**: the title, the five meat names, and the format answers. That is the one
+exception and it is deliberate — the board is a control, not writing, and sentence case returns
+the word shapes that make a control scan faster than the prose around it. Caps tracking
+(+0.015em) does not travel with it; sentence-case Anton sits at -0.005em to 0. Anton never sets
+a paragraph.
 
 **The Readable Control Rule.** The meat names are the entire point of the pick-a-meat control,
 so they are set at the lead step (22px desktop, 19px mobile), not at body. Condensed caps at
@@ -342,7 +349,7 @@ dishes on narrow screens, 4:3 for gallery and visit tiles.
 
 ### Chips (meat selector)
 - **Style:** `surf-1` cells in a 1px-gapped grid, padding 1.2rem, Anton name at the 22px lead
-  step in cream over a 12px/700 tracked-caps sublabel in `mute`.
+  step in cream, sentence case, over a 12px/700 tracked-caps sublabel in `mute`.
 - **State:** hover steps to `surf-3` with a gold name; selected floods the whole cell to gold
   with ink type (9.89:1) and the sublabel in `on-gold-2` (5.47:1). Selection is driven by radio
   inputs and `:checked` — no JavaScript.
@@ -376,8 +383,10 @@ white would otherwise be the ground.
 ### The Board (signature)
 The centrepiece. Five meat chips across the top; below them one shared grid cell holding five
 panes of eight format cells each. A format cell is a 12px muted caps label over the availability
-answer set in gold Anton caps; cells whose answer is unconfirmed use the `.ask` variant — `ink`
-ground, Archivo sentence case in `mute` — and a legend keys the two states.
+answer set in gold sentence-case Anton; cells whose answer is unconfirmed use the `.ask` variant
+— `ink` ground, Archivo sentence case in `mute` — and a legend keys the two states. Only the
+12px labels are caps inside the board; everything a person reads to make the choice is sentence
+case.
 
 ### Named Rules
 **The No Price Rule.** No per-item price renders anywhere inside `#menu`. No per-item price is
@@ -428,7 +437,8 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 - **Don't** add a scroll-reveal observer or a per-section fade-up. There is one authored moment
   — the hero light coming up on load (`lightUp`, 1900ms) with the hero text rising behind it on
   a 420–860ms stagger — and its value is that it is the only one.
-- **Don't** set Anton in sentence case or use it for a paragraph.
+- **Don't** set Anton in sentence case outside the board, and never use it for a paragraph.
+  The board is the one place it goes sentence case, because it is a control.
 - **Don't** put a tracked-caps kicker or eyebrow above a heading.
 - **Don't** invert a section to a light ground.
 - **Don't** reintroduce Fraunces — it was swapped out of this build as the obvious warm serif
