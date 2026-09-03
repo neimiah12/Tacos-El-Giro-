@@ -40,10 +40,20 @@ const embed = (html) => html.replace(/src="(img\/[\w-]+\.webp)"/g, (m, rel) => {
   return `src="data:image/webp;base64,${b64}"`;
 });
 
+// The artifact sandbox admits no third-party frames at all, so the Google map
+// embed would be a white rectangle on a dark page. The address panel underneath
+// it is already the designed fallback, so drop the frame and let the panel be
+// the map here. The shipped site keeps the embed.
+let mapsDropped = 0;
+const dropMap = (h) => h.replace(/\s*<iframe class="map"[\s\S]*?<\/iframe>/g, () => {
+  mapsDropped++; return '';
+});
+
 // The artifact wrapper owns <!doctype>, <html>, <head> and <body>.
 const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/);
 if (!bodyMatch) throw new Error('could not find <body>');
-const body = embed(bodyMatch[1]).replace(/\s*<script src="script\.js"[^>]*><\/script>\s*/, '\n');
+const body = dropMap(embed(bodyMatch[1])).replace(/\s*<script src="script\.js"[^>]*><\/script>\s*/, '\n');
+if (mapsDropped !== 1) throw new Error(`expected exactly one map embed to drop, dropped ${mapsDropped}`);
 
 const out = `<title>Tacos El Giro</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400..700&family=Archivo+Black&display=swap">

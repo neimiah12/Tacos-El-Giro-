@@ -14,6 +14,22 @@
 (function () {
   'use strict';
 
+  /* ------------------------------------------- the map, failing visible */
+  /* A blocked frame still fires load, with an empty same-origin about:blank
+     behind it — which is exactly how we tell the two apart. A real Google
+     document is cross-origin, so reading contentDocument throws, and that
+     throw is the proof the embed is live. */
+  Array.prototype.forEach.call(document.querySelectorAll('iframe.map'), function (f) {
+    f.addEventListener('load', function () {
+      var blank = false;
+      try {
+        var d = f.contentDocument;
+        blank = !!d && (!d.body || d.body.childElementCount === 0);
+      } catch (e) { blank = false; }
+      if (!blank) f.classList.add('is-on');
+    });
+  });
+
   /* ------------------------------------------- photography, failing safe */
   function markMissing(img) {
     var shot = img.closest('.shot');

@@ -272,7 +272,18 @@
         </div>
         <div class="visit__r">
           <figure class="shot" style="margin:0"><img src="img/truck.webp" alt="The blue Tacos El Giro food truck with its order window open and customers waiting" loading="lazy" decoding="async"><figcaption>Look for the blue truck</figcaption></figure>
-          <iframe class="map" title="Map showing Tacos El Giro at 6481 W Skagit Ave, Kennewick, WA 99336" src="https://www.google.com/maps?q=Tacos%20El%20Giro%2C%206481%20W%20Skagit%20Ave%2C%20Kennewick%2C%20WA%2099336&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <!-- The embed paints its own white document, and any context that blocks
+               third-party frames leaves that white rectangle sitting on a dark page.
+               The panel underneath is the real fallback: script.js only reveals the
+               iframe once it proves it loaded something other than about:blank. -->
+          <div class="mapf">
+            <a class="mapf__b" href="https://www.google.com/maps/dir/?api=1&amp;destination=Tacos+El+Giro%2C+6481+W+Skagit+Ave%2C+Kennewick%2C+WA+99336" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <b>6481 W Skagit Ave</b>
+              <span>Open in Google Maps</span>
+            </a>
+            <iframe class="map" title="Map showing Tacos El Giro at 6481 W Skagit Ave, Kennewick, WA 99336" src="https://www.google.com/maps?q=Tacos%20El%20Giro%2C%206481%20W%20Skagit%20Ave%2C%20Kennewick%2C%20WA%2099336&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
         </div>
       </div>
       <div class="note">
