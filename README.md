@@ -17,7 +17,7 @@ Keep the port stable for a whole working session so a refresh always works.
 
 ## Verify it
 
-Three gates, and all three have to pass.
+Five checks across two pages, and all of them have to pass.
 
 `verify.mjs` implements §7 of the tier process. It walks **every** leaf element that has text
 (672 of them, across all five meat states), composites translucent ancestors rather than
@@ -29,8 +29,13 @@ states that actually break — the minute before close, the minute of close, a c
 Sunday night with Monday dark behind it, midnight. The page makes a live claim, so the claim is
 tested rather than trusted; change the hours in `script.js` and re-run it.
 
-`verify:design` is the vendored **impeccable** detector. If it prints `DEGRADED`, stop and
-install its dependencies — degraded mode returns `[]` and reads exactly like a clean pass.
+`verify:prices` runs the same §7 gate against `prices.html`. The gate adapts: a page with no
+meat board walks once instead of five times, and reports that the board invariant is out of
+scope there rather than silently skipping it.
+
+`verify:design` is the vendored **impeccable** detector, run over both pages. If it prints
+`DEGRADED`, stop and install its dependencies — degraded mode returns `[]` and reads exactly
+like a clean pass.
 
 ```bash
 npm install
@@ -58,7 +63,8 @@ re-verify against the package, not the source:
 ## What is in here
 
 ```
-index.html  styles.css  script.js  favicon.svg   the site
+index.html  prices.html                          the two pages
+styles.css  script.js  favicon.svg              shared by both
 fonts/                                           Anton + Archivo, self-hosted woff2, 124 KB
 img/                                             the owner's photographs, .jpg source + .webp
 verify.mjs  package.sh  preview.mjs              the gate, the packager, the flattener
@@ -83,8 +89,10 @@ The menu is a matrix: **five meats crossed with eight formats.** So the page *is
 window — pick a meat, the formats resolve. It runs on radio inputs and `:checked`, so it
 works with JavaScript off.
 
-**No prices render in the board.** No per-item price exists in any source; the range is
-stated once in prose instead. `verify.mjs` fails the build if a price appears.
+**No prices render in the board**, and `verify.mjs` fails the build if one appears. That used
+to hold because no per-item price was confirmed. It now holds because the board is a chooser and
+not a shop: prices are confirmed, and they live on `prices.html`. If that should change it is a
+decision to take deliberately, not something to let erode one price at a time.
 
 ## The palette
 
@@ -99,13 +107,17 @@ against the **worst surface it lands on**, not against the page ground; the tabl
 
 `PRODUCT.md` carries the full list. The short version:
 
-1. **The second address.** The owner's own Tacos Norteños graphic advertises two locations.
+1. **Barbacoa or chorizo?** The client's price list carries barbacoa and no chorizo; this
+   site's board carries chorizo and no barbacoa. Both are sourced, from different places, so
+   the page states both rather than picking. Only the owner can settle it. Same for the
+   price list's *salad* against the board's *plate*.
+2. **The second address.** The owner's own Tacos Norteños graphic advertises two locations.
    Only one is on record, so only one is on the page — and the published hours are stated for
    that one address. Nothing says the two keep the same day.
-2. **A second source for the phone number.** It is wired at the client's request on a single
+3. **A second source for the phone number.** It is wired at the client's request on a single
    source; §1 wants two independent confirmations.
-3. ~~**Hours**~~ — closed 2026-09-04. Mon closed, Tue–Sun 11 AM – 7:30 PM, supplied by the
+4. ~~**Hours**~~ — closed 2026-09-04. Mon closed, Tue–Sun 11 AM – 7:30 PM, supplied by the
    client. Sourced in `PRODUCT.md`, published, in the JSON-LD, and covered by `verify:hours`.
-4. **`noindex, nofollow` is set** — in `index.html` and again as an `X-Robots-Tag` header in
+5. **`noindex, nofollow` is set** — in `index.html` and again as an `X-Robots-Tag` header in
    `deploy/_headers`. Both come off together, and not before the owner confirms the phone,
    the second address and delivery. Deploy only on an explicit go-ahead.

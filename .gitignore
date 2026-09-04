@@ -7,6 +7,7 @@ photos_raw/
 # Derived — regenerate with ./package.sh and `npm run preview`
 deploy/
 preview.artifact.html
+preview.prices.html
 *.zip
 
 # Tooling for the verification gate only; the site itself has no build step.

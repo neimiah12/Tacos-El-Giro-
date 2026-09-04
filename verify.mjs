@@ -17,7 +17,15 @@ import { chromium } from 'playwright';
 
 const URL = process.argv[2] || 'http://localhost:8000';
 const EXE = process.env.CHROME_PATH || undefined;
-const MEATS = ['k-birria', 'k-adobada', 'k-chorizo', 'k-chicken', 'k-asada'];
+/* The board's five states. A page without the board — prices.html — has none of
+   these, so the walks below run once instead of five times rather than throwing
+   on a null radio. The gate covers every page this repo ships, not just index. */
+const BOARD_MEATS = ['k-birria', 'k-adobada', 'k-chorizo', 'k-chicken', 'k-asada'];
+let MEATS = BOARD_MEATS;
+const setMeat = async (page, id) => {
+  if (!id) return;
+  await page.evaluate(i => { const el = document.getElementById(i); if (el) el.checked = true; }, id);
+};
 
 const fail = [];
 const note = (s) => console.log(s);
@@ -93,18 +101,22 @@ note('\n[1] Contrast — every leaf element with text, per meat');
   await page.goto(URL, { waitUntil: 'load' });
   await page.waitForTimeout(400);
 
+  const present = await page.evaluate(ids => ids.filter(i => document.getElementById(i)), BOARD_MEATS);
+  MEATS = present.length ? present : [null];
+  if (!present.length) note('  no meat board on this page — one pass instead of five');
+
   let checked = 0, worst = { ratio: 99 };
   for (const meat of MEATS) {
-    await page.evaluate(id => { document.getElementById(id).checked = true; }, meat);
+    await setMeat(page, meat);
     await page.waitForTimeout(280);
     const rows = await page.evaluate(walk);
     checked += rows.length;
     for (const r of rows) {
-      if (!r.pass) bad(`${meat}  ${r.ratio}:1 (needs ${r.target}) ${r.color} on ${r.bg}  <${r.sel}> "${r.text}"`);
+      if (!r.pass) bad(`${meat || 'page'}  ${r.ratio}:1 (needs ${r.target}) ${r.color} on ${r.bg}  <${r.sel}> "${r.text}"`);
       if (r.ratio < worst.ratio) worst = { ...r, meat };
     }
   }
-  note(`  ${checked} leaf elements checked across ${MEATS.length} meat states`);
+  note(`  ${checked} leaf elements checked` + (present.length ? ` across ${MEATS.length} meat states` : ''));
   note(`  tightest passing pair: ${worst.ratio}:1 (needs ${worst.target}) <${worst.sel}> "${worst.text}"`);
   await ctx.close();
 }
@@ -160,7 +172,7 @@ for (const vp of [{ w: 1280, h: 900, m: false }, { w: 375, h: 812, m: true }]) {
   const page = await ctx.newPage();
   await page.goto(URL, { waitUntil: 'load' });
   for (const meat of MEATS) {
-    await page.evaluate(id => { document.getElementById(id).checked = true; }, meat);
+    await setMeat(page, meat);
     await page.waitForTimeout(150);
     const o = await page.evaluate(() => {
       const d = document.documentElement;
@@ -169,9 +181,10 @@ for (const vp of [{ w: 1280, h: 900, m: false }, { w: 375, h: 812, m: true }]) {
         .map(e => e.tagName.toLowerCase() + '.' + (typeof e.className === 'string' ? e.className.trim().split(/\s+/).join('.') : ''));
       return { sw: d.scrollWidth, cw: d.clientWidth, wide: [...new Set(wide)].slice(0, 6) };
     });
-    if (o.sw > o.cw + 1) bad(`overflow at ${vp.w}px (${meat}): scrollWidth ${o.sw} > clientWidth ${o.cw} — ${o.wide.join(', ')}`);
+    if (o.sw > o.cw + 1) bad(`overflow at ${vp.w}px (${meat || 'page'}): scrollWidth ${o.sw} > clientWidth ${o.cw} — ${o.wide.join(', ')}`);
   }
-  note(`  ${vp.w}px${vp.m ? ' (emulated mobile)' : ''}: no horizontal overflow in any meat state`);
+  note(`  ${vp.w}px${vp.m ? ' (emulated mobile)' : ''}: no horizontal overflow`
+    + (MEATS[0] ? ' in any meat state' : ''));
   await ctx.close();
 }
 
@@ -234,10 +247,12 @@ note('\n[4] Structure, assets and the architecture invariant');
       return has ? Math.round(parseFloat(getComputedStyle(e).fontSize) * 10) / 10 : null;
     }).filter(Boolean))].sort((a, b) => a - b);
 
-    // INVARIANT: no per-item price is confirmed, so none may render in the menu.
-    // The $10-20 per-person range is prose and lives outside #menu.
-    const menuText = (document.querySelector('#menu') || {}).textContent || '';
-    const prices = menuText.match(/\$\s?\d/g) || [];
+    // INVARIANT: the board is a chooser, not a price list. Per-item prices are
+    // confirmed now and have their own page — the board still renders none, so
+    // that switching meats never turns into shopping. A page with no #menu is
+    // not exempt, it is out of scope: the check reports which it was.
+    const menu = document.querySelector('#menu');
+    const prices = menu ? (menu.textContent.match(/\$\s?\d/g) || []) : null;
 
     const tel = [...document.querySelectorAll('a[href^="tel:"]')];
     const telBad = tel.filter(a => a.getAttribute('href') !== 'tel:+15092820699').length;
@@ -303,7 +318,8 @@ note('\n[4] Structure, assets and the architecture invariant');
   else note('  no functional text below 11px');
   note('  rendered type ramp: ' + res.sizes.map(s => s + 'px').join(' / '));
 
-  if (res.prices.length) bad(`INVARIANT BROKEN — ${res.prices.length} price(s) render inside #menu`);
+  if (res.prices === null) note('  no #menu on this page — the board invariant does not apply here');
+  else if (res.prices.length) bad(`INVARIANT BROKEN — ${res.prices.length} price(s) render inside #menu`);
   else note('  INVARIANT HOLDS — zero prices render in the menu');
 
   if (!res.telCount) bad('no tel: link — the client asked for a Call button');
