@@ -17,23 +17,12 @@
  *      The published page is private by default; the SHIPPED file keeps its
  *      noindex, and that is the one that matters.
  *
- *   4. Cross-page links are rewritten to the other page's artifact URL, because
- *      each artifact is one flattened file with no prices.html beside it. Set
- *      PRICES_URL / INDEX_URL to make the nav work across the two previews;
- *      without them the link is neutered to "#" rather than left broken.
- *
- *   node preview.mjs           ->  preview.artifact.html   (index.html)
- *   node preview.mjs prices    ->  preview.prices.html     (prices.html)
+ *   node preview.mjs   ->  preview.artifact.html
  */
 import fs from 'node:fs';
 import path from 'node:path';
 
-const PAGE = process.argv[2] === 'prices' ? 'prices' : 'index';
-const SRC = PAGE === 'prices' ? 'prices.html' : 'index.html';
-const OUT = PAGE === 'prices' ? 'preview.prices.html' : 'preview.artifact.html';
-const TITLE = PAGE === 'prices' ? 'Tacos El Giro — Prices' : 'Tacos El Giro';
-
-const html = fs.readFileSync(SRC, 'utf8');
+const html = fs.readFileSync('index.html', 'utf8');
 const css = fs.readFileSync('styles.css', 'utf8');
 const js = fs.readFileSync('script.js', 'utf8');
 
@@ -60,28 +49,15 @@ const dropMap = (h) => h.replace(/\s*<iframe class="map"[\s\S]*?<\/iframe>/g, ()
   mapsDropped++; return '';
 });
 
-// Each preview is one file, so index.html#about resolves to nothing here and
-// prices.html does not exist beside it. Point them at the other artifact when
-// its URL is known, and at "#" when it is not — a dead link that goes nowhere
-// beats one that 404s.
-const other = (PAGE === 'prices' ? process.env.INDEX_URL : process.env.PRICES_URL) || '';
-const otherFile = PAGE === 'prices' ? 'index.html' : 'prices.html';
-let relinked = 0;
-const relink = (h) => h
-  .replace(new RegExp(`href="${otherFile}(#[\\w-]+)?"`, 'g'), () => {
-    relinked++; return `href="${other || '#'}"${other ? ' target="_top" rel="noopener"' : ''}`;
-  });
 
 // The artifact wrapper owns <!doctype>, <html>, <head> and <body>.
 const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/);
 if (!bodyMatch) throw new Error('could not find <body>');
-const body = relink(dropMap(embed(bodyMatch[1])))
+const body = dropMap(embed(bodyMatch[1]))
   .replace(/\s*<script src="script\.js"[^>]*><\/script>\s*/, '\n');
-const wantMaps = PAGE === 'index' ? 1 : 0;
-if (mapsDropped !== wantMaps) throw new Error(`expected ${wantMaps} map embed(s) to drop, dropped ${mapsDropped}`);
-if (!relinked) throw new Error(`no cross-page link to ${otherFile} found — the nav would strand the reader`);
+if (mapsDropped !== 1) throw new Error(`expected exactly one map embed to drop, dropped ${mapsDropped}`);
 
-const out = `<title>${TITLE}</title>
+const out = `<title>Tacos El Giro</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400..700&family=Archivo+Black&display=swap">
 <style>
 ${cssNoFaces}
@@ -93,10 +69,9 @@ ${js}
 </script>
 `;
 
-fs.writeFileSync(OUT, out);
+fs.writeFileSync('preview.artifact.html', out);
 const kb = (Buffer.byteLength(out) / 1024).toFixed(1);
-console.log(`${OUT} written — ${kb} KB, single file`);
-console.log(`  ${relinked} cross-page link(s) -> ${other || '# (no URL given)'}`);
+console.log(`preview.artifact.html written — ${kb} KB, single file`);
 console.log(`  ${inlined} photograph(s) inlined as data: URIs (${(bytes/1024/1024).toFixed(2)} MB base64)`);
 if (Buffer.byteLength(out) > 15 * 1024 * 1024) throw new Error('over the 16MB artifact limit');
 // Match real tags only — /<head/ alone also hits <header class="bar">.

@@ -7,7 +7,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 
 rm -rf deploy
 mkdir -p deploy/fonts
-cp index.html prices.html styles.css script.js favicon.svg deploy/
+cp index.html styles.css script.js favicon.svg deploy/
 cp fonts/*.woff2 deploy/fonts/
 # Only the optimised web copies ship. The .jpg originals and the three promo
 # graphics stay in the repo as source and evidence, never in deploy/.
@@ -43,7 +43,7 @@ HEADERS
 echo "deploy/ contents:"
 find deploy -type f | sort | sed 's/^/  /'
 
-for internal in PRODUCT.md DESIGN.md CLAUDE.md verify.mjs package.json package.sh preview.mjs preview.artifact.html preview.prices.html scripts .claude; do
+for internal in PRODUCT.md DESIGN.md CLAUDE.md verify.mjs package.json package.sh preview.mjs preview.artifact.html scripts .claude; do
   if [ -e "deploy/$internal" ]; then
     echo "REFUSING: $internal must never ship" >&2; exit 1
   fi

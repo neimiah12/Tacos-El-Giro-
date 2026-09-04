@@ -17,10 +17,10 @@ Keep the port stable for a whole working session so a refresh always works.
 
 ## Verify it
 
-Five checks across two pages, and all of them have to pass.
+Three gates, and all three have to pass.
 
 `verify.mjs` implements §7 of the tier process. It walks **every** leaf element that has text
-(672 of them, across all five meat states), composites translucent ancestors rather than
+(937 of them, across all five meat states), composites translucent ancestors rather than
 reading one background-colour, checks `:hover` separately, emulates a real mobile viewport,
 and asserts the architecture's invariant.
 
@@ -29,13 +29,12 @@ states that actually break — the minute before close, the minute of close, a c
 Sunday night with Monday dark behind it, midnight. The page makes a live claim, so the claim is
 tested rather than trusted; change the hours in `script.js` and re-run it.
 
-`verify:prices` runs the same §7 gate against `prices.html`. The gate adapts: a page with no
-meat board walks once instead of five times, and reports that the board invariant is out of
-scope there rather than silently skipping it.
+`verify:design` is the vendored **impeccable** detector. If it prints `DEGRADED`, stop and
+install its dependencies — degraded mode returns `[]` and reads exactly like a clean pass.
 
-`verify:design` is the vendored **impeccable** detector, run over both pages. If it prints
-`DEGRADED`, stop and install its dependencies — degraded mode returns `[]` and reads exactly
-like a clean pass.
+The gate adapts to whatever page it is pointed at: with no meat board it walks once instead of
+five times and reports the board invariant as out of scope rather than silently skipping it.
+Only one page ships, but the gate no longer assumes that.
 
 ```bash
 npm install
@@ -63,8 +62,7 @@ re-verify against the package, not the source:
 ## What is in here
 
 ```
-index.html  prices.html                          the two pages
-styles.css  script.js  favicon.svg              shared by both
+index.html  styles.css  script.js  favicon.svg   the site — one page, one scroll
 fonts/                                           Anton + Archivo, self-hosted woff2, 124 KB
 img/                                             the owner's photographs, .jpg source + .webp
 verify.mjs  package.sh  preview.mjs              the gate, the packager, the flattener
