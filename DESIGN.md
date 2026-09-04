@@ -388,7 +388,10 @@ length it moves outside the label entirely: the board's ask line sets "Ask at th
 caps and lets an italic `mute` "Pregunta en la ventana:" lead the format list beneath it,
 because "ASK AT THE WINDOW · PREGUNTA EN LA VENTANA" is a 42-character all-caps run — a
 detector finding, and a readability problem before it is a style one. Two languages never both
-sit inside one tracked-caps label. Every Spanish fragment carries `lang="es"`.
+sit inside one tracked-caps label. Inside a sentence the same italic works as an inline gloss —
+the Visit price row runs "Per-item prices are up at the window · *los precios están en la
+ventana*" through `.row p i`, `mute` against the row's cream, so the gloss reads as the second
+language rather than as a second sentence. Every Spanish fragment carries `lang="es"`.
 
 **The Tabular Numerals Rule.** Any rendered figure — rating, review count, price range —
 carries `.num` for `font-variant-numeric: tabular-nums`.

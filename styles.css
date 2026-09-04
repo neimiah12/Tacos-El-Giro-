@@ -512,6 +512,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   text-transform: uppercase; color: var(--white); margin-bottom: .35rem; }
 .row p, .row address { font-style: normal; color: var(--cream); line-height: 1.55;
   font-size: var(--t-lead); }
+.row p i { font-style: italic; color: var(--mute); }
 .row a { transition: color .25s var(--ease); }
 .row a:hover { color: var(--white); }
 /* Hours. Six identical days collapse to one line — the same instinct as the

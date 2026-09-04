@@ -8,7 +8,7 @@
         "role": "neutral",
         "displayName": "Truck Shadow",
         "canonical": "#080E28",
-        "source": "img/truck.jpg — truck body in shadow (#001060), darkened to hold type",
+        "source": "img/truck.jpg \u2014 truck body in shadow (#001060), darkened to hold type",
         "tonalRamp": [
           "#04081A",
           "#080E28",
@@ -102,7 +102,7 @@
         "role": "neutral",
         "displayName": "Comal Ash",
         "canonical": "#B1A695",
-        "contrastMin": "5.50:1 on surf-3 — the floor of the neutral ramp",
+        "contrastMin": "5.50:1 on surf-3 \u2014 the floor of the neutral ramp",
         "tonalRamp": [
           "#2B2418",
           "#463C2A",
@@ -118,7 +118,7 @@
         "role": "primary",
         "displayName": "Aperture Gold",
         "canonical": "#F0B008",
-        "source": "img/promo-nortenos.jpg — logo badge and display type",
+        "source": "img/promo-nortenos.jpg \u2014 logo badge and display type",
         "contrastMin": "6.86:1 on surf-3",
         "tonalRamp": [
           "#2E2101",
@@ -136,7 +136,7 @@
         "role": "secondary",
         "displayName": "Signage Red",
         "canonical": "#C81818",
-        "source": "img/promo-nortenos.jpg — logo lettering",
+        "source": "img/promo-nortenos.jpg \u2014 logo lettering",
         "note": "Ground only. Cream on red is 5.02:1; gold on red (3.03:1) and red on ink (3.32:1) never ship.",
         "tonalRamp": [
           "#2A0505",
@@ -153,9 +153,9 @@
         "role": "primary",
         "displayName": "Signage White",
         "canonical": "#FFFFFF",
-        "source": "img/promo-nortenos.jpg — the display type and the logo outline, the same file gold and red were sampled from",
+        "source": "img/promo-nortenos.jpg \u2014 the display type and the logo outline, the same file gold and red were sampled from",
         "contrastMin": "13.19:1 on surf-3 (19.03 on ink, 17.77 on surf-1, 16.15 on surf-2)",
-        "note": "The emphasis voice, and the only thing that outranks cream. Against cream it is 1.16:1 — a shift in warmth, not a jump in contrast, so that step never carries meaning on its own.",
+        "note": "The emphasis voice, and the only thing that outranks cream. Against cream it is 1.16:1 \u2014 a shift in warmth, not a jump in contrast, so that step never carries meaning on its own.",
         "tonalRamp": [
           "#262626",
           "#404040",
@@ -171,7 +171,7 @@
         "role": "neutral",
         "displayName": "On Red",
         "canonical": "#F5EDE0",
-        "contrastMin": "5.02:1 on red — the tightest pairing that ships"
+        "contrastMin": "5.02:1 on red \u2014 the tightest pairing that ships"
       },
       "on-gold": {
         "role": "neutral",
@@ -228,7 +228,7 @@
       },
       "body": {
         "displayName": "Body",
-        "purpose": "All paragraph copy at 16px/1.65, capped 34–68ch."
+        "purpose": "All paragraph copy at 16px/1.65, capped 34\u201368ch."
       },
       "spanish": {
         "displayName": "Spanish",
@@ -236,7 +236,7 @@
       },
       "label": {
         "displayName": "Label",
-        "purpose": "12px/700 tracked caps (0.10–0.18em): nav, meta, chip sublabels, the board’s format labels, Visit row labels, captions, footer headings. Only ever the key half of a key/value pair — never a kicker above a heading."
+        "purpose": "12px/700 tracked caps (0.10\u20130.18em): nav, meta, chip sublabels, the board\u2019s format labels, Visit row labels, captions, footer headings. Only ever the key half of a key/value pair \u2014 never a kicker above a heading."
       },
       "numeric": {
         "displayName": "Numeric",
@@ -291,7 +291,7 @@
       {
         "name": "out",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Movement — button lift, underline scale, image scale, the load animation."
+        "purpose": "Movement \u2014 button lift, underline scale, image scale, the load animation."
       },
       {
         "name": "light-up",
@@ -300,7 +300,7 @@
       },
       {
         "name": "rise-in",
-        "value": "riseIn 700–800ms var(--out), 420–860ms stagger",
+        "value": "riseIn 700\u2013800ms var(--out), 420\u2013860ms stagger",
         "purpose": "Hero text following the light up. Nothing below the hero animates on entry."
       }
     ],
@@ -363,7 +363,7 @@
           "fonts/archivo-black-400-latin-ext.woff2 (14.3 KB)"
         ],
         "preloaded": false,
-        "purpose": "The order window only, on exactly three things: .board__t at 44px, .chip b at 22px, .named b at 22px. Wide and flat-sided where Anton is condensed — the board is a painted object, not page voice. Not preloaded: it is below the fold and its own fallback, Archivo, is already loaded, so the swap is nearly invisible."
+        "purpose": "The order window only, on exactly three things: .board__t at 44px, .chip b at 22px, .named b at 22px. Wide and flat-sided where Anton is condensed \u2014 the board is a painted object, not page voice. Not preloaded: it is below the fold and its own fallback, Archivo, is already loaded, so the swap is nearly invisible."
       }
     ]
   },
@@ -388,7 +388,7 @@
       "name": "Meat Chip",
       "kind": "chip",
       "refersTo": "chip",
-      "description": "The pick-a-meat control. Five fields separated by real 3px gaps — buttons, not a table row — with sentence-case Archivo Black at the 22px lead step; selection inverts the whole field to gold, no edge stripe.",
+      "description": "The pick-a-meat control. Five fields separated by real 3px gaps \u2014 buttons, not a table row \u2014 with sentence-case Archivo Black at the 22px lead step; selection inverts the whole field to gold, no edge stripe.",
       "html": "<div class=\"ds-chips\"><label class=\"ds-chip\"><b>Birria</b><small>Stewed beef</small></label><label class=\"ds-chip ds-chip-on\"><b>Adobada</b><small>Marinated pork</small></label></div>",
       "css": ".ds-chips { display: grid; gap: 3px; grid-template-columns: repeat(2, minmax(0, 1fr)); } .ds-chip { min-width: 0; display: block; padding: 1.15rem 1.2rem 1.25rem; cursor: pointer; background: #0D1538; transition: background-color .3s cubic-bezier(0.22,0.68,0.32,1); } .ds-chip b { display: block; font-family: 'Archivo Black', 'Archivo', 'Arial Black', sans-serif; font-weight: 400; font-size: 1.375rem; line-height: 1.15; letter-spacing: -0.015em; color: #F5EDE0; transition: color .3s; } .ds-chip small { display: block; margin-top: .5rem; font-family: Archivo, system-ui, sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #B1A695; transition: color .3s; } .ds-chip:hover { background: #1B2B68; } .ds-chip:hover b { color: #FFFFFF; } .ds-chip-on { background: #F0B008; } .ds-chip-on b { color: #080E28; } .ds-chip-on small { color: #4E3D0A; } .ds-chip:focus-visible { outline: 2px solid #F5EDE0; outline-offset: -3px; }"
     },
@@ -457,7 +457,7 @@
   ],
   "narrative": {
     "northStar": "The Truck After Dark",
-    "overview": "The page is the truck itself at night. The ground is not a neutral black chosen from a palette generator: it is the truck's own body colour, sampled from the owner's photographs and darkened until it holds type. Everything on that cobalt is either food, light, or an action. Nothing is boxed. Sections do not end at a rule or a card edge; they end where the light falls off.\n\nThe density is generous and the composition is a single column. There is one accent that behaves like a lamp (gold) and one that behaves like a verb (red), and both come off the owner's own logo rather than a brand kit. Type is signage first: condensed Anton in caps at the sizes a hand-painted sign uses, Archivo doing all the reading work underneath it, and — inside the order window only — a third face, wide and flat-sided, that makes the board read as a painted object rather than as more page.\n\nThe page is bilingual in the owner's own shape, not localised: an English line with the Spanish set in italic underneath it. Every marketing graphic the truck has made talks this way — COME HUNGRY. LEAVE HAPPY. over VEN CON HAMBRE. VETE FELIZ. — so the page does too. There is no language switcher and no second page; the second language is a voice, and italic is what marks it.\n\nIts anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of \"features\", a metric strip under the hero, a fade-up on every section. This build refuses all four. It also refuses the spreadsheet: the menu was once a 5×8 matrix of forty identical cells, thirty-one of which said the same thing, and that is now an exchange — pick a meat, the window answers. Where the direction contract named provisional hex values for gold (`#F9C22E`) and red (`#D8202A`), the shipped build supersedes them with values measured off the owner's materials; the contract's *intent* held, its placeholder numbers did not.",
+    "overview": "The page is the truck itself at night. The ground is not a neutral black chosen from a palette generator: it is the truck's own body colour, sampled from the owner's photographs and darkened until it holds type. Everything on that cobalt is either food, light, or an action. Nothing is boxed. Sections do not end at a rule or a card edge; they end where the light falls off.\n\nThe density is generous and the composition is a single column. There is one accent that behaves like a lamp (gold) and one that behaves like a verb (red), and both come off the owner's own logo rather than a brand kit. Type is signage first: condensed Anton in caps at the sizes a hand-painted sign uses, Archivo doing all the reading work underneath it, and \u2014 inside the order window only \u2014 a third face, wide and flat-sided, that makes the board read as a painted object rather than as more page.\n\nThe page is bilingual in the owner's own shape, not localised: an English line with the Spanish set in italic underneath it. Every marketing graphic the truck has made talks this way \u2014 COME HUNGRY. LEAVE HAPPY. over VEN CON HAMBRE. VETE FELIZ. \u2014 so the page does too. There is no language switcher and no second page; the second language is a voice, and italic is what marks it.\n\nIts anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of \"features\", a metric strip under the hero, a fade-up on every section. This build refuses all four. It also refuses the spreadsheet: the menu was once a 5\u00d78 matrix of forty identical cells, thirty-one of which said the same thing, and that is now an exchange \u2014 pick a meat, the window answers. Where the direction contract named provisional hex values for gold (`#F9C22E`) and red (`#D8202A`), the shipped build supersedes them with values measured off the owner's materials; the contract's *intent* held, its placeholder numbers did not.",
     "keyCharacteristics": [
       "A cobalt ground sampled from the truck body, in four darkened steps, never a neutral grey",
       "One gold aperture as the only light source, plus red reserved for actions",
@@ -466,14 +466,14 @@
       "One extra face, confined to the order window, because the board is an object and not prose",
       "Exactly one authored motion moment: the service light coming up on load",
       "An English line with its Spanish set in italic underneath it, everywhere a heading lands",
-      "Three ornaments, one technique — craft geometry as a CSS mask, painted only in palette tokens: papel picado on the board's edge, a cenefa on the footer's, an azulejo field under everything",
+      "Three ornaments, one technique \u2014 craft geometry as a CSS mask, painted only in palette tokens: papel picado on the board's edge, a cenefa on the footer's, an azulejo field under everything",
       "Cultural weight lives in the backgrounds only; nothing is added on top of anything a person reads",
       "No per-item price renders anywhere, because none is sourced"
     ],
     "rules": [
       {
         "name": "The Measured Against The Worst Surface Rule",
-        "body": "Every ratio in this system is swept against the lightest surface the colour can actually land on (`surf-3`), not against the page ground. The recorded minima are white 13.19, cream 11.35, cream-2 8.18, mute 5.50, gold 6.86 (as a surface only), cream-on-red 5.02, ink-on-gold 9.89, on-gold-2-on-gold 5.47. White also measures 19.03:1 on `ink`; where a stylesheet comment and this file disagree, this file is the authority. A new colour joins the palette only with its worst-surface number recorded here. Since the azulejo field went in, the surfaces are not the only ground. Where a tile stroke lands behind text the true ground is the field's cream overlay composited onto `ink`, which measures `rgb(21,26,50)`. The recorded minima on that tiled ground are cream 14.74, cream-2 10.62, mute 7.15, white 17.13 — mute is the floor, and it is the number `verify.mjs` reports on every run. Both sets of numbers are the standing record; a change to the field's opacity changes the second set and has to be re-measured, not estimated.",
+        "body": "Every ratio in this system is swept against the lightest surface the colour can actually land on (`surf-3`), not against the page ground. The recorded minima are white 13.19, cream 11.35, cream-2 8.18, mute 5.50, gold 6.86 (as a surface only), cream-on-red 5.02, ink-on-gold 9.89, on-gold-2-on-gold 5.47. White also measures 19.03:1 on `ink`; where a stylesheet comment and this file disagree, this file is the authority. A new colour joins the palette only with its worst-surface number recorded here. Since the azulejo field went in, the surfaces are not the only ground. Where a tile stroke lands behind text the true ground is the field's cream overlay composited onto `ink`, which measures `rgb(21,26,50)`. The recorded minima on that tiled ground are cream 14.74, cream-2 10.62, mute 7.15, white 17.13 \u2014 mute is the floor, and it is the number `verify.mjs` reports on every run. Both sets of numbers are the standing record; a change to the field's opacity changes the second set and has to be re-measured, not estimated.",
         "section": "colors"
       },
       {
@@ -483,12 +483,12 @@
       },
       {
         "name": "The Channel Token Rule",
-        "body": "Any translucent use of a palette colour composes it from the channel tokens — `--ink-rgb`, `--cream-rgb`, `--gold-rgb`, `--red-rgb` — inside `rgba()`. Never hand-write the channels. This file has twice shipped an `rgba()` literal that drifted from the token it was cut from; the channel tokens exist specifically so that cannot happen a third time. The only permitted bare literals are neutral black in shadows.",
+        "body": "Any translucent use of a palette colour composes it from the channel tokens \u2014 `--ink-rgb`, `--cream-rgb`, `--gold-rgb`, `--red-rgb` \u2014 inside `rgba()`. Never hand-write the channels. This file has twice shipped an `rgba()` literal that drifted from the token it was cut from; the channel tokens exist specifically so that cannot happen a third time. The only permitted bare literals are neutral black in shadows.",
         "section": "colors"
       },
       {
         "name": "The Gold Is Light, Never Type Rule",
-        "body": "Gold may glow, edge, underline, highlight or flood a field — the selected chip is the one large fill it is allowed, and the hairline over each named format is the one edge it draws inside the board. It sets no type at all, not a heading, not a label, not a link, not a hover. Anywhere emphasis used to be gold it is now `white`. The only gold foreground that ships is the review stars, which are icons rather than letters. This is the tightening of the older One Aperture Rule, which allowed gold to label: that allowance is withdrawn, and gold type is not to be reintroduced.",
+        "body": "Gold may glow, edge, underline, highlight or flood a field \u2014 the selected chip is the one large fill it is allowed, and the hairline over each named format is the one edge it draws inside the board. It sets no type at all, not a heading, not a label, not a link, not a hover. Anywhere emphasis used to be gold it is now `white`. The only gold foreground that ships is the review stars, which are icons rather than letters. This is the tightening of the older One Aperture Rule, which allowed gold to label: that allowance is withdrawn, and gold type is not to be reintroduced.",
         "section": "colors"
       },
       {
@@ -498,17 +498,17 @@
       },
       {
         "name": "The Six Steps Rule",
-        "body": "The ramp is 12 / 16 / 22 / 32 / 44 / 96 at 1280 and nothing else renders. Every size is one of `--t-label`, `--t-body`, `--t-lead`, `--t-stat`, `--t-head`, `--t-display`; new type picks a step rather than adding one. A third typeface did not add a step — Archivo Black entered at 44 and 22, both already on the ramp.",
+        "body": "The ramp is 12 / 16 / 22 / 32 / 44 / 96 at 1280 and nothing else renders. Every size is one of `--t-label`, `--t-body`, `--t-lead`, `--t-stat`, `--t-head`, `--t-display`; new type picks a step rather than adding one. A third typeface did not add a step \u2014 Archivo Black entered at 44 and 22, both already on the ramp.",
         "section": "typography"
       },
       {
         "name": "The Board Has Its Own Face Rule",
-        "body": "`--board` (Archivo Black) is allowed inside the order window and nowhere else on the page. It sets exactly three things: the board title at the 44px head step, the meat names on the chips, and the named product answers — both at the 22px lead step. It is not a fourth voice, it is the board's material: Anton is condensed and editorial and is the page talking, where a painted board is wide and flat-sided. Introducing `--board` on a heading, a paragraph, a button or a nav link would turn a material into a decoration, and is not permitted.",
+        "body": "`--board` (Archivo Black) is allowed inside the order window and nowhere else on the page. It sets exactly three things: the board title at the 44px head step, the meat names on the chips, and the named product answers \u2014 both at the 22px lead step. It is not a fourth voice, it is the board's material: Anton is condensed and editorial and is the page talking, where a painted board is wide and flat-sided. Introducing `--board` on a heading, a paragraph, a button or a nav link would turn a material into a decoration, and is not permitted.",
         "section": "typography"
       },
       {
         "name": "The Anton Is The Page's Caps Voice Rule",
-        "body": "Anton is set uppercase everywhere it carries the page's editorial voice — hero, section headings, claim figures, dish names, the wordmark — at 0.88–1.05 line-height with letter-spacing between -0.02em and +0.01em. The one place it is not caps is the review pull-quotes, which are transcribed speech at 1.34; caps would shout them. Anton never sets a paragraph, and Anton no longer appears anywhere inside the board. The sentence-case decision the board won still holds under its new face: nothing in the board is uppercase except the 12px Archivo 700 field labels. A control is not writing, and sentence case returns the word shapes that make it scan faster than the prose around it.",
+        "body": "Anton is set uppercase everywhere it carries the page's editorial voice \u2014 hero, section headings, claim figures, dish names, the wordmark \u2014 at 0.88\u20131.05 line-height with letter-spacing between -0.02em and +0.01em. The one place it is not caps is the review pull-quotes, which are transcribed speech at 1.34; caps would shout them. Anton never sets a paragraph, and Anton no longer appears anywhere inside the board. The sentence-case decision the board won still holds under its new face: nothing in the board is uppercase except the 12px Archivo 700 field labels. A control is not writing, and sentence case returns the word shapes that make it scan faster than the prose around it.",
         "section": "typography"
       },
       {
@@ -518,12 +518,12 @@
       },
       {
         "name": "The Bilingual Voice Rule",
-        "body": "English leads, Spanish follows, and Spanish is always italic. Under a heading it is the `.es` line — body size, `cream-2`, 44ch, sitting *under* the heading it belongs to, never above it, because a line above a heading is a kicker and this system does not ship kickers. Inside a 12px tracked-caps label the Spanish half drops out of caps into the same italic at weight 400 and 85% opacity, so a Visit row reads \"ADDRESS · dirección\" rather than as one long shout. And where the Spanish would push a tracked-caps label past readable length it moves outside the label entirely: the board's ask line sets \"Ask at the window\" in caps and lets an italic `mute` \"Pregunta en la ventana:\" lead the format list beneath it, because \"ASK AT THE WINDOW · PREGUNTA EN LA VENTANA\" is a 42-character all-caps run — a detector finding, and a readability problem before it is a style one. Two languages never both sit inside one tracked-caps label. Every Spanish fragment carries `lang=\"es\"`.",
+        "body": "English leads, Spanish follows, and Spanish is always italic. Under a heading it is the `.es` line \u2014 body size, `cream-2`, 44ch, sitting *under* the heading it belongs to, never above it, because a line above a heading is a kicker and this system does not ship kickers. Inside a 12px tracked-caps label the Spanish half drops out of caps into the same italic at weight 400 and 85% opacity, so a Visit row reads \"ADDRESS \u00b7 direcci\u00f3n\" rather than as one long shout. And where the Spanish would push a tracked-caps label past readable length it moves outside the label entirely: the board's ask line sets \"Ask at the window\" in caps and lets an italic `mute` \"Pregunta en la ventana:\" lead the format list beneath it, because \"ASK AT THE WINDOW \u00b7 PREGUNTA EN LA VENTANA\" is a 42-character all-caps run \u2014 a detector finding, and a readability problem before it is a style one. Two languages never both sit inside one tracked-caps label. Inside a sentence the same italic works as an inline gloss \u2014 the Visit price row runs \"Per-item prices are up at the window \u00b7 los precios est\u00e1n en la ventana\" through `.row p i`, mute against the row\u2019s cream, so the gloss reads as the second language rather than as a second sentence. Every Spanish fragment carries `lang=\"es\"`.",
         "section": "typography"
       },
       {
         "name": "The Tabular Numerals Rule",
-        "body": "Any rendered figure — rating, review count, price range — carries `.num` for `font-variant-numeric: tabular-nums`.",
+        "body": "Any rendered figure \u2014 rating, review count, price range \u2014 carries `.num` for `font-variant-numeric: tabular-nums`.",
         "section": "typography"
       },
       {
@@ -538,22 +538,22 @@
       },
       {
         "name": "The Declared Columns Rule",
-        "body": "A grid with a fixed, known item count declares its columns; `auto-fit` is for counts that vary. Five chips under `auto-fit` left a dead cell at every width where the row count did not divide five, so `.chips` is 2 columns with the fifth spanning the row, and 5 columns from 1020px. The named-answer list is the one recorded exception and is not a grid at all: its count changes per meat (4 / 1 / 1 / 1 / 2), and any fixed column count orphans one of them — four items in three tracks leaves a widow, four tracks cut \"Carne Asada Tacos\" (234px, the widest name) in half. It is a wrapping flex row whose items are sized to their own words at `min-width: min(100%, 200px)`, so the rule lengths come out ragged and read as tags rather than as a table. Content sizing is licensed here by a measured failure, not by preference; anywhere the count is known, declare.",
+        "body": "A grid with a fixed, known item count declares its columns; `auto-fit` is for counts that vary. Five chips under `auto-fit` left a dead cell at every width where the row count did not divide five, so `.chips` is 2 columns with the fifth spanning the row, and 5 columns from 1020px. The named-answer list is the one recorded exception and is not a grid at all: its count changes per meat (4 / 1 / 1 / 1 / 2), and any fixed column count orphans one of them \u2014 four items in three tracks leaves a widow, four tracks cut \"Carne Asada Tacos\" (234px, the widest name) in half. It is a wrapping flex row whose items are sized to their own words at `min-width: min(100%, 200px)`, so the rule lengths come out ragged and read as tags rather than as a table. Content sizing is licensed here by a measured failure, not by preference; anywhere the count is known, declare.",
         "section": "layout"
       },
       {
         "name": "The Masked Ornament Rule",
-        "body": "Ornament in this system is one technique used a small number of times, not a quota. Three instances ship: a 30px papel picado band across the board's top edge (`.board::before`, repeating every 96px), a 20px cenefa — the tiled border strip — across the footer's top edge (`.foot::before`, repeating every 44px, carrying the same eight-point estrella as the field), and the azulejo field itself (see below). An earlier revision of this file capped the page at exactly one ornament; that ceiling is superseded deliberately, and the replacement is a principle rather than a number, because a count says nothing about whether a fourth would be right. Four conditions define the technique, and all four are load-bearing. The shape is craft geometry expressed as an inline SVG `mask-image`, never a picture or an image asset — the drawing is the mask, so nothing about it can be a foreign object dropped onto the page. The colour is supplied by a palette token (`--gold` / `--cream`, via the channel tokens where translucent), so an ornament can never introduce a colour and can never drift out of the palette. The placement is either a structural edge the layout already had — the board's top edge, the footer's top edge — or a ground field beneath everything; ornament is never free-floating and never sits on top of content, which is why this pass added cultural weight to the backgrounds only and restyled nothing a person reads. And the shape must be geometry the world itself owns: papel picado, cenefa and azulejo are the taqueria's own materials, not applied ethnic decoration. A fourth ornament is permitted only if it meets all four conditions and there is a structural edge or ground already waiting for it. Wanting more texture is not one of the conditions. If no such edge exists, the correct outcome is to decline, not to invent an edge to hang something on.",
+        "body": "Ornament in this system is one technique used a small number of times, not a quota. Three instances ship: a 30px papel picado band across the board's top edge (`.board::before`, repeating every 96px), a 20px cenefa \u2014 the tiled border strip \u2014 across the footer's top edge (`.foot::before`, repeating every 44px, carrying the same eight-point estrella as the field), and the azulejo field itself (see below). An earlier revision of this file capped the page at exactly one ornament; that ceiling is superseded deliberately, and the replacement is a principle rather than a number, because a count says nothing about whether a fourth would be right. Four conditions define the technique, and all four are load-bearing. The shape is craft geometry expressed as an inline SVG `mask-image`, never a picture or an image asset \u2014 the drawing is the mask, so nothing about it can be a foreign object dropped onto the page. The colour is supplied by a palette token (`--gold` / `--cream`, via the channel tokens where translucent), so an ornament can never introduce a colour and can never drift out of the palette. The placement is either a structural edge the layout already had \u2014 the board's top edge, the footer's top edge \u2014 or a ground field beneath everything; ornament is never free-floating and never sits on top of content, which is why this pass added cultural weight to the backgrounds only and restyled nothing a person reads. And the shape must be geometry the world itself owns: papel picado, cenefa and azulejo are the taqueria's own materials, not applied ethnic decoration. A fourth ornament is permitted only if it meets all four conditions and there is a structural edge or ground already waiting for it. Wanting more texture is not one of the conditions. If no such edge exists, the correct outcome is to decline, not to invent an edge to hang something on.",
         "section": "elevation"
       },
       {
         "name": "The Azulejo Field Rule",
-        "body": "One fixed, full-viewport layer at `z-index: -1` (`body::before`) paints `--cream` at 5.5% opacity through a repeating 80×80 talavera lattice — a diamond grid with an eight-point estrella at each node and dots at the edge midpoints. It runs under the entire page including the hero, where it emerges out of the photograph's own falloff rather than being laid over it. It is not an applied theme. Talavera Poblana is cobalt on white, and the cobalt this whole site is built from was sampled off the truck's own paint; the motif belongs to this palette by ancestry, which is why it can be drawn in the palette's own cream and read as native. At 5.5% it is texture before it is pattern — the ground feels tiled well before a star is legible as a star. That opacity is a ceiling, not a preference: raise it and the field starts competing with the photography and with the light pools that separate the sections. It is one fixed layer rather than a per-section background for a structural reason. A pattern attached per section restarts its own phase at every section boundary, so every seam between two sections shows a visible break in the lattice. One fixed layer has no seams to break, and it also means scrolling moves the content across a stationary ground rather than dragging the pattern along with it.",
+        "body": "One fixed, full-viewport layer at `z-index: -1` (`body::before`) paints `--cream` at 5.5% opacity through a repeating 80\u00d780 talavera lattice \u2014 a diamond grid with an eight-point estrella at each node and dots at the edge midpoints. It runs under the entire page including the hero, where it emerges out of the photograph's own falloff rather than being laid over it. It is not an applied theme. Talavera Poblana is cobalt on white, and the cobalt this whole site is built from was sampled off the truck's own paint; the motif belongs to this palette by ancestry, which is why it can be drawn in the palette's own cream and read as native. At 5.5% it is texture before it is pattern \u2014 the ground feels tiled well before a star is legible as a star. That opacity is a ceiling, not a preference: raise it and the field starts competing with the photography and with the light pools that separate the sections. It is one fixed layer rather than a per-section background for a structural reason. A pattern attached per section restarts its own phase at every section boundary, so every seam between two sections shows a visible break in the lattice. One fixed layer has no seams to break, and it also means scrolling moves the content across a stationary ground rather than dragging the pattern along with it.",
         "section": "elevation"
       },
       {
         "name": "The Overlay Is A Ground Rule",
-        "body": "A fixed decorative layer under the page is invisible to a contrast walk: `body::before` is an ancestor of nothing, so a compositing check that climbs the DOM composites straight past it and measures text against `--ink` that actually sits on a lighter ground. `verify.mjs` closes this by reading the overlay's own computed background colour and opacity, compositing them onto the body ground, and measuring `--cream`, `--cream-2`, `--mute` and `--white` against the result, failing the run if any falls below 4.5:1. It currently reports the field lifting the ground to `rgb(21,26,50)` with `--mute` tightest at 7.15:1. The failure path was exercised rather than assumed — at 0.55 the same check fails `--mute` at 1.45:1. Any future full-page overlay is measured this way before it ships; a layer that does not compose into some element's background still composes into what the reader sees.",
+        "body": "A fixed decorative layer under the page is invisible to a contrast walk: `body::before` is an ancestor of nothing, so a compositing check that climbs the DOM composites straight past it and measures text against `--ink` that actually sits on a lighter ground. `verify.mjs` closes this by reading the overlay's own computed background colour and opacity, compositing them onto the body ground, and measuring `--cream`, `--cream-2`, `--mute` and `--white` against the result, failing the run if any falls below 4.5:1. It currently reports the field lifting the ground to `rgb(21,26,50)` with `--mute` tightest at 7.15:1. The failure path was exercised rather than assumed \u2014 at 0.55 the same check fails `--mute` at 1.45:1. Any future full-page overlay is measured this way before it ships; a layer that does not compose into some element's background still composes into what the reader sees.",
         "section": "elevation"
       },
       {
@@ -563,22 +563,22 @@
       },
       {
         "name": "The Hairline-Not-Border Rule",
-        "body": "Where an edge is genuinely needed it is a single 1px line that means something: gold at 50% over each named format, cream at 14% above the \"ask at the window\" line, and the claim separators. Two edges that were hairlines are now masked ornament bands on the same structural line — the board's top edge and the footer's — and that is the only sanctioned way a hairline grows. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing in for a table — the board shed forty cells' worth of those and separates by space instead.",
+        "body": "Where an edge is genuinely needed it is a single 1px line that means something: gold at 50% over each named format, cream at 14% above the \"ask at the window\" line, and the claim separators. Two edges that were hairlines are now masked ornament bands on the same structural line \u2014 the board's top edge and the footer's \u2014 and that is the only sanctioned way a hairline grows. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing in for a table \u2014 the board shed forty cells' worth of those and separates by space instead.",
         "section": "elevation"
       },
       {
         "name": "The No Price Rule",
-        "body": "No per-item price renders anywhere inside `#menu`. No per-item price is confirmed in any source, and inventing one is the failure mode this architecture exists to prevent. `verify.mjs` asserts this on the rendered page; the hero's `$10–20 per person` range is a sourced, non-item figure and lives outside the board.",
+        "body": "No per-item price renders anywhere inside `#menu`. No per-item price is confirmed in any source, and inventing one is the failure mode this architecture exists to prevent. `verify.mjs` asserts this on the rendered page; the hero's `$10\u201320 per person` range is a sourced, non-item figure and lives outside the board.",
         "section": "components"
       },
       {
         "name": "The Say The Unknown Once Rule",
-        "body": "What the truck cannot confirm is stated plainly, exactly once per meat, under its own \"Ask at the window\" label — never blanked, never guessed, never dashed out, and never repeated cell by cell. The previous board said \"Ask at the window\" thirty-one times in forty cells; repeating an unknown does not make it more honest, it makes the honest part of the page look like the whole page. Any future unknown joins that one line.",
+        "body": "What the truck cannot confirm is stated plainly, exactly once per meat, under its own \"Ask at the window\" label \u2014 never blanked, never guessed, never dashed out, and never repeated cell by cell. The previous board said \"Ask at the window\" thirty-one times in forty cells; repeating an unknown does not make it more honest, it makes the honest part of the page look like the whole page. Any future unknown joins that one line.",
         "section": "components"
       },
       {
         "name": "The Grouped By Answer Rule",
-        "body": "The board's job is to model the exchange at the window: one question (which meat), then what can be named and what to ask about. New information joins one of those two groups. Do not re-render the meat × format matrix as a grid of cells; the matrix is the data model, not the layout.",
+        "body": "The board's job is to model the exchange at the window: one question (which meat), then what can be named and what to ask about. New information joins one of those two groups. Do not re-render the meat \u00d7 format matrix as a grid of cells; the matrix is the data model, not the layout.",
         "section": "components"
       },
       {
@@ -592,28 +592,28 @@
       "Do compose every translucent colour from `--ink-rgb` / `--cream-rgb` / `--gold-rgb` / `--red-rgb` rather than writing channel numbers by hand.",
       "Do separate sections with a `.bay` light pool, positioned with its own `--lx` / `--ly`.",
       "Do keep every corner square (0 radius) and every edge a single meaningful hairline or a fading gradient.",
-      "Do send every type hover to white — nav link, chip name, footer link, Visit link — and keep gold for the hovers that are a surface: the nav underline, the fill button, the social button.",
+      "Do send every type hover to white \u2014 nav link, chip name, footer link, Visit link \u2014 and keep gold for the hovers that are a surface: the nav underline, the fill button, the social button.",
       "Do put photography inside `.shot` so a failed load degrades to a lit panel, and give any third-party embed a `surf-1` backing so its own white never shows through.",
       "Do carry `.num` on every rendered figure so digits stay tabular.",
       "Do theme the browser's own surfaces from the palette: gold `::selection` on `ink`, a `surf-3`-on-`ink` scrollbar, a 2px gold focus ring at 4px offset, and 0.22em underline offset on non-button links. Keep the favicon and `<meta name=\"theme-color\">` on the same three sampled values (`ink`, `gold`, `red`).",
       "Do hold new type to the six-step ramp (12 / 16 / 22 / 32 / 44 / 96 at 1280), and set a control's primary label at the lead step or above.",
       "Do keep `--board` inside the order window, on the three things it already sets, and self-host any new face as woff2 with `font-display: swap` and a `unicode-range` split.",
       "Do declare grid columns whenever the item count is fixed and known.",
-      "Do set every Spanish line in italic and place it under the English it follows — `.es` under a heading, an italic non-caps `<i>` inside a tracked-caps label, and outside the label where the pair would otherwise run past ~40 characters of caps. Mark it `lang=\"es\"`.",
-      "Do write food words in Mexican Spanish as the truck says them: \"consomé\", not the French \"consommé\"; \"Pollo\" as the chip name with \"Chicken\" as its 12px gloss, matching the four meat names that were already Spanish.",
+      "Do set every Spanish line in italic and place it under the English it follows \u2014 `.es` under a heading, an italic non-caps `<i>` inside a tracked-caps label, and outside the label where the pair would otherwise run past ~40 characters of caps. Mark it `lang=\"es\"`.",
+      "Do write food words in Mexican Spanish as the truck says them: \"consom\u00e9\", not the French \"consomm\u00e9\"; \"Pollo\" as the chip name with \"Chicken\" as its 12px gloss, matching the four meat names that were already Spanish.",
       "Do scope a label's `display: block` with the child combinator (`.row > span`, `.pane__a > span`) so it cannot reach a nested element inside the label.",
       "Do honour `prefers-reduced-motion`, which flattens every animation and transition to 0.001ms and disables smooth scroll."
     ],
     "donts": [
       "Don't render a per-item price inside `#menu`. Nothing sources one.",
-      "Don't set gold type anywhere at all — it is light and surface only, and the pairing that used to tempt this, gold on red, is 3.03:1. Don't set red type on ink either (3.32:1). Red is a ground, not a foreground.",
+      "Don't set gold type anywhere at all \u2014 it is light and surface only, and the pairing that used to tempt this, gold on red, is 3.03:1. Don't set red type on ink either (3.32:1). Red is a ground, not a foreground.",
       "Don't wrap a section in a bordered card or lay a divider rule between sections; the light falloff is the separator and re-adding boxes undoes the whole architecture.",
       "Don't rebuild the board as a cell grid, and don't let 1px gridlines stand in for gaps anywhere. Space separates; a hairline only appears where it labels something.",
       "Don't mark a selected state with an edge stripe or accent tab. Invert the field.",
       "Don't put a coloured glow under a photo or a panel, and don't use a hard offset shadow. Shadows are neutral black, blurred, and vertical.",
-      "Don't add a scroll-reveal observer or a per-section fade-up. There is one authored moment — the hero light coming up on load (`lightUp`, 1900ms) with the hero text rising behind it on a 420–860ms stagger — and its value is that it is the only one.",
+      "Don't add a scroll-reveal observer or a per-section fade-up. There is one authored moment \u2014 the hero light coming up on load (`lightUp`, 1900ms) with the hero text rising behind it on a 420\u2013860ms stagger \u2014 and its value is that it is the only one.",
       "Don't set Anton in sentence case for an editorial heading, never use it for a paragraph, and don't put it back inside the board. Its one sentence-case use is the review pull-quotes, because they are transcribed speech.",
-      "Don't use `--board` outside the order window, and don't preload it — it is below the fold and swaps to its own superfamily.",
+      "Don't use `--board` outside the order window, and don't preload it \u2014 it is below the fold and swaps to its own superfamily.",
       "Don't put a tracked-caps kicker or eyebrow above a heading. The 12px tracked-caps label is permitted only as the key half of a key/value pair inside a control or a data row (the board's format labels, the Visit rows, chip sublabels), where it names the value beneath it.",
       "Don't add an ornament that fails any of the four conditions: masked craft geometry the world itself owns, coloured only from a palette token, hung on a structural edge the layout already has or laid as a ground beneath everything, and never on top of content. Three ship; the right answer to a fourth is often to decline. A picture, a garland, an image asset, or a new colour arriving with an ornament is a rebuild, not an addition.",
       "Don't raise the azulejo field above 0.055 opacity, and don't reattach it per section. The opacity is a measured ceiling and the single fixed layer is what keeps the lattice in phase across every section seam.",
@@ -622,9 +622,9 @@
       "Don't style a label with a descendant selector. `.row span` and `.pane__a span` each hit the nested Spanish `<i>`/`<span>` and broke every label onto two lines the moment the label gained a child.",
       "Don't borrow a layout class for prose. The footer tagline used `.foot__l`, which is `display: grid`; the moment it held an element rather than bare text the grid split it into rows. It has its own `.foot__p` now. A label or prose class earns its own selector.",
       "Don't invert a section to a light ground.",
-      "Don't reintroduce Fraunces — it was swapped out of this build as the obvious warm serif and the previous version of this site used it.",
+      "Don't reintroduce Fraunces \u2014 it was swapped out of this build as the obvious warm serif and the previous version of this site used it.",
       "Don't reintroduce the placeholder palette (`#100D0C` ground, `#F9C22E` gold, `#D8202A` red) or the `red-text` token. The shipped palette is measured off the owner's materials and supersedes the direction contract's provisional values."
     ]
   },
-  "description": "A night-lit food truck page — the truck's own cobalt as the ground, one gold aperture, and an order window that answers when you pick a meat."
+  "description": "A night-lit food truck page \u2014 the truck's own cobalt as the ground, one gold aperture, and an order window that answers when you pick a meat."
 }
