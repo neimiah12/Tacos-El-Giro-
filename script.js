@@ -14,6 +14,58 @@
 (function () {
   'use strict';
 
+  /* ------------------------------------------- is the window open right now */
+  /* Kennewick is Pacific, and most visitors are too — but not all, and a phone
+     left on the wrong timezone should not decide this. The schedule is evaluated
+     in the truck's own zone, never the reader's. Minutes from midnight, Sunday
+     first; null is a closed day. Source for these hours: PRODUCT.md. */
+  var TZ = 'America/Los_Angeles';
+  var OPEN = [660, 1170];                       /* 11:00 -> 19:30 */
+  var WEEK = [OPEN, null, OPEN, OPEN, OPEN, OPEN, OPEN];
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  function clockAt(tz) {
+    var parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz, weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false
+    }).formatToParts(new Date());
+    var get = function (t) { for (var i = 0; i < parts.length; i++) if (parts[i].type === t) return parts[i].value; };
+    var d = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+    var h = parseInt(get('hour'), 10);
+    if (h === 24) h = 0;                        /* some engines render midnight as 24 */
+    return { day: d, min: h * 60 + parseInt(get('minute'), 10) };
+  }
+
+  function pretty(min) {
+    var h = Math.floor(min / 60), m = min % 60, ap = h < 12 ? 'AM' : 'PM';
+    h = h % 12 || 12;
+    return h + (m ? ':' + (m < 10 ? '0' : '') + m : '') + '\u00A0' + ap;
+  }
+
+  var onair = document.getElementById('onair');
+  if (onair && window.Intl && Intl.DateTimeFormat) {
+    try {
+      var now = clockAt(TZ), today = WEEK[now.day], label;
+      if (today && now.min >= today[0] && now.min < today[1]) {
+        onair.classList.add('is-open');
+        label = 'Open now \u2014 until ' + pretty(today[1]);
+      } else {
+        var i = (today && now.min < today[0]) ? 0 : 1, d = now.day;
+        while (i < 8) {                         /* eight, so a fully closed week cannot spin */
+          d = (now.day + i) % 7;
+          if (WEEK[d]) break;
+          i++;
+        }
+        var slot = WEEK[d];
+        label = slot
+          ? 'Closed \u2014 opens ' + (i === 0 ? 'today' : i === 1 ? 'tomorrow' : DAYS[d])
+            + ' at ' + pretty(slot[0])
+          : 'Closed';
+      }
+      onair.querySelector('b').textContent = label;
+      onair.hidden = false;
+    } catch (e) { /* no reliable clock, so no claim — the table stands on its own */ }
+  }
+
   /* ------------------------------------------- the map, failing visible */
   /* A blocked frame still fires load, with an empty same-origin about:blank
      behind it — which is exactly how we tell the two apart. A real Google

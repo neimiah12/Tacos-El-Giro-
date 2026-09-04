@@ -37,7 +37,21 @@
     "postalCode": "99336",
     "addressCountry": "US"
   },
-  "hasMap": "https://www.google.com/maps/search/?api=1&query=Tacos+El+Giro%2C+6481+W+Skagit+Ave%2C+Kennewick%2C+WA+99336"
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Tacos+El+Giro%2C+6481+W+Skagit+Ave%2C+Kennewick%2C+WA+99336",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "11:00",
+      "closes": "19:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Monday",
+      "opens": "00:00",
+      "closes": "00:00"
+    }
+  ]
 }
 </script>
 </head>
@@ -259,7 +273,14 @@
             <div class="row"><span>Address <i lang="es">&middot; direcci&oacute;n</i></span>
               <address>6481 W Skagit Ave<br>Kennewick, WA 99336</address></div>
             <div class="row"><span>Hours <i lang="es">&middot; horario</i></span>
-              <p>Not published here yet. Call ahead and we&rsquo;ll tell you today&rsquo;s hours.</p></div>
+              <!-- Six identical days are one line, not six. The status above it is
+                   filled by script.js from the same schedule; with JavaScript off it
+                   stays hidden and the table alone is still the whole truth. -->
+              <p class="onair" id="onair" hidden><i></i><b></b></p>
+              <ul class="hours">
+                <li><span>Mon</span><b>Closed <i lang="es">&middot; cerrado</i></b></li>
+                <li><span>Tue&ndash;Sun</span><b class="num">11&nbsp;AM &ndash; 7:30&nbsp;PM</b></li>
+              </ul></div>
             <div class="row"><span>Phone <i lang="es">&middot; tel&eacute;fono</i></span>
               <p><a class="num" href="tel:+15092820699">(509) 282-0699</a></p></div>
             <div class="row"><span>Service <i lang="es">&middot; servicio</i></span>
@@ -287,9 +308,10 @@
         </div>
       </div>
       <div class="note">
-        <p>Hours and per-item prices aren&rsquo;t listed on this page yet, because neither has been
-        confirmed with the truck. Calling ahead is the reliable way to catch both, along with
-        anything on the board this page does not name.</p>
+        <p>Per-item prices aren&rsquo;t listed on this page, because none is confirmed with the
+        truck. The hours above are the posted ones &mdash; a truck&rsquo;s day can still change, so
+        calling ahead is the reliable way to catch both, along with anything on the board this
+        page does not name.</p>
       </div>
     </div>
   </section>
@@ -330,6 +352,8 @@
       <div>
         <h2 class="foot__t">Good to know</h2>
         <ul class="foot__l">
+          <li class="num">Tue&ndash;Sun &middot; 11&nbsp;AM&ndash;7:30&nbsp;PM</li>
+          <li>Closed Mondays</li>
           <li class="num">Rated 4.7 &middot; 74 reviews</li>
           <li class="num">$10&ndash;20 per person</li>
           <li>Dine in &middot; Take out</li>

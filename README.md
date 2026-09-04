@@ -17,12 +17,17 @@ Keep the port stable for a whole working session so a refresh always works.
 
 ## Verify it
 
-Two gates, and both have to pass.
+Three gates, and all three have to pass.
 
 `verify.mjs` implements §7 of the tier process. It walks **every** leaf element that has text
-(609 of them, across all five meat states), composites translucent ancestors rather than
+(672 of them, across all five meat states), composites translucent ancestors rather than
 reading one background-colour, checks `:hover` separately, emulates a real mobile viewport,
 and asserts the architecture's invariant.
+
+`verify:hours` stubs the clock and reads the rendered *Open now / Closed* badge back at the
+states that actually break — the minute before close, the minute of close, a closed Monday, a
+Sunday night with Monday dark behind it, midnight. The page makes a live claim, so the claim is
+tested rather than trusted; change the hours in `script.js` and re-run it.
 
 `verify:design` is the vendored **impeccable** detector. If it prints `DEGRADED`, stop and
 install its dependencies — degraded mode returns `[]` and reads exactly like a clean pass.
@@ -57,6 +62,7 @@ index.html  styles.css  script.js  favicon.svg   the site
 fonts/                                           Anton + Archivo, self-hosted woff2, 124 KB
 img/                                             the owner's photographs, .jpg source + .webp
 verify.mjs  package.sh  preview.mjs              the gate, the packager, the flattener
+netlify.toml                                     builds with package.sh, publishes deploy/
 DESIGN.md                                        architecture, palette, type — regenerate on change
 CLAUDE.md                                        the non-negotiables for this repo
 scripts/                                         the image manifest and the palette sampler
@@ -93,11 +99,13 @@ against the **worst surface it lands on**, not against the page ground; the tabl
 
 `PRODUCT.md` carries the full list. The short version:
 
-1. **Hours** — nothing is published on the page, and nothing was verified. Highest priority.
+1. **The second address.** The owner's own Tacos Norteños graphic advertises two locations.
+   Only one is on record, so only one is on the page — and the published hours are stated for
+   that one address. Nothing says the two keep the same day.
 2. **A second source for the phone number.** It is wired at the client's request on a single
    source; §1 wants two independent confirmations.
-3. **The second address.** The owner's own Tacos Norteños graphic advertises two locations.
-   Only one is on record, so only one is on the page.
-4. **`noindex, nofollow` is set** in `index.html` with a comment saying when to remove it.
-   Leave it until the owner confirms hours, the phone and delivery. Deploy only on an
-   explicit go-ahead.
+3. ~~**Hours**~~ — closed 2026-09-04. Mon closed, Tue–Sun 11 AM – 7:30 PM, supplied by the
+   client. Sourced in `PRODUCT.md`, published, in the JSON-LD, and covered by `verify:hours`.
+4. **`noindex, nofollow` is set** — in `index.html` and again as an `X-Robots-Tag` header in
+   `deploy/_headers`. Both come off together, and not before the owner confirms the phone,
+   the second address and delivery. Deploy only on an explicit go-ahead.

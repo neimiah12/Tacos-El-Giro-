@@ -514,6 +514,26 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   font-size: var(--t-lead); }
 .row a { transition: color .25s var(--ease); }
 .row a:hover { color: var(--white); }
+/* Hours. Six identical days collapse to one line — the same instinct as the
+   board's ask line: say the repeated thing once. The status above reads the
+   window light: gold means it is on. It carries a word as well as a colour,
+   because a coloured dot on its own is not a status. */
+.hours { display: grid; gap: .45rem; margin-top: .1rem; }
+.hours li { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem .9rem;
+  font-size: var(--t-lead); line-height: 1.45; color: var(--cream); }
+.hours li > span { flex: 0 0 5.5rem; font-family: var(--text); font-size: var(--t-label);
+  font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+.hours li > b { font-weight: 400; }
+.hours li > b i { font-style: italic; color: var(--mute); }
+
+.onair { display: flex; align-items: center; gap: .6rem; margin-bottom: .75rem;
+  font-size: var(--t-label); font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--cream-2); }
+.onair i { width: 9px; height: 9px; flex: none; background: var(--mute); }
+.onair.is-open i { background: var(--gold); }
+.onair.is-open b { color: var(--white); }
+.onair b { font-weight: 700; }
+
 .visit__r { display: flex; flex-direction: column; gap: clamp(.6rem, 1.4vw, 1rem); min-width: 0; }
 .visit__r .shot { flex: 0 0 auto; aspect-ratio: 4 / 3; }
 .visit__r figcaption { position: absolute; left: 1.1rem; bottom: 1rem; z-index: 2;
