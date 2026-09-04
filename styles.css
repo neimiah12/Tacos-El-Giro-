@@ -428,7 +428,7 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
 
 
-/* ------------------------------------------------- 8b. the price list (prices.html) */
+/* ------------------------------------------------- 8b. the price list (#prices) */
 /* The board's own price list, so it wears the board's face. Rows are name over
    description with the figure held right, separated by hairlines rather than
    boxed — the same separation the rest of the page uses. Six identical prices

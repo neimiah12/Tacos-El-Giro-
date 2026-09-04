@@ -1,6 +1,6 @@
 ---
 name: Tacos El Giro
-description: A night-lit food truck page — the truck's own cobalt as the ground, one gold aperture, and an order window that answers when you pick a meat.
+description: A one-page night-lit food truck site — the truck's own cobalt as the ground, one gold aperture, an order window that answers when you pick a meat, and a price list that says what each shape costs.
 colors:
   ink: "#080E28"
   surf-1: "#0D1538"
@@ -64,6 +64,13 @@ typography:
     fontWeight: 400
     lineHeight: 1.2
     letterSpacing: "-0.015em"
+  figure:
+    fontFamily: "'Archivo Black', 'Archivo', 'Arial Black', 'Helvetica Neue', sans-serif"
+    fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "-0.01em"
+    fontFeature: "'tnum' 1"
   lead:
     fontFamily: "Archivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif"
     fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.375rem)"
@@ -169,6 +176,39 @@ components:
     typography: "{typography.spanish}"
     rounded: "{rounded.none}"
     width: "44ch"
+  price-group-title:
+    backgroundColor: "transparent"
+    textColor: "{colors.cream}"
+    typography: "{typography.control}"
+    rounded: "{rounded.none}"
+  price-group-subline:
+    backgroundColor: "transparent"
+    textColor: "{colors.mute}"
+    typography: "{typography.body}"
+    width: "62ch"
+  price-row:
+    backgroundColor: "transparent"
+    textColor: "{colors.cream}"
+    typography: "{typography.answer}"
+    rounded: "{rounded.none}"
+    padding: "1.1rem 0 1.15rem"
+  price-row-description:
+    textColor: "{colors.mute}"
+    typography: "{typography.body}"
+    width: "52ch"
+  price-figure:
+    backgroundColor: "transparent"
+    textColor: "{colors.white}"
+    typography: "{typography.figure}"
+    rounded: "{rounded.none}"
+  price-figure-unknown:
+    backgroundColor: "transparent"
+    textColor: "{colors.mute}"
+    typography: "{typography.label}"
+    rounded: "{rounded.none}"
+  note-lead:
+    textColor: "{colors.cream}"
+    typography: "{typography.body}"
 ---
 
 # Design System: Tacos El Giro
@@ -186,15 +226,19 @@ light falls off.
 The density is generous and the composition is a single column. There is one accent that
 behaves like a lamp (gold) and one that behaves like a verb (red), and both come off the
 owner's own logo rather than a brand kit. Type is signage first: condensed Anton in caps at
-the sizes a hand-painted sign uses, Archivo doing all the reading work underneath it, and —
-inside the order window only — a third face, wide and flat-sided, that makes the board read
-as a painted object rather than as more page.
+the sizes a hand-painted sign uses, Archivo doing all the reading work underneath it, and — on
+the truck's board and nothing else — a third face, wide and flat-sided, that makes the board
+read as a painted object rather than as more page. The board is two things now: the chooser
+that answers which meat comes in which shape, and, one section further down, its own price
+list saying what each shape costs. Both are the same painted object, so both wear that face.
 
 The page is bilingual in the owner's own shape, not localised: an English line with the Spanish
 set in italic underneath it. Every marketing graphic the truck has made talks this way — COME
 HUNGRY. LEAVE HAPPY. over VEN CON HAMBRE. VETE FELIZ. — so the page does too. There is no
-language switcher and no second page; the second language is a voice, and italic is what marks
-it.
+language switcher and there is exactly one page; the second language is a voice, and italic is
+what marks it. The price list briefly lived at `prices.html` and was folded back in as
+`#prices` between the board and About, because a separate page meant the scroll never reached
+it. One page, one scroll, one board answering two questions.
 
 Its anti-reference is the restaurant template: bordered tiles, an icon-heading-text row of
 "features", a metric strip under the hero, a fade-up on every section. This build refuses
@@ -215,7 +259,7 @@ the owner's materials; the contract's *intent* held, its placeholder numbers did
 - Three ornaments, one technique — craft geometry as a CSS mask, painted only in palette tokens:
   papel picado on the board's edge, a cenefa on the footer's, an azulejo field under everything
 - Cultural weight lives in the backgrounds only; nothing is added on top of anything a person reads
-- No per-item price renders anywhere, because none is sourced
+- Prices ship, in their own section directly under the board — and never inside the board
 
 ## Colors
 
@@ -225,7 +269,8 @@ owner's logo — the palette is photographic in origin, not chosen.
 ### Primary
 - **Aperture Gold** (`gold`): the light, and only the light. It is a surface, an edge or a
   glow — never a letterform. The board's top hairline, the hairline over every named format,
-  the claim dividers, the note rule, the nav underline, the `.bay` light pools, `::selection`,
+  the hairline that opens each price group, the claim dividers, the note rule, the nav
+  underline, the `.bay` light pools, `::selection`,
   the focus ring, the fill button and social button on hover, and the field a meat chip floods
   to when it is selected. It carried type in an earlier revision — the hero's second line,
   heading emphasis, the board's answers, the Visit and footer labels — and all of that is
@@ -336,7 +381,11 @@ Archivo, is already loaded — the swap is nearly invisible.
 - **Control** (Archivo Black 400, 22px lead step, 1.15, -0.015em, sentence case): the five
   meat names on the chips.
 - **Answer** (Archivo Black 400, 22px lead step, 1.2, -0.015em, sentence case, in white): the
-  product names the truck can put on the board.
+  product names the truck can put on the board, and the item names on the price list (in cream
+  there, since the figure beside them is the white).
+- **Figure** (Archivo Black 400, 22px lead step, 1.2, -0.01em, tabular, in white): a price on
+  the board's price list. The same face and step as an answer, opened up by five thousandths of
+  an em because digits do not need the tightening letters do.
 - **Quote** (Anton 400, 22px lead step, 1.34, 0.005em, sentence case): the three review
   pull-quotes. Anton at reading rhythm — quoted speech is not set in caps.
 - **Lead** (Archivo 400, 22px lead step, 1.55): the hero paragraph, section ledes, the board's
@@ -357,13 +406,22 @@ renders. Every size is one of `--t-label`, `--t-body`, `--t-lead`, `--t-stat`, `
 `--t-display`; new type picks a step rather than adding one. A third typeface did not add a
 step — Archivo Black entered at 44 and 22, both already on the ramp.
 
-**The Board Has Its Own Face Rule.** `--board` (Archivo Black) is allowed inside the order
-window and nowhere else on the page. It sets exactly three things: the board title at the
-44px head step, the meat names on the chips, and the named product answers — both at the 22px
-lead step. It is not a fourth voice, it is the board's material: Anton is condensed and
-editorial and is the page talking, where a painted board is wide and flat-sided. Introducing
-`--board` on a heading, a paragraph, a button or a nav link would turn a material into a
-decoration, and is not permitted.
+**The Board Has Its Own Face Rule.** `--board` (Archivo Black) is the material of one object —
+the truck's board — and it is scoped by *what the thing is*, never by which section the thing
+sits in. It sets what the board itself says: the board title at the 44px head step, the meat
+names on the chips, the named product answers, and — in `#prices` — the board's own price list,
+its group headings (`.plist__t`), its item names (`.plist b`) and its figures
+(`.plist > li > p`), all at the 22px lead step. The price list is the same painted object
+answering a different question, which is why the face travelled with it when the list moved
+off `prices.html` and inline; the face follows the object, not the URL.
+
+The refusal is unchanged and it is the half that does the work. `--board` is not a fourth
+voice and it never sets editorial voice anywhere on the page — not a section heading, not a
+lede, not a paragraph, not a button, not a nav link, not a caption. `#prices` is the test
+case: its `h2` is Anton, its `.es` line and its lede are Archivo, its disclaimer is Archivo,
+exactly as in every other section, and only the list itself wears the board's face. Anton is
+condensed and editorial and is the page talking; a painted board is wide and flat-sided.
+Putting `--board` on prose turns a material into a decoration, and is not permitted.
 
 **The Anton Is The Page's Caps Voice Rule.** Anton is set uppercase everywhere it carries the
 page's editorial voice — hero, section headings, claim figures, dish names, the wordmark — at
@@ -419,8 +477,11 @@ no `0fr → 1fr` accordion exists anywhere, and there is no CSS multi-column.
 ### Named Rules
 **The Light Pool Rule.** Sections separate by falloff. Each `.bay` paints a radial gradient
 (gold at 10%, red at 7%, transparent by 68%) positioned per-section with `--lx` / `--ly`, so
-the light source moves down the page: 16%/6%, 84%/14%, 50%/2%, 24%/10%, 78%/8%. Never
-reintroduce a section divider rule or a bordered card to do this job.
+the light source moves down the page: 16%/6% (menu), 78%/4% (prices), 84%/14% (about), 50%/2%
+(gallery), 24%/10% (reviews), 78%/8% (visit). A new section gets its own position rather than
+repeating its neighbour's; prices came in at 78%/4% so the light crosses the page between the
+board and About instead of sitting still. Never reintroduce a section divider rule or a
+bordered card to do this job.
 
 **The Shared Cell Rule.** All five meat panes occupy the same grid cell (`grid-row: 1;
 grid-column: 1`) and cross-fade on opacity plus visibility. Switching meats must never change
@@ -511,8 +572,9 @@ and vertical. A coloured glow, or a hard offset with no blur, is the tell of a t
 warm light in this system comes from the gradients, never from a tinted or stamped shadow.
 
 **The Hairline-Not-Border Rule.** Where an edge is genuinely needed it is a single 1px line
-that means something: gold at 50% over each named format, cream at 14% above the "ask at the
-window" line, and the claim separators. Two edges that were hairlines are now masked ornament
+that means something: gold at 50% over each named format and over the first row of every price
+group, cream at 14% above the "ask at the window" line, cream at 12% between price rows, and
+the claim separators. Two edges that were hairlines are now masked ornament
 bands on the same structural line — the board's top edge and the footer's — and that is the only
 sanctioned way a hairline grows. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing
 in for a table — the board shed forty cells' worth of those and separates by space instead.
@@ -523,7 +585,7 @@ Zero radius, everywhere. Buttons, chips, photos, panels and the map are all hard
 the only rounded things in the build are the scrollbar thumb, the 1px softening on the focus
 ring, and the favicon's 10px plate. The recurring silhouette is a block of type with a
 hairline above it, left-aligned and flush: that is the named answer, the ask line, the claim
-figure and the footer column, all the same object at different scales.
+figure, the price row and the footer column, all the same object at different scales.
 
 Photo aspect ratios are fixed and few: 4:5 for portrait dishes and the about shot, 3:2 for
 dishes on narrow screens, 4:3 for gallery and visit tiles.
@@ -594,11 +656,59 @@ below them one shared cell holding five panes, each pane the truck's answer to o
 All eight formats are accounted for on every pane; they are grouped by answer rather than
 laid out as a spreadsheet. Only the 12px Archivo labels are uppercase inside the board.
 
+### The Price List (signature)
+`#prices` sits between the board and About, on the same page, and answers the board's second
+question: what each shape costs. It is the board's own price list, so it wears the board's
+face (see The Board Has Its Own Face Rule) and separates by hairline and space, never by a
+box, a card or a table.
+
+- **Group heading** (`.plist__t`) — Archivo Black at the 22px lead step in cream, sentence
+  case, with `clamp(2.5rem, 5vw, 3.5rem)` of air above it. Three groups ship: what any meat
+  costs in any shape, the plates priced as their own thing, and sides and drinks.
+- **Group subline** (`.plist__s`) — 16px Archivo in `mute` at 1.7, capped at 62ch, carrying
+  the group's condition. Its Spanish fragment sits in a `span` set italic, the same inline
+  gloss the Visit rows use.
+- **Row** (`.plist li`) — a baseline-aligned flex row: name and description left in a
+  `flex: 1 1 18rem` block, the figure held right, `1.1rem 0 1.15rem` of padding, gap
+  `.35rem 1.5rem`. Below about 18rem of name width the figure wraps under the description
+  rather than crushing either; there is no fixed column and no gridline.
+- **Row separator** — a 1px `li::before` at 12% cream between rows, replaced on the first row
+  of each group by the same gold-at-50% hairline that opens a `.named` item on the board. A
+  group therefore reads as *opening* rather than as one more row, and the gold says the same
+  thing here that it says on the board.
+- **Item name** (`.plist b`) — Archivo Black, 22px lead step, cream. **Description**
+  (`.plist span`) — 16px `mute`, capped at 52ch, omitted entirely where the name is the whole
+  fact ("Veggie taco").
+- **Figure** (`.plist > li > p`) — Archivo Black, 22px lead step, `white`, `.num` for tabular
+  digits, selected with the child combinator so it can never reach a paragraph nested in the
+  row's left block.
+- **The unpriced row** (`.plist__a`) — Birria Ramen has no confirmed figure, so its right-hand
+  slot drops out of the figure voice entirely into the 12px tracked-caps label in `mute` and
+  reads "Ask at the window". It does not fake a number, blank the cell or dash it out; the
+  voice change is the signal that this one is a question rather than an answer.
+- **Disclaimer** (`.note`, with `.note p b` in cream bold) — the shared note block: a 120px
+  gold rule, `mute` body at 68ch, its lead clause lifted to cream bold so the one sentence
+  that qualifies every figure above reads first.
+
 ### Named Rules
-**The No Price Rule.** No per-item price renders anywhere inside `#menu`. No per-item price is
-confirmed in any source, and inventing one is the failure mode this architecture exists to
-prevent. `verify.mjs` asserts this on the rendered page; the hero's `$10–20 per person` range
-is a sourced, non-item figure and lives outside the board.
+**The No Price Rule.** No per-item price renders inside `#menu` — and this is now a design
+decision, not a factual constraint. It used to hold because no per-item price was confirmed.
+Prices are confirmed now and they ship, in `#prices` directly beneath the board, and the
+invariant still holds because the board is a chooser and not a shop: switching meats must not
+turn into shopping. A figure beside every named answer would convert one question — which meat
+comes in which shape — into forty answers with money attached, which is the spreadsheet the
+board was built to replace. Money is a separate question and it gets its own section, one
+scroll down. This is revisited deliberately or not at all; it does not lapse because the facts
+changed underneath it. `verify.mjs` asserts it on the rendered page in every meat state, and
+the hero's `$10–20 per person` range is a sourced per-head figure that lives outside the board.
+
+**The Gate Covers Pages, Not This Page Rule.** `verify.mjs` detects which of the five meat
+radios actually exist on the page under test and walks five board states, or one pass with no
+board at all, rather than throwing on a missing radio. Where there is no `#menu` it reports the
+board invariant as **out of scope** and names it, instead of skipping silently — a check that
+quietly passes by absence is worse than no check. Only one page ships today; the generality is
+kept because the price list already moved once, and a gate that only understands `index.html`
+stops being a gate the moment a second file appears.
 
 **The Say The Unknown Once Rule.** What the truck cannot confirm is stated plainly, exactly
 once per meat, under its own "Ask at the window" label — never blanked, never guessed, never
@@ -638,8 +748,12 @@ field inversion already carries the state unambiguously. Do not rebuild it.
   sampled values (`ink`, `gold`, `red`).
 - **Do** hold new type to the six-step ramp (12 / 16 / 22 / 32 / 44 / 96 at 1280), and set a
   control's primary label at the lead step or above.
-- **Do** keep `--board` inside the order window, on the three things it already sets, and
-  self-host any new face as woff2 with `font-display: swap` and a `unicode-range` split.
+- **Do** keep `--board` on the board — the chooser and its price list — and self-host any new
+  face as woff2 with `font-display: swap` and a `unicode-range` split.
+- **Do** open a price group with the board's gold hairline and separate its rows with the 12%
+  cream one, so a group reads as opening rather than as one more row.
+- **Do** drop an unpriced row into the 12px tracked-caps label voice and say "Ask at the
+  window" rather than faking, blanking or dashing a figure.
 - **Do** declare grid columns whenever the item count is fixed and known.
 - **Do** set every Spanish line in italic and place it under the English it follows — `.es`
   under a heading, an italic non-caps `<i>` inside a tracked-caps label, and outside the label
@@ -653,7 +767,8 @@ field inversion already carries the state unambiguously. Do not rebuild it.
   0.001ms and disables smooth scroll.
 
 ### Don't:
-- **Don't** render a per-item price inside `#menu`. Nothing sources one.
+- **Don't** render a per-item price inside `#menu`. Prices exist and are confirmed; they
+  belong in `#prices`, because the board is a chooser and not a shop.
 - **Don't** set gold type anywhere at all — it is light and surface only, and the pairing
   that used to tempt this, gold on red, is 3.03:1. Don't set red type on ink either (3.32:1).
   Red is a ground, not a foreground.
@@ -670,8 +785,14 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 - **Don't** set Anton in sentence case for an editorial heading, never use it for a paragraph,
   and don't put it back inside the board. Its one sentence-case use is the review pull-quotes,
   because they are transcribed speech.
-- **Don't** use `--board` outside the order window, and don't preload it — it is below the
-  fold and swaps to its own superfamily.
+- **Don't** use `--board` for editorial voice anywhere — no heading, lede, paragraph, button,
+  nav link or caption, `#prices` included. It is the board's material, scoped by what the thing
+  is, not by which section it sits in. And don't preload it — it is below the fold and swaps to
+  its own superfamily.
+- **Don't** rebuild the price list as a table, a card, or two hairline-ruled columns. It is
+  flex rows separated by one meaningful hairline, exactly like the rest of the page.
+- **Don't** split the price list back onto its own page. It was `prices.html` and the scroll
+  never reached it; this is one page.
 - **Don't** put a tracked-caps kicker or eyebrow above a heading. The 12px tracked-caps label
   is permitted only as the key half of a key/value pair inside a control or a data row (the
   board's format labels, the Visit rows, chip sublabels), where it names the value beneath it.
@@ -702,43 +823,56 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 
 <!--
 Gate state, this pass. Both gates green, verified after this file and the sidecar were brought
-back in sync with the azulejo field and the cenefa band:
+back in sync with the price list moving inline:
 
   npm run verify:design                                                 -> 0 findings (not degraded)
   CHROME_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
-    node verify.mjs http://localhost:8000                              -> PASSED, tightest
+    node verify.mjs http://localhost:8000                              -> PASSED, 937 leaves across
+                                                                          five meat states, tightest
                                                                           contrast pair 5.02:1,
                                                                           ramp 12/16/22/32/44/96,
+                                                                          board invariant HOLDS,
                                                                           azulejo field at 0.055
                                                                           lifts the ground to
                                                                           rgb(21,26,50), tightest
                                                                           text on it --mute 7.15:1
 
-What this pass changed and why. Cultural weight was added to the BACKGROUNDS only: an azulejo
-field under the whole page (`body::before`, fixed, z-index -1, --cream at 5.5% through an 80x80
-talavera lattice) and a cenefa band replacing the footer's 1px cream hairline (`.foot::before`,
-20px, a 44x20 strip carrying the field's own estrella, painted gold->cream->transparent). No
-content moved, no section was restyled, and nothing was laid on top of anything a person reads;
-that restraint is recorded in The Masked Ornament Rule as a placement condition, not as a note.
+What this pass changed and why. A confirmed price list now ships as `<section class="bay"
+id="prices">` between #menu and #about. It briefly lived at prices.html; the client asked for it
+inline because a separate page meant scrolling never reached it, so prices.html is deleted and
+THERE IS ONE PAGE. Anywhere this file said "no second page" it now means it literally.
 
-The Masked Ornament Rule was rewritten from a count into a family rule. The previous version said
-"exactly one ornament"; that ceiling is superseded deliberately at the client's direction, and the
-replacement fixes the four conditions (masked craft geometry the world owns, palette-token colour,
-structural edge or ground field, never over content) so a future pass can add a fourth correctly
-or decline to. The specific SVG path data and tile geometry are deliberately NOT in the token
-layer: the durable things are the technique, the placement rule and the measured opacity ceiling,
-not that particular lattice drawing.
+The Board Has Its Own Face Rule was rescoped, and the rescoping is the point. --board (Archivo
+Black) was recorded as allowed "inside the order window and nowhere else". The price list is the
+same painted object answering a different question, so the face travels with the object: the rule
+is now scoped by WHAT THE THING IS rather than by section id. The refusal it was written to carry
+is untouched and now has a test case — #prices sets its own h2 in Anton, its .es line and lede in
+Archivo, and only the list wears the board's face. --board still never sets editorial voice.
 
-verify.mjs gained a real check and it is recorded as The Overlay Is A Ground Rule. `body::before`
-is fixed and an ancestor of nothing, so the §7 contrast walk composites straight past it; the gate
-now reads the overlay's own computed background colour and opacity, composites them onto the body
-ground, and measures --cream, --cream-2, --mute and --white against the result, failing below
-4.5:1. The failure path was exercised, not assumed: raised to 0.55 the same check fails --mute at
-1.45:1. Measured minima on the tiled ground rgb(21,26,50) are cream 14.74, cream-2 10.62, mute
-7.15, white 17.13, and they now sit beside the surface minima in The Measured Against The Worst
-Surface Rule.
+The No Price Rule survived with a different reason, and that is recorded rather than quietly
+patched. It used to hold because no per-item price was confirmed. Prices are confirmed now and
+they render one section below, and verify.mjs still asserts zero prices inside #menu and still
+passes. The rule now says why: the board is a chooser, not a shop, and switching meats should not
+become shopping. A design decision to revisit deliberately, not a factual constraint that expired.
 
-Contrast numbers are swept against `surf-3`, the worst surface, plus the tiled ground above.
+verify.mjs was generalised in the same pass and it is recorded as The Gate Covers Pages, Not This
+Page Rule: it detects which meat radios exist and walks five board states or one pass without
+them, and where there is no #menu it reports the board invariant as out of scope by name instead
+of skipping silently. Only one page ships today; the generality stays because a gate that only
+understands index.html stops being a gate the moment a second file appears.
+
+Two copy changes followed the merge, for accuracy only: the board's subline now ends "What each
+shape costs is just below" instead of sending people to the window, and the Visit price row no
+longer says per-item prices are unlisted — it links to #prices and keeps the sourced $10-20
+per-head range, which is not an item price and stays outside the board.
+
+New components in styles.css section 8b are documented in Components > The Price List: .plist__t,
+.plist__s (+ its italic span), .plist / .plist li with the 12% cream row hairline and the gold-at-
+50% opener on each group's first row, .plist b, .plist span, .plist > li > p, .plist__a for the
+one unpriced row, and .note p b. The frontmatter gained a `figure` typography role (--board, 22px
+lead step, 1.2, -0.01em, tnum) and seven price-list component entries; no new size joined the ramp.
+
+Contrast numbers are swept against `surf-3`, the worst surface, plus the tiled ground rgb(21,26,50).
 Where a stylesheet comment and this file ever disagree, this file is the authority.
 
 The verify.mjs command needs CHROME_PATH pointing at the chromium that ships in this

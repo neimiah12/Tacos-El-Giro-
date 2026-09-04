@@ -17,9 +17,9 @@ import { chromium } from 'playwright';
 
 const URL = process.argv[2] || 'http://localhost:8000';
 const EXE = process.env.CHROME_PATH || undefined;
-/* The board's five states. A page without the board — prices.html — has none of
-   these, so the walks below run once instead of five times rather than throwing
-   on a null radio. The gate covers every page this repo ships, not just index. */
+/* The board's five states. A page without the board has none of these, so the
+   walks below run once instead of five times rather than throwing on a null
+   radio. One page ships today; the gate covers every page this repo ships. */
 const BOARD_MEATS = ['k-birria', 'k-adobada', 'k-chorizo', 'k-chicken', 'k-asada'];
 let MEATS = BOARD_MEATS;
 const setMeat = async (page, id) => {
@@ -247,9 +247,9 @@ note('\n[4] Structure, assets and the architecture invariant');
       return has ? Math.round(parseFloat(getComputedStyle(e).fontSize) * 10) / 10 : null;
     }).filter(Boolean))].sort((a, b) => a - b);
 
-    // INVARIANT: the board is a chooser, not a price list. Per-item prices are
-    // confirmed now and have their own page — the board still renders none, so
-    // that switching meats never turns into shopping. A page with no #menu is
+    // INVARIANT: the board is a chooser, not a shop. Per-item prices are
+    // confirmed now and render in #prices below — the board still renders none,
+    // so that switching meats never turns into shopping. A page with no #menu is
     // not exempt, it is out of scope: the check reports which it was.
     const menu = document.querySelector('#menu');
     const prices = menu ? (menu.textContent.match(/\$\s?\d/g) || []) : null;
