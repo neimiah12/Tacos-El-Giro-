@@ -212,7 +212,9 @@ the owner's materials; the contract's *intent* held, its placeholder numbers did
 - One extra face, confined to the order window, because the board is an object and not prose
 - Exactly one authored motion moment: the service light coming up on load
 - An English line with its Spanish set in italic underneath it, everywhere a heading lands
-- One ornament on the whole page — papel picado masked in gold across the board's top edge
+- Three ornaments, one technique — craft geometry as a CSS mask, painted only in palette tokens:
+  papel picado on the board's edge, a cenefa on the footer's, an azulejo field under everything
+- Cultural weight lives in the backgrounds only; nothing is added on top of anything a person reads
 - No per-item price renders anywhere, because none is sourced
 
 ## Colors
@@ -272,6 +274,13 @@ The recorded minima are white 13.19, cream 11.35, cream-2 8.18, mute 5.50, gold 
 surface only), cream-on-red 5.02, ink-on-gold 9.89, on-gold-2-on-gold 5.47. White also
 measures 19.03:1 on `ink`; where a stylesheet comment and this file disagree, this file is
 the authority. A new colour joins the palette only with its worst-surface number recorded here.
+
+Since the azulejo field went in, the surfaces are not the only ground. Where a tile stroke lands
+behind text the true ground is the field's cream overlay composited onto `ink`, which measures
+`rgb(21,26,50)`. The recorded minima on that tiled ground are cream 14.74, cream-2 10.62, mute
+7.15, white 17.13 — mute is the floor, and it is the number `verify.mjs` reports on every run.
+Both sets of numbers are the standing record; a change to the field's opacity changes the second
+set and has to be re-measured, not estimated.
 
 **The Two Forbidden Pairings Rule.** Gold on red is 3.03:1 and red on ink is 3.32:1. Neither
 ships as text anywhere and neither may be reintroduced. Red's job is to be a ground under
@@ -440,24 +449,69 @@ the filled button, and both are neutral black — never a coloured glow.
   social icons at `.2`. A one-pixel edge of light, not a border.
 
 ### Named Rules
-**The Masked Ornament Rule.** The page carries exactly one ornament: a 30px papel picado band
-across the top edge of the board (`.board::before`), a strung row of cut-paper panels repeating
-every 96px. It is a mask, not a picture — the shape is an inline SVG `mask-image` at
-`repeat-x`, and the paint underneath is the same
-`linear-gradient(90deg, transparent, rgba(var(--gold-rgb),.78/.8) …)` that faded the 1px gold
-hairline it replaced. Because the colour is still the gold token, the ornament cannot drift out
-of the palette; that is the pattern any future ornament follows. It is hung on a structural
-edge the design already had, not added as a garland, and `.board__t` carries a 0.75rem top
-margin only to clear the hanging pennants.
+**The Masked Ornament Rule.** Ornament in this system is one technique used a small number of
+times, not a quota. Three instances ship: a 30px papel picado band across the board's top edge
+(`.board::before`, repeating every 96px), a 20px cenefa — the tiled border strip — across the
+footer's top edge (`.foot::before`, repeating every 44px, carrying the same eight-point estrella
+as the field), and the azulejo field itself (see below). An earlier revision of this file capped
+the page at exactly one ornament; that ceiling is superseded deliberately, and the replacement is
+a principle rather than a number, because a count says nothing about whether a fourth would be
+right.
+
+Four conditions define the technique, and all four are load-bearing. The shape is craft geometry
+expressed as an inline SVG `mask-image`, never a picture or an image asset — the drawing is the
+mask, so nothing about it can be a foreign object dropped onto the page. The colour is supplied
+by a palette token (`--gold` / `--cream`, via the channel tokens where translucent), so an
+ornament can never introduce a colour and can never drift out of the palette. The placement is
+either a structural edge the layout already had — the board's top edge, the footer's top edge —
+or a ground field beneath everything; ornament is never free-floating and never sits on top of
+content, which is why this pass added cultural weight to the backgrounds only and restyled
+nothing a person reads. And the shape must be geometry the world itself owns: papel picado,
+cenefa and azulejo are the taqueria's own materials, not applied ethnic decoration.
+
+A fourth ornament is permitted only if it meets all four conditions and there is a structural
+edge or ground already waiting for it. Wanting more texture is not one of the conditions. If no
+such edge exists, the correct outcome is to decline, not to invent an edge to hang something on.
+
+**The Azulejo Field Rule.** One fixed, full-viewport layer at `z-index: -1` (`body::before`)
+paints `--cream` at 5.5% opacity through a repeating 80×80 talavera lattice — a diamond grid with
+an eight-point estrella at each node and dots at the edge midpoints. It runs under the entire
+page including the hero, where it emerges out of the photograph's own falloff rather than being
+laid over it.
+
+It is not an applied theme. Talavera Poblana is cobalt on white, and the cobalt this whole site is
+built from was sampled off the truck's own paint; the motif belongs to this palette by ancestry,
+which is why it can be drawn in the palette's own cream and read as native. At 5.5% it is texture
+before it is pattern — the ground feels tiled well before a star is legible as a star. That
+opacity is a ceiling, not a preference: raise it and the field starts competing with the
+photography and with the light pools that separate the sections.
+
+It is one fixed layer rather than a per-section background for a structural reason. A pattern
+attached per section restarts its own phase at every section boundary, so every seam between two
+sections shows a visible break in the lattice. One fixed layer has no seams to break, and it also
+means scrolling moves the content across a stationary ground rather than dragging the pattern
+along with it.
+
+**The Overlay Is A Ground Rule.** A fixed decorative layer under the page is invisible to a
+contrast walk: `body::before` is an ancestor of nothing, so a compositing check that climbs the
+DOM composites straight past it and measures text against `--ink` that actually sits on a lighter
+ground. `verify.mjs` closes this by reading the overlay's own computed background colour and
+opacity, compositing them onto the body ground, and measuring `--cream`, `--cream-2`, `--mute`
+and `--white` against the result, failing the run if any falls below 4.5:1. It currently reports
+the field lifting the ground to `rgb(21,26,50)` with `--mute` tightest at 7.15:1. The failure
+path was exercised rather than assumed — at 0.55 the same check fails `--mute` at 1.45:1. Any
+future full-page overlay is measured this way before it ships; a layer that does not compose into
+some element's background still composes into what the reader sees.
 
 **The Neutral Shadow Rule.** Shadows are black and diffuse, and every shadow offset is soft
 and vertical. A coloured glow, or a hard offset with no blur, is the tell of a template; the
 warm light in this system comes from the gradients, never from a tinted or stamped shadow.
 
 **The Hairline-Not-Border Rule.** Where an edge is genuinely needed it is a single 1px line
-that means something: the gold papel picado band across the board's top edge, gold at 50% over each named
-format, cream at 14% above the "ask at the window" line, plus the claim separators and the
-footer rule. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing
+that means something: gold at 50% over each named format, cream at 14% above the "ask at the
+window" line, and the claim separators. Two edges that were hairlines are now masked ornament
+bands on the same structural line — the board's top edge and the footer's — and that is the only
+sanctioned way a hairline grows. Never a full-perimeter 1px box, and never a grid of hairline gridlines standing
 in for a table — the board shed forty cells' worth of those and separates by space instead.
 
 ## Shapes
@@ -618,10 +672,16 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 - **Don't** put a tracked-caps kicker or eyebrow above a heading. The 12px tracked-caps label
   is permitted only as the key half of a key/value pair inside a control or a data row (the
   board's format labels, the Visit rows, chip sublabels), where it names the value beneath it.
-- **Don't** add a second ornament. The papel picado band is the whole of the decoration, and
-  its value is that it is the only one. A new ornament, if one is ever justified, is a mask
-  painted from a palette token on an edge the layout already has — never a picture, never a
-  garland, and never alongside this one.
+- **Don't** add an ornament that fails any of the four conditions: masked craft geometry the
+  world itself owns, coloured only from a palette token, hung on a structural edge the layout
+  already has or laid as a ground beneath everything, and never on top of content. Three ship;
+  the right answer to a fourth is often to decline. A picture, a garland, an image asset, or a
+  new colour arriving with an ornament is a rebuild, not an addition.
+- **Don't** raise the azulejo field above 0.055 opacity, and don't reattach it per section. The
+  opacity is a measured ceiling and the single fixed layer is what keeps the lattice in phase
+  across every section seam.
+- **Don't** ship a fixed decorative overlay without running it through the gate's overlay
+  compositing check. The contrast walk cannot see a layer that is nobody's ancestor.
 - **Don't** put the Spanish half inside a tracked-caps label when the pair would exceed roughly
   forty characters of caps; move it outside the label as the board's ask line does.
 - **Don't** style a label with a descendant selector. `.row span` and `.pane__a span` each hit
@@ -639,29 +699,44 @@ field inversion already carries the state unambiguously. Do not rebuild it.
 
 <!--
 Gate state, this pass. Both gates green, verified after this file and the sidecar were brought
-back in sync with the rebuilt order window and its third face:
+back in sync with the azulejo field and the cenefa band:
 
   npm run verify:design                                                 -> 0 findings (not degraded)
   CHROME_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
     node verify.mjs http://localhost:8000                              -> PASSED, tightest
                                                                           contrast pair 5.02:1,
-                                                                          ramp 12/16/22/32/44/96
+                                                                          ramp 12/16/22/32/44/96,
+                                                                          azulejo field at 0.055
+                                                                          lifts the ground to
+                                                                          rgb(21,26,50), tightest
+                                                                          text on it --mute 7.15:1
 
-What this pass changed and why. The page gained a bilingual layer and one ornament; nothing
-structural moved. The Spanish voice is recorded as house voice, not localisation — a `spanish`
-type role, a `spanish-line` component, and The Bilingual Voice Rule covering all three of its
-shapes (the `.es` line under a heading, the non-caps italic half inside a tracked-caps label,
-and the ask line's Spanish moved outside the label because the caps pair ran 42 characters, a
-real detector finding cleared by changing the build rather than by dismissing it). The board's
-1px gold hairline became a 30px papel picado band; it is recorded as The Masked Ornament Rule,
-which fixes both the technique (a mask painted from a palette token, so the colour cannot drift)
-and the restraint (one ornament, on an edge the layout already had). Two selector bugs are
-recorded as don'ts in their general form: a descendant selector on a label reaches into a nested
-child, and a grid class borrowed for prose splits it into rows.
+What this pass changed and why. Cultural weight was added to the BACKGROUNDS only: an azulejo
+field under the whole page (`body::before`, fixed, z-index -1, --cream at 5.5% through an 80x80
+talavera lattice) and a cenefa band replacing the footer's 1px cream hairline (`.foot::before`,
+20px, a 44x20 strip carrying the field's own estrella, painted gold->cream->transparent). No
+content moved, no section was restyled, and nothing was laid on top of anything a person reads;
+that restraint is recorded in The Masked Ornament Rule as a placement condition, not as a note.
 
-Contrast numbers are swept against `surf-3`, the worst surface. The `--white` comment in
-styles.css now reads 19.03:1 on ink and 13.19:1 on `surf-3`, matching this file; where a
-stylesheet comment and this file ever disagree again, this file is the authority.
+The Masked Ornament Rule was rewritten from a count into a family rule. The previous version said
+"exactly one ornament"; that ceiling is superseded deliberately at the client's direction, and the
+replacement fixes the four conditions (masked craft geometry the world owns, palette-token colour,
+structural edge or ground field, never over content) so a future pass can add a fourth correctly
+or decline to. The specific SVG path data and tile geometry are deliberately NOT in the token
+layer: the durable things are the technique, the placement rule and the measured opacity ceiling,
+not that particular lattice drawing.
+
+verify.mjs gained a real check and it is recorded as The Overlay Is A Ground Rule. `body::before`
+is fixed and an ancestor of nothing, so the §7 contrast walk composites straight past it; the gate
+now reads the overlay's own computed background colour and opacity, composites them onto the body
+ground, and measures --cream, --cream-2, --mute and --white against the result, failing below
+4.5:1. The failure path was exercised, not assumed: raised to 0.55 the same check fails --mute at
+1.45:1. Measured minima on the tiled ground rgb(21,26,50) are cream 14.74, cream-2 10.62, mute
+7.15, white 17.13, and they now sit beside the surface minima in The Measured Against The Worst
+Surface Rule.
+
+Contrast numbers are swept against `surf-3`, the worst surface, plus the tiled ground above.
+Where a stylesheet comment and this file ever disagree, this file is the authority.
 
 The verify.mjs command needs CHROME_PATH pointing at the chromium that ships in this
 environment; without it Playwright looks for a headless shell that is not installed and the
