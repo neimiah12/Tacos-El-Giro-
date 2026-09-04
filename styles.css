@@ -450,10 +450,13 @@ a:not(.btn) { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
   line-height: 1.2; letter-spacing: -0.015em; color: var(--cream); }
 .plist span { display: block; margin-top: .35rem; font-size: var(--t-body); line-height: 1.6;
   color: var(--mute); max-width: 52ch; }
-.plist > li > p { flex: 0 0 auto; font-family: var(--board); font-size: var(--t-lead);
-  line-height: 1.2; letter-spacing: -0.01em; color: var(--white); }
-.plist__a { font-family: var(--text) !important; font-size: var(--t-label) !important;
-  font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--mute) !important; }
+/* The figure. Excluding the unpriced row here is what lets it speak in a
+   different voice below without !important — a specificity patch would have
+   worked and would have been the wrong thing to leave in the file. */
+.plist > li > p:not(.plist__a) { flex: 0 0 auto; font-family: var(--board);
+  font-size: var(--t-lead); line-height: 1.2; letter-spacing: -0.01em; color: var(--white); }
+.plist__a { flex: 0 0 auto; font-size: var(--t-label); font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
 .note p b { color: var(--cream); font-weight: 700; }
 
 /* ------------------------------------------------------------- 9. the plates */
