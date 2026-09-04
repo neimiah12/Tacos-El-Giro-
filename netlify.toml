@@ -1,0 +1,18 @@
+# Tacos El Giro — Netlify build configuration.
+#
+# publish MUST be deploy/, never the repository root. The root carries DESIGN.md,
+# CLAUDE.md and .claude/skills/ — the vendored build-process documents — and none
+# of those may be served publicly. package.sh is the script that draws that line
+# and refuses to run if an internal file lands in the output, so Netlify runs it
+# rather than serving whatever happens to be checked in.
+#
+# Response headers are NOT set here. They live in deploy/_headers, which package.sh
+# writes, so they apply whether Netlify builds from git or someone drags the folder
+# onto Netlify Drop. The site currently ships noindex, nofollow — see that file.
+
+[build]
+  command = "bash package.sh"
+  publish = "deploy"
+
+[build.environment]
+  NODE_VERSION = "20"
