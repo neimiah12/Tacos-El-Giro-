@@ -252,7 +252,34 @@ note('\n[4] Structure, assets and the architecture invariant');
     const L = 0.2126 * lin(g[0]) + 0.7152 * lin(g[1]) + 0.0722 * lin(g[2]);
     const creamGround = L > 0.5 && g[0] > g[2];
 
-    return { brokenAnchors, imgCount: imgs.length, noShot, noAlt,
+    // The azulejo field is a fixed body::before, not an ancestor of anything, so
+    // the contrast walk above composites right past it. Where a tile stroke lands
+    // behind text, the real ground is that overlay painted onto --ink — and every
+    // text colour has to clear the bar against THAT, not against the token.
+    const ov = getComputedStyle(document.body, '::before');
+    const ovRGB = (ov.backgroundColor.match(/\d+/g) || []).map(Number);
+    const ovA = parseFloat(ov.opacity);
+    let tiled = null;
+    if (ovRGB.length >= 3 && ovA > 0 && ov.content !== 'none') {
+      const mix = g.map((c, i) => Math.round(c + (ovRGB[i] - c) * ovA));
+      const cs = getComputedStyle(document.documentElement);
+      const tok = n => (cs.getPropertyValue(n).trim().match(/[\da-f]{2}/gi) || []).map(h => parseInt(h, 16));
+      const Lc = c => 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]);
+      const ratio = (a, b) => { const x = Lc(a), y = Lc(b);
+        return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+      const mixL = Lc(mix);
+      tiled = { mix, alpha: ovA, worst: null, pairs: [] };
+      for (const n of ['--cream', '--cream-2', '--mute', '--white']) {
+        const c = tok(n);
+        if (c.length !== 3) continue;
+        const r = Math.round(ratio(c, mix) * 100) / 100;
+        tiled.pairs.push([n, r]);
+        if (tiled.worst === null || r < tiled.worst[1]) tiled.worst = [n, r];
+      }
+      tiled.lift = Math.round((mixL - L) * 10000) / 10000;
+    }
+
+    return { tiled, brokenAnchors, imgCount: imgs.length, noShot, noAlt,
              failedCount: failed.length, unhandled, loadedCount: loaded.length,
              upscaled, noRatio, tiny, sizes, prices, telCount: tel.length, telBad,
              orderish, g, L: Math.round(L * 1000) / 1000, creamGround };
@@ -288,6 +315,13 @@ note('\n[4] Structure, assets and the architecture invariant');
 
   if (res.creamGround) bad(`ground rgb(${res.g.join(',')}) is light and warm — §4 forbids a cream ground`);
   else note(`  ground rgb(${res.g.join(',')}), luminance ${res.L} — dark, not cream`);
+
+  if (!res.tiled) note('  no page-ground overlay to composite');
+  else if (res.tiled.worst && res.tiled.worst[1] < 4.5)
+    bad(`the azulejo field lifts the ground to rgb(${res.tiled.mix.join(',')}) and ${res.tiled.worst[0]} `
+      + `falls to ${res.tiled.worst[1]}:1 on it — lower body::before opacity (now ${res.tiled.alpha})`);
+  else note(`  azulejo field at ${res.tiled.alpha} lifts the ground to rgb(${res.tiled.mix.join(',')}); `
+      + `tightest text on it ${res.tiled.worst[0]} ${res.tiled.worst[1]}:1`);
 
   const missingPhotos = failedReq.filter(u => /\/img\//.test(u));
   const realFails = failedReq.filter(u => !/favicon/.test(u) && !/cloudfront\.net/.test(u) && !/\/img\//.test(u));
